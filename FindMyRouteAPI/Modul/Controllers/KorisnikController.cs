@@ -41,5 +41,12 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             return Get(newKorisnik.Id);
         }
+
+        [HttpGet]
+        public ActionResult<List<Korisnik>> GetAll()
+        {
+            var data = _dbContext.Korisnik.AsQueryable();
+            return data.Take(100).ToList();
+        }
     }
 }
