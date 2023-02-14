@@ -5,10 +5,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FindMyRouteAPI.Migrations
 {
-    public partial class nova3 : Migration
+    public partial class test1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Osoba",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PIN = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BrojKupljenihKarata = table.Column<int>(type: "int", nullable: true),
+                    Pozicija = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RadniStaz = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Osoba", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "KreditnaKartica",
                 columns: table => new
@@ -40,6 +62,9 @@ namespace FindMyRouteAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "KreditnaKartica");
+
+            migrationBuilder.DropTable(
+                name: "Osoba");
         }
     }
 }
