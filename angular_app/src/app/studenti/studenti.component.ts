@@ -23,15 +23,31 @@ export class StudentiComponent implements OnInit {
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
-  testirajWebApi() :void
-  {
-    this.httpKlijent.get(MojConfig.adresa_servera+ "/Korisnik/GetAll").subscribe(x=>{
-      this.studentPodaci = x;
-    });
-  }
-
   ngOnInit(): void {
-    this.testirajWebApi();
   }
 
+  pretraga(grad1 : string, grad2 : string) {
+    fetch(MojConfig.adresa_servera+ "/Linija/GetByGradovi/gradovi?grad1="+grad1+"&grad2="+grad2)
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Molimo unesite nazive oba grada!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.studentPodaci = x;
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
+  }
 }

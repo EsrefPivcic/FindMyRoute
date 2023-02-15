@@ -1,22 +1,32 @@
-<p>Prikaz korisnika</p>
-
-<table class="table table-warning">
+<br> <h4 style="font-weight: bold">Pretraga</h4>
+<div>
+  <h5>Polazište</h5>
+  <input [(ngModel)]="ime_prezime"><br>
+  <hr>
+  <h5>Destinacija</h5>
+  <input [(ngModel)]="opstina"><br>
+  <hr>
+  <button style="font-size: large" class="form-label" (click)="pretraga(ime_prezime, opstina)">Pokreni pretragu</button>
+</div>
+<table style="font-size: large" class="table table-warning">
   <tr>
-    <th>ID</th>
-    <th>Ime</th>
-    <th>Prezime</th>
-    <th>Email</th>
-    <th>Adresa</th>
-    <th>Broj kupljenih karata</th>
+    <th>Polazište</th>
+    <th>Destinacija</th>
+    <th>Prevoznik</th>
+    <th>Datum</th>
+    <th>Kilometraza</th>
+    <th>Trajanje</th>
+    <th>Cijena</th>
   </tr>
   <tbody>
   <tr *ngFor="let s of this.studentPodaci">
-    <td>{{s.id}}</td>
-    <td>{{s.ime}}</td>
-    <td>{{s.prezime}}</td>
-    <td>{{s.email}}</td>
-    <td>{{s.adresa}}</td>
-    <td>{{s.brojKupljenihKarata}}</td>
+    <td>{{s.grad1}}</td>
+    <td>{{s.grad2}}</td>
+    <td>{{s.prevoznik.naziv}}</td>
+    <td>{{s.datumVrijeme}}</td>
+    <td>{{s.kilometraza}}km</td>
+    <td>{{s.trajanje}}min</td>
+    <td>{{s.cijena}}KM</td>
   </tr>
   </tbody>
 </table>
