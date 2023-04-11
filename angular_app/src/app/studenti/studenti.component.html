@@ -1,16 +1,18 @@
+<div style="display:flex; align-items: center; justify-content: center">
 <br> <h4 style="font-weight: bold">Pretraga</h4>
-<div>
+</div>
+<div style="display:flex; align-items: center; justify-content: center; flex-direction: column">
   <h5>Polazište</h5>
   <input [(ngModel)]="ime_prezime"><br>
-  <hr>
   <h5>Destinacija</h5>
-  <input [(ngModel)]="opstina"><br>
-  <hr>
+  <input [(ngModel)]="opstina">
+  <br>
   <button style="font-size: large" class="form-label" (click)="pretraga(ime_prezime, opstina)">Pokreni pretragu</button>
 </div>
-<table style="font-size: large" class="table table-warning">
+<table id="tabela" style="font-size: large; opacity: 0;" class="table table-warning">
   <tr>
     <th>Polazište</th>
+    <th>Presjedanje</th>
     <th>Destinacija</th>
     <th>Prevoznik</th>
     <th>Datum</th>
@@ -21,12 +23,14 @@
   <tbody>
   <tr *ngFor="let s of this.studentPodaci">
     <td>{{s.grad1}}</td>
+    <td>{{s.presjedanje}}</td>
     <td>{{s.grad2}}</td>
-    <td>{{s.prevoznik.naziv}}</td>
+    <td>{{s.prevoznik.naziv || s.prevoznik}}</td>
     <td>{{s.datumVrijeme}}</td>
     <td>{{s.kilometraza}}km</td>
     <td>{{s.trajanje}}min</td>
     <td>{{s.cijena}}KM</td>
+    <td><button style="font-size: large" class="form-label" (click)="GetLinijaByID(s)">Detalji</button></td>
   </tr>
   </tbody>
 </table>

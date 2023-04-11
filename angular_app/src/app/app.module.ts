@@ -14,10 +14,14 @@ import { StudentMaticnaknjigaComponent } from './student-maticnaknjiga/student-m
 import { ChartsModule } from 'ng2-charts';
 import { StudentEditComponent } from './studenti/student-edit/student-edit.component';
 import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
+import {linijaDetaljiComponent} from "./linijaDetalji/linijaDetalji.component";
+import {linijaPresjedanjeDetaljiComponent} from "./linijaPresjedanjeDetalji/linijaPresjedanjeDetalji.component";
 @NgModule({
   declarations: [
     AppComponent,
     StudentiComponent,
+    linijaDetaljiComponent,
+    linijaPresjedanjeDetaljiComponent,
     LoginComponent,
     RegistracijaComponent,
     HomeComponent,
@@ -29,7 +33,9 @@ import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.co
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'studenti', component: StudentiComponent},
+      {path: 'pretraga', component: StudentiComponent},
+      {path: 'detalji/:id', component: linijaDetaljiComponent},
+      {path: 'detaljiPresjedanje/:id1/:id2', component: linijaPresjedanjeDetaljiComponent},
       {path: 'login', component: LoginComponent},
       {path: 'registracija', component: RegistracijaComponent},
       {path: 'student-maticnaknjiga/:id', component: StudentMaticnaknjigaComponent},

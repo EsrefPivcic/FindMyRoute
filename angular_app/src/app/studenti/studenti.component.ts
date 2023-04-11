@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
-declare function porukaSuccess(a: string):any;
-declare function porukaError(a: string):any;
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-korisnici',
@@ -19,11 +18,19 @@ export class StudentiComponent implements OnInit {
   filter_ime_prezime: boolean;
   filter_opstina: boolean;
 
-
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+
+  GetLinijaByID(linija : any) {
+    if (linija.presjedanje == "//") {
+      this.router.navigate(['/detalji', linija.id]);
+    }
+    else {
+      this.router.navigate(['/detaljiPresjedanje', linija.id1, linija.id2]);
+    }
   }
 
   pretraga(grad1 : string, grad2 : string) {
@@ -49,5 +56,6 @@ export class StudentiComponent implements OnInit {
           alert("greska" + err);
         }
       )
+    document.getElementById("tabela").style.opacity="1";
   }
 }

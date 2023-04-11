@@ -1,0 +1,28 @@
+<br> <h3 style="font-weight: bold">Detalji linija sa presjedanjem</h3>
+<div>
+  <h4>Linija 1:</h4>
+  <h5>Polazište: {{this.linijaPodaci1.grad1}}</h5>
+  <h5>Destinacija: {{this.linijaPodaci1.grad2}}</h5>
+  <h5>Prevoznik: {{this.linijaPodaci1.prevoznik.naziv}}</h5>
+  <h5>Datum: {{this.linijaPodaci1.datumVrijeme}}</h5>
+  <h5>Kilometraža: {{this.linijaPodaci1.kilometraza}}km</h5>
+  <h5>Trajanje: {{this.linijaPodaci1.trajanje}}min</h5>
+  <h5>Cijena: {{this.linijaPodaci1.cijena}}KM</h5>
+</div>
+<br>
+<div>
+  <h4>Linija 2:</h4>
+  <h5>Polazište: {{this.linijaPodaci2.grad1}}</h5>
+  <h5>Destinacija: {{this.linijaPodaci2.grad2}}</h5>
+  <h5>Prevoznik: {{this.linijaPodaci2.prevoznik.naziv}}</h5>
+  <h5>Datum: {{this.linijaPodaci2.datumVrijeme}}</h5>
+  <h5>Kilometraža: {{this.linijaPodaci2.kilometraza}}km</h5>
+  <h5>Trajanje: {{this.linijaPodaci2.trajanje}}min</h5>
+  <h5>Cijena: {{this.linijaPodaci2.cijena}}KM</h5>
+</div>
+<br>
+<div>
+  <h4>Ukupno:</h4>
+  <h5>Trajanje: {{this.linijaPodaci1.trajanje + this.linijaPodaci2.trajanje}}min</h5>
+  <h5>Cijena: {{this.linijaPodaci1.cijena + this.linijaPodaci2.cijena}}KM</h5>
+</div>
