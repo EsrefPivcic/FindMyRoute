@@ -30,7 +30,7 @@ import {PretragaComponent} from "./pretraga/pretraga.component";
     BrowserModule,
     RouterModule.forRoot([
       {path: 'pretraga', component: PretragaComponent},
-      {path: 'detalji/:id', component: linijaDetaljiComponent},
+      {path: 'detalji/:id', component: linijaDetaljiComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'detaljiPresjedanje/:id1/:id2', component: linijaPresjedanjeDetaljiComponent},
       {path: 'login', component: LoginComponent},
       {path: 'registracija', component: RegistracijaComponent},
