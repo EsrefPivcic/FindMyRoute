@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AutentifikacijaHelper} from "./_helpers/autentifikacija-helper";
 import {LoginInformacije} from "./_helpers/login-informacije";
-import { StudentiComponent } from './studenti/studenti.component';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;

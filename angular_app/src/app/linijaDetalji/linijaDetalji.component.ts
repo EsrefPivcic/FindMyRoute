@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class linijaDetaljiComponent implements OnInit {
 
-  title: string = 'FindMyRoute';
+  title: string = 'FindMyRoute - Detalji linije';
   id : number;
   linijaPodaci : any;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {

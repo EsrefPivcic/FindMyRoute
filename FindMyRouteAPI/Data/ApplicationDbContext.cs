@@ -10,6 +10,7 @@ namespace FindMyRouteAPI.Data
         public DbSet<Administrator> Administrator { get; set;}
         public DbSet<RadnikFirme> RadnikFirme { get; set;}
         public DbSet<KreditnaKartica> KreditnaKartica { get; set;}
+        public DbSet<DaniVoznje> DaniVoznje { get; set;}
         public DbSet<Grad> Grad { get; set;}
         public DbSet<Prevoznik> Prevoznik { get; set;}
         public DbSet<Linija> Linija { get; set;}
@@ -17,5 +18,25 @@ namespace FindMyRouteAPI.Data
             DbContextOptions options) : base(options)
         {
         }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder
+        //        .Entity<Linija>()
+        //        .Property(e => e.VrijemePolaska)
+        //        .HasConversion(
+        //            v => v.ToString(),
+        //            v => TimeOnly.Parse(v));
+
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder
+        //        .Entity<Linija>()
+        //        .Property(e => e.VrijemeDolaska)
+        //        .HasConversion(
+        //            v => v.ToString(),
+        //            v => TimeOnly.Parse(v));
+        //}
     }
 }

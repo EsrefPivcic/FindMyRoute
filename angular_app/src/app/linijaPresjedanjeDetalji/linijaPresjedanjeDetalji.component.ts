@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class linijaPresjedanjeDetaljiComponent implements OnInit {
 
-  title: string = 'FindMyRoute';
+  title: string = 'FindMyRoute - Detalji presjedanja';
   id1 : number;
   id2 : number;
   linijaPodaci1 : any;

@@ -1,0 +1,35 @@
+<div style="display:flex; align-items: center; justify-content: center">
+</div>
+<div style="display:flex; align-items: center; justify-content: center; flex-direction: column">
+  <input placeholder="Polazište" style="margin-bottom: 1%; margin-top: 1%" id="polaziste"><br>
+  <input placeholder="Destinacija" id="destinacija">
+  <br>
+  <button style="font-size: large; margin-top: 1%" class="form-label" (click)="pretraga()">Pokreni pretragu</button>
+</div>
+<table id="tabela" style="font-size: large; opacity: 0;" class="table table-warning">
+  <tr>
+    <th>Polazište</th>
+    <th>Presjedanje</th>
+    <th>Destinacija</th>
+    <th>Prevoznik</th>
+    <th>Vrijeme polaska</th>
+    <th>Vrijeme dolaska</th>
+    <th>Cijena</th>
+  </tr>
+  <tbody>
+  <tr *ngFor="let l of this.linijePodaci">
+    <td>{{l.grad1}}</td>
+    <td>{{l.presjedanje}}</td>
+    <td>{{l.grad2}}</td>
+    <td>{{l.prevoznik.naziv || l.prevoznik}}</td>
+    <td>{{l.polazakSati}}:{{l.polazakMinute}}</td>
+    <td>{{l.dolazakSati}}:{{l.dolazakMinute}}</td>
+    <td>{{l.cijena}}KM</td>
+    <td><button style="font-size: large; " class="form-label" (click)="GetLinijaByID(l)">Detalji</button></td>
+  </tr>
+  </tbody>
+</table>
+<h5 id="nemaRez" style="display:flex; align-items: center; justify-content: center; flex-direction: column; opacity: 0">Nema rezultata pretrage.</h5>
+
+
+
