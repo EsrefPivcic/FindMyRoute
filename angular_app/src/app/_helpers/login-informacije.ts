@@ -41,19 +41,18 @@ export interface AutentifikacijaToken {
   korisnickiNalog:      KorisnickiNalog;
   vrijemeEvidentiranja: Date;
   ipAdresa:             string;
-
 }
 
 export interface KorisnickiNalog {
   id:                 number;
+  Ime:                 string;
+  Prezime:             string;
   korisnickoIme:      string;
+  lozinka:            string;
   slika_korisnika:    string;
   isNastavnik:        boolean;
-  isStudent:          boolean;
-  isAdmin:            boolean;
-  isProdekan:         boolean;
-  isDekan:            boolean;
-  isStudentskaSluzba: boolean;
+  isKorisnik:        boolean;
+  isAdministrator:   boolean;
+  isRadnikFirme:     boolean;
   isAktiviran: boolean;
-  email:             string;
 }

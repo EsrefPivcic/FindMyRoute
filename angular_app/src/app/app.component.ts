@@ -20,6 +20,20 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.navigate(['/pretraga']);
   }
+
+  loginInfo():LoginInformacije {
+    return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  logoutButton() {
+    AutentifikacijaHelper.setLoginInfo(null);
+
+    this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, MojConfig.http_opcije())
+      .subscribe((x: any) => {
+        this.router.navigateByUrl("/pretraga");
+        porukaSuccess("Logout uspješan");
+      });
+  }
 }
 
 /*export class AppComponent {

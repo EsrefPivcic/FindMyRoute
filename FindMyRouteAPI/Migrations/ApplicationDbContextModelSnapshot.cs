@@ -162,41 +162,6 @@ namespace FindMyRouteAPI.Migrations
                     b.ToTable("Linija");
                 });
 
-            modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Osoba", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prezime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Osoba");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Osoba");
-                });
-
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Prevoznik", b =>
                 {
                     b.Property<int>("Id")
@@ -214,20 +179,78 @@ namespace FindMyRouteAPI.Migrations
                     b.ToTable("Prevoznik");
                 });
 
+            modelBuilder.Entity("FIT_Api_Examples.Modul0_Autentifikacija.Models.AutentifikacijaToken", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int>("KorisnickiNalogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ipAdresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("vrijednost")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("vrijemeEvidentiranja")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("KorisnickiNalogId");
+
+                    b.ToTable("AutentifikacijaToken");
+                });
+
+            modelBuilder.Entity("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("Ime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prezime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("korisnickoIme")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lozinka")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("KorisnickiNalog");
+                });
+
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Administrator", b =>
                 {
-                    b.HasBaseType("FindMyRouteAPI.Modul.Models.Osoba");
+                    b.HasBaseType("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
                     b.Property<string>("PIN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Administrator");
+                    b.ToTable("Administrator");
                 });
 
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Korisnik", b =>
                 {
-                    b.HasBaseType("FindMyRouteAPI.Modul.Models.Osoba");
+                    b.HasBaseType("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
                     b.Property<string>("Adresa")
                         .IsRequired()
@@ -236,12 +259,12 @@ namespace FindMyRouteAPI.Migrations
                     b.Property<int>("BrojKupljenihKarata")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Korisnik");
+                    b.ToTable("Korisnik");
                 });
 
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.RadnikFirme", b =>
                 {
-                    b.HasBaseType("FindMyRouteAPI.Modul.Models.Osoba");
+                    b.HasBaseType("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
                     b.Property<string>("Pozicija")
                         .IsRequired()
@@ -250,7 +273,7 @@ namespace FindMyRouteAPI.Migrations
                     b.Property<int>("RadniStaz")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("RadnikFirme");
+                    b.ToTable("RadnikFirme");
                 });
 
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.KreditnaKartica", b =>
@@ -275,6 +298,44 @@ namespace FindMyRouteAPI.Migrations
                     b.Navigation("DaniVoznje");
 
                     b.Navigation("Prevoznik");
+                });
+
+            modelBuilder.Entity("FIT_Api_Examples.Modul0_Autentifikacija.Models.AutentifikacijaToken", b =>
+                {
+                    b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", "korisnickiNalog")
+                        .WithMany()
+                        .HasForeignKey("KorisnickiNalogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("korisnickiNalog");
+                });
+
+            modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Administrator", b =>
+                {
+                    b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
+                        .WithOne()
+                        .HasForeignKey("FindMyRouteAPI.Modul.Models.Administrator", "id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FindMyRouteAPI.Modul.Models.Korisnik", b =>
+                {
+                    b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
+                        .WithOne()
+                        .HasForeignKey("FindMyRouteAPI.Modul.Models.Korisnik", "id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FindMyRouteAPI.Modul.Models.RadnikFirme", b =>
+                {
+                    b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
+                        .WithOne()
+                        .HasForeignKey("FindMyRouteAPI.Modul.Models.RadnikFirme", "id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

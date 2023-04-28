@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FindMyRouteAPI.Migrations
 {
-    public partial class cake : Migration
+    public partial class registracija3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,25 +42,19 @@ namespace FindMyRouteAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Osoba",
+                name: "KorisnickiNalog",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PIN = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BrojKupljenihKarata = table.Column<int>(type: "int", nullable: true),
-                    Pozicija = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RadniStaz = table.Column<int>(type: "int", nullable: true)
+                    korisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Osoba", x => x.Id);
+                    table.PrimaryKey("PK_KorisnickiNalog", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,24 +71,78 @@ namespace FindMyRouteAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KreditnaKartica",
+                name: "Administrator",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Korisnik_id = table.Column<int>(type: "int", nullable: true),
-                    BrojKartice = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DatumIsteka = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SigurnosniBroj = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false),
+                    PIN = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KreditnaKartica", x => x.Id);
+                    table.PrimaryKey("PK_Administrator", x => x.id);
                     table.ForeignKey(
-                        name: "FK_KreditnaKartica_Osoba_Korisnik_id",
-                        column: x => x.Korisnik_id,
-                        principalTable: "Osoba",
-                        principalColumn: "Id");
+                        name: "FK_Administrator_KorisnickiNalog_id",
+                        column: x => x.id,
+                        principalTable: "KorisnickiNalog",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AutentifikacijaToken",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    vrijednost = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    KorisnickiNalogId = table.Column<int>(type: "int", nullable: false),
+                    vrijemeEvidentiranja = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ipAdresa = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AutentifikacijaToken", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_AutentifikacijaToken_KorisnickiNalog_KorisnickiNalogId",
+                        column: x => x.KorisnickiNalogId,
+                        principalTable: "KorisnickiNalog",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Korisnik",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false),
+                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BrojKupljenihKarata = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Korisnik", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Korisnik_KorisnickiNalog_id",
+                        column: x => x.id,
+                        principalTable: "KorisnickiNalog",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RadnikFirme",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false),
+                    Pozicija = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RadniStaz = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RadnikFirme", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_RadnikFirme_KorisnickiNalog_id",
+                        column: x => x.id,
+                        principalTable: "KorisnickiNalog",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -131,6 +179,32 @@ namespace FindMyRouteAPI.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "KreditnaKartica",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Korisnik_id = table.Column<int>(type: "int", nullable: true),
+                    BrojKartice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DatumIsteka = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SigurnosniBroj = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KreditnaKartica", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_KreditnaKartica_Korisnik_Korisnik_id",
+                        column: x => x.Korisnik_id,
+                        principalTable: "Korisnik",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AutentifikacijaToken_KorisnickiNalogId",
+                table: "AutentifikacijaToken",
+                column: "KorisnickiNalogId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_KreditnaKartica_Korisnik_id",
                 table: "KreditnaKartica",
@@ -150,6 +224,12 @@ namespace FindMyRouteAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Administrator");
+
+            migrationBuilder.DropTable(
+                name: "AutentifikacijaToken");
+
+            migrationBuilder.DropTable(
                 name: "Grad");
 
             migrationBuilder.DropTable(
@@ -159,13 +239,19 @@ namespace FindMyRouteAPI.Migrations
                 name: "Linija");
 
             migrationBuilder.DropTable(
-                name: "Osoba");
+                name: "RadnikFirme");
+
+            migrationBuilder.DropTable(
+                name: "Korisnik");
 
             migrationBuilder.DropTable(
                 name: "DaniVoznje");
 
             migrationBuilder.DropTable(
                 name: "Prevoznik");
+
+            migrationBuilder.DropTable(
+                name: "KorisnickiNalog");
         }
     }
 }

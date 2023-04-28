@@ -3,6 +3,10 @@
   <div class="container-fluid" style="display:flex; align-items: center; justify-content: center">
     <h2 style="font-weight: bold">FindMyRoute</h2>
   </div>
+  <li *ngIf="loginInfo().isLogiran == false" class="nav-item">
+    <a class="nav-link" routerLink="/login">Login</a>
+  </li>
+    <button *ngIf="loginInfo().isLogiran" (click)="logoutButton()">Log Out</button>
 </nav>
 <router-outlet></router-outlet>
 

@@ -1,8 +1,9 @@
-﻿namespace FindMyRouteAPI.Modul.ViewModels
+﻿using FindMyRouteAPI.Autentifikacija.ViewModels;
+
+namespace FindMyRouteAPI.Modul.ViewModels
 {
-    public class KorisnikAddVM : OsobaAddVM
+    public class KorisnikAddVM : RegistracijaVM
     {
         public string Adresa { get; set; }
-        public int BrojKupljenihKarata { get; set; }
     }
 }

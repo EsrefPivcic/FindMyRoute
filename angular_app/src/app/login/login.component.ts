@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
         if (x.isLogiran) {
           porukaSuccess("uspjesan login");
           AutentifikacijaHelper.setLoginInfo(x)
-          this.router.navigateByUrl("/studenti");
-
+          this.router.navigateByUrl("/pretraga");
         }
         else
         {
@@ -43,6 +42,5 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-
 
 }

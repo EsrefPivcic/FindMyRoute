@@ -21,7 +21,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         [HttpGet("id")]
         public ActionResult Get(int id)
         {
-            return Ok(_dbContext.Administrator.FirstOrDefault(k => k.Id == id));
+            return Ok(_dbContext.Administrator.FirstOrDefault(k => k.id == id));
         }
 
         [HttpPost]
@@ -31,13 +31,13 @@ namespace FindMyRouteAPI.Modul.Controllers
             {
                 Ime = x.Ime.RemoveTags(),
                 Prezime = x.Prezime.RemoveTags(),
-                Email = x.Email.RemoveTags(),
-                Password = x.Password.RemoveTags(),
+                korisnickoIme = x.korisnickoIme.RemoveTags(),
+                lozinka = x.lozinka.RemoveTags(),
                 PIN = x.PIN.RemoveTags()
             };
             _dbContext.Add(newAdministrator);
             _dbContext.SaveChanges();
-            return Get(newAdministrator.Id);
+            return Get(newAdministrator.id);
         }
     }
 }
