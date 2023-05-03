@@ -1,5 +1,29 @@
 
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
 
-.profilna-slika{
-  width: 30px;
+.navbar {
+  padding: 1.6% 2.4%;
+  line-height: 1.5;
+}
+
+@media (min-width: 992px) {
+  /* Apply the desktop padding */
+  .navbar {
+    padding: 16px 24px;
+  }
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-buttons {
+  position: absolute;
+  right: 0;
 }
