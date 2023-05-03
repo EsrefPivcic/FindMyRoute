@@ -1,25 +1,50 @@
-<div class="d-flex justify-content-center">
+<!--<div class="d-flex justify-content-center align-items-center flex-column">
   <div class="mb-3 row">
-    <div class="col-sm-3 text-end align-self-center">
-      <label for="txtKorisnickoIme" class="col-form-label">Korisnicko ime:</label>
-    </div>
+    <label for="txtKorisnickoIme" class="col-sm-3 text-end col-form-label">Korisničko&nbsp;ime:</label>
     <div class="col-sm-6">
       <input id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control" style="max-width: 25rem;">
     </div>
   </div>
 
   <div class="mb-3 row">
-    <div class="col-sm-3 text-end align-self-center">
-      <label for="txtLozinka" class="col-form-label">Lozinka:</label>
-    </div>
+    <label for="txtLozinka" class="col-sm-3 text-end col-form-label">Lozinka:</label>
     <div class="col-sm-6">
       <input id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password" style="max-width: 25rem;">
     </div>
   </div>
 
   <div class="text-center">
-    <button class="btn btn-primary" (click)="btnLogin()">Logiraj se</button>
+    <button class="btn btn-primary mt-3" (click)="btnLogin()">Logiraj se</button>
     <br>
-    <a>Nemate korisnički račun?</a> <a routerLink="/registracija"> Registrirajte se!</a>
+    <a>Nemate korisnički račun?</a> <a routerLink="/registracija">Registrirajte se!</a>
   </div>
 </div>
+-->
+
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-4 col-md-6 col-sm-8">
+        <div class="card">
+          <div class="card-header text-center">
+            <h3 class="mb-0">Prijava</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="txtKorisnickoIme" class="form-label">Korisničko ime</label>
+                <input name="txtKorisnickoIme" id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control" type="text">
+              </div>
+              <div class="mb-3">
+                <label for="txtLozinka" class="form-label">Lozinka</label>
+                <input name="txtKorisnickoIme" id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password">
+              </div>
+              <button class="btn btn-primary w-100 mt-3" (click)="btnLogin()">Prijavi se</button>
+            </form>
+            <div class="mt-3 text-center">
+              <a routerLink="/registracija">Registrirajte se</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

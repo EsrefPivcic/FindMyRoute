@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
 
-declare function porukaSuccess(a: string):any;
-declare function porukaError(a: string):any;
+/*declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;*/
 
 @Component({
   selector: 'app-login',
@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
     this.httpKlijent.post<LoginInformacije>(MojConfig.adresa_servera+ "/Autentifikacija/Login/", saljemo)
       .subscribe((x:LoginInformacije) =>{
         if (x.isLogiran) {
-          porukaSuccess("uspjesan login");
+          //porukaSuccess("uspjesan login");
           AutentifikacijaHelper.setLoginInfo(x)
           this.router.navigateByUrl("/pretraga");
         }
         else
         {
           AutentifikacijaHelper.setLoginInfo(null)
-          porukaError("neispravan login");
+          //porukaError("neispravan login");
         }
       });
   }

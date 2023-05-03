@@ -27,3 +27,7 @@ nav {
   position: absolute;
   right: 0;
 }
+
+button.rounded {
+  border-radius: 40px;
+}

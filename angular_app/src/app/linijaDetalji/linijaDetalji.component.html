@@ -1,4 +1,4 @@
-<br> <h3 style="font-weight: bold">Detalji linije</h3>
+<!--<br> <h3 style="font-weight: bold">Detalji linije</h3>
 <div>
   <h5>Polazište: {{this.linijaPodaci.grad1}}</h5>
   <h5>Presjedanje: {{this.linijaPodaci.presjedanje}}</h5>
@@ -31,4 +31,96 @@
     </tr>
     </tbody>
   </table>
+</div>
+-->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Detalji linije</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Polazište</h5>
+          <p class="card-text">{{this.linijaPodaci.grad1}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Presjedanje</h5>
+          <p class="card-text">{{this.linijaPodaci.presjedanje}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Destinacija</h5>
+          <p class="card-text">{{this.linijaPodaci.grad2}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Prevoznik</h5>
+          <p class="card-text">{{this.linijaPodaci.prevoznik.naziv}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Vrijeme polaska</h5>
+          <p class="card-text">{{this.linijaPodaci.polazakSati}}:{{this.linijaPodaci.polazakMinute}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Vrijeme dolaska</h5>
+          <p class="card-text">{{this.linijaPodaci.dolazakSati}}:{{this.linijaPodaci.dolazakMinute}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Kilometraža</h5>
+          <p class="card-text">{{this.linijaPodaci.kilometraza}} km</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Trajanje</h5>
+          <p class="card-text">{{this.linijaPodaci.trajanje}} min</p>
+        </div>
+      </div>
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Cijena</h5>
+    <p class="card-text">{{this.linijaPodaci.cijena}} KM</p>
+  </div>
+</div>
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Dostupni dani vožnje</h5>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Pon</th>
+        <th>Uto</th>
+        <th>Sri</th>
+        <th>Čet</th>
+        <th>Pet</th>
+        <th>Sub</th>
+        <th>Ned</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{this.linijaPodaci.daniVoznje.ponedjeljak ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.utorak ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.srijeda ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.cetvrtak ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.petak ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.subota ? "Da" : "Ne"}}</td>
+        <td>{{this.linijaPodaci.daniVoznje.nedjelja ? "Da" : "Ne"}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
 </div>

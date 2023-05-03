@@ -1,8 +1,8 @@
-<div style="display:flex; align-items: center; justify-content: center">
+<!--<div style="display:flex; align-items: center; justify-content: center">
 </div>
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column">
-  <input placeholder="Polazište" style="margin-bottom: 1%; margin-top: 1%" id="polaziste"><br>
-  <input placeholder="Destinacija" id="destinacija">
+  <input placeholder="Polazište" style="margin-bottom: 1%; margin-top: 1%" id="inputPolaziste"><br>
+  <input placeholder="Destinacija" id="inputDestinacija">
   <br>
   <button style="font-size: large; margin-top: 1%" class="form-label" (click)="pretraga()">Pokreni pretragu</button>
 </div>
@@ -31,5 +31,68 @@
 </table>
 <h5 id="nemaRez" style="display:flex; align-items: center; justify-content: center; flex-direction: column; opacity: 0">Nema rezultata pretrage.</h5>
 
+-->
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <label for="inputPolaziste" class="form-label">Polazište</label>
+          <input type="text" class="form-control" id="inputPolaziste" placeholder="Unesite polazište">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <label for="inputDestinacija" class="form-label">Destinacija</label>
+          <input type="text" class="form-control" id="inputDestinacija" placeholder="Unesite destinaciju">
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="mb-3">
+          <label for="btnPretraga" class="form-label">&nbsp;</label>
+          <button type="button" class="btn btn-primary form-control" id="btnPretraga" (click)="pretraga()">Pretraži</button>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-12">
+        <table class="table table-striped table-hover" *ngIf="linijePodaci.length > 0; else nemaRez">
+          <thead>
+          <tr>
+            <th scope="col">Polazište</th>
+            <th scope="col">Presjedanje</th>
+            <th scope="col">Destinacija</th>
+            <th scope="col">Prevoznik</th>
+            <th scope="col">Vrijeme polaska</th>
+            <th scope="col">Vrijeme dolaska</th>
+            <th scope="col">Cijena</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngIf="linijePodaci.length > 0; else nemaRez">
+            <tr *ngFor="let l of linijePodaci">
+              <td>{{l.grad1}}</td>
+              <td>{{l.presjedanje}}</td>
+              <td>{{l.grad2}}</td>
+              <td>{{l.prevoznik.naziv || l.prevoznik}}</td>
+              <td>{{l.polazakSati}}:{{l.polazakMinute}}</td>
+              <td>{{l.dolazakSati}}:{{l.dolazakMinute}}</td>
+              <td>{{l.cijena}} KM</td>
+              <td><button class="btn btn-outline-secondary btn-sm" (click)="GetLinijaByID(l)">Detalji</button></td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #nemaRez>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12">
+          <h5 class="text-center">Nema rezultata pretrage.</h5>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 
 

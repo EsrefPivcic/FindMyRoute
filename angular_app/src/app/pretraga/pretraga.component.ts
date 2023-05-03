@@ -31,8 +31,8 @@ export class PretragaComponent implements OnInit {
   }
 
   pretraga() {
-    this.grad1 = (document.getElementById('polaziste') as HTMLInputElement).value;
-    this.grad2 = (document.getElementById('destinacija') as HTMLInputElement).value;
+    this.grad1 = (document.getElementById('inputPolaziste') as HTMLInputElement).value;
+    this.grad2 = (document.getElementById('inputDestinacija') as HTMLInputElement).value;
     console.log(this.grad1);
     console.log(this.grad2);
     fetch(MojConfig.adresa_servera+ "/Linija/GetByGradovi/gradovi?grad1="+this.grad1+"&grad2="+this.grad2)

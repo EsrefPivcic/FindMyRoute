@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {AutentifikacijaHelper} from "./_helpers/autentifikacija-helper";
 import {LoginInformacije} from "./_helpers/login-informacije";
 
-declare function porukaSuccess(a: string):any;
-declare function porukaError(a: string):any;
+/*declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;*/
 
 @Component({
   selector: 'app-root',
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, MojConfig.http_opcije())
       .subscribe((x: any) => {
         this.router.navigateByUrl("/pretraga");
-        porukaSuccess("Logout uspješan");
+        //porukaSuccess("Logout uspješan");
       });
   }
 }
