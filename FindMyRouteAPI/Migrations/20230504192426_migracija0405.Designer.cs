@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindMyRouteAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230503182200_0305")]
-    partial class _0305
+    [Migration("20230504192426_migracija0405")]
+    partial class migracija0405
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
