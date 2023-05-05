@@ -14,9 +14,12 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public int id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+        public string Email { get; set; }
         public string korisnickoIme { get; set; }
         [JsonIgnore]
         public string lozinka { get; set; }
+        public string Adresa { get; set; }
+        public string BrojTelefona { get; set; }
         //public string slika_korisnika { get; set; }
         [JsonIgnore]
         public Korisnik korisnik => this as Korisnik;

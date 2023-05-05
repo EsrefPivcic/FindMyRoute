@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FindMyRouteAPI.Migrations
 {
-    public partial class migracija0405 : Migration
+    public partial class migracija0505 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,8 +49,11 @@ namespace FindMyRouteAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     korisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BrojTelefona = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,7 +117,6 @@ namespace FindMyRouteAPI.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BrojKupljenihKarata = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

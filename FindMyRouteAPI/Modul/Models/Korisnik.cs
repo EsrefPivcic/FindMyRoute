@@ -6,7 +6,6 @@ namespace FindMyRouteAPI.Modul.Models
     [Table("Korisnik")]
     public class Korisnik : KorisnickiNalog
     {
-        public string Adresa { get; set; }
         public int BrojKupljenihKarata { get; set; }
     }
 }
