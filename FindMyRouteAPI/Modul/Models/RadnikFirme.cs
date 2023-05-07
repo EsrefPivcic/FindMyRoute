@@ -8,5 +8,8 @@ namespace FindMyRouteAPI.Modul.Models
     {
         public string Pozicija { get; set; }
         public int RadniStaz { get; set; }
+        [ForeignKey(nameof(Prevoznik))]
+        public int? Prevoznik_id { get; set; }
+        public Prevoznik Prevoznik { get; set; }
     }
 }

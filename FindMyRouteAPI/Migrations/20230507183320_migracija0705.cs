@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FindMyRouteAPI.Migrations
 {
-    public partial class migracija0505 : Migration
+    public partial class migracija0705 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,24 +130,6 @@ namespace FindMyRouteAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RadnikFirme",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false),
-                    Pozicija = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RadniStaz = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RadnikFirme", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_RadnikFirme_KorisnickiNalog_id",
-                        column: x => x.id,
-                        principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Linija",
                 columns: table => new
                 {
@@ -176,6 +158,30 @@ namespace FindMyRouteAPI.Migrations
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Linija_Prevoznik_Prevoznik_id",
+                        column: x => x.Prevoznik_id,
+                        principalTable: "Prevoznik",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RadnikFirme",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false),
+                    Pozicija = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RadniStaz = table.Column<int>(type: "int", nullable: false),
+                    Prevoznik_id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RadnikFirme", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_RadnikFirme_KorisnickiNalog_id",
+                        column: x => x.id,
+                        principalTable: "KorisnickiNalog",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_RadnikFirme_Prevoznik_Prevoznik_id",
                         column: x => x.Prevoznik_id,
                         principalTable: "Prevoznik",
                         principalColumn: "Id");
@@ -220,6 +226,11 @@ namespace FindMyRouteAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Linija_Prevoznik_id",
                 table: "Linija",
+                column: "Prevoznik_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RadnikFirme_Prevoznik_id",
+                table: "RadnikFirme",
                 column: "Prevoznik_id");
         }
 

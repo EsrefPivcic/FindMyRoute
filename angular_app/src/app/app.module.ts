@@ -14,6 +14,8 @@ import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.co
 import {linijaDetaljiComponent} from "./linijaDetalji/linijaDetalji.component";
 import {linijaPresjedanjeDetaljiComponent} from "./linijaPresjedanjeDetalji/linijaPresjedanjeDetalji.component";
 import {PretragaComponent} from "./pretraga/pretraga.component";
+import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import {PretragaComponent} from "./pretraga/pretraga.component";
     HomeComponent,
     NotFoundComponent,
     PostavkeProfilaComponent,
+    UpravljanjeComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import {PretragaComponent} from "./pretraga/pretraga.component";
       {path: 'home', component: HomeComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'postavke-profila', component: PostavkeProfilaComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent, canActivate: [AutorizacijaLoginProvjera]},
+      {path: 'upravljanje', component: UpravljanjeComponent, canActivate: [AutorizacijaLoginProvjera]}
     ]),
     FormsModule,
     HttpClientModule,

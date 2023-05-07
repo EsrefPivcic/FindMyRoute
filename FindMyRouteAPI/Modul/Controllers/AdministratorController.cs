@@ -31,8 +31,11 @@ namespace FindMyRouteAPI.Modul.Controllers
             {
                 Ime = x.Ime.RemoveTags(),
                 Prezime = x.Prezime.RemoveTags(),
+                Email= x.Email.RemoveTags(),
                 korisnickoIme = x.korisnickoIme.RemoveTags(),
                 lozinka = x.lozinka.RemoveTags(),
+                Adresa = x.Adresa.RemoveTags(),
+                BrojTelefona = x.BrojTelefona.RemoveTags(),
                 PIN = x.PIN.RemoveTags()
             };
             _dbContext.Add(newAdministrator);

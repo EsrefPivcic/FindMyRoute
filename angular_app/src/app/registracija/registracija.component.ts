@@ -9,7 +9,7 @@ import {escapeRegExp} from "@angular/compiler/src/util";
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
-const BrojTelefona = /[0-9]{2}[0-9]{3}[0-9]{3}/;
+const BrojTelefona = /[0-9]{8}/;
 const BrojTelefonaRegex = new RegExp('BrojTelefona');
 const Email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const EmailRegex = new RegExp('Email');
@@ -23,8 +23,8 @@ export class RegistracijaComponent implements OnInit {
   txtIme: any;
   txtPrezime: any;
   txtEmail: any;
-  txtKorisnickoIme: any;
-  txtLozinka: any;
+  txtKorisnickoImeReg: any;
+  txtLozinkaReg: any;
   txtAdresa: any;
   txtBrojTelefona: any;
 
@@ -34,7 +34,7 @@ export class RegistracijaComponent implements OnInit {
   }
 
   Validiraj(): boolean {
-    if (this.txtIme == null || this.txtPrezime == null || this.txtEmail == null || this.txtKorisnickoIme == null || this.txtLozinka == null
+    if (this.txtIme == null || this.txtPrezime == null || this.txtEmail == null || this.txtKorisnickoImeReg == null || this.txtLozinkaReg == null
     || this.txtAdresa == null || this.txtBrojTelefona == null) {
       porukaError("Sva polja su obavezna!");
       return false;
@@ -56,8 +56,8 @@ export class RegistracijaComponent implements OnInit {
         ime: this.txtIme,
         prezime: this.txtPrezime,
         email: this.txtEmail,
-        korisnickoIme: this.txtKorisnickoIme,
-        lozinka: this.txtLozinka,
+        korisnickoIme: this.txtKorisnickoImeReg,
+        lozinka: this.txtLozinkaReg,
         adresa: this.txtAdresa,
         brojTelefona: "+387" + this.txtBrojTelefona
       };

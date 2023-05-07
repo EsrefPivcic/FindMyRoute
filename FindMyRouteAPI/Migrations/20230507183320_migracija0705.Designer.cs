@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindMyRouteAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230505124631_migracija0505")]
-    partial class migracija0505
+    [Migration("20230507183320_migracija0705")]
+    partial class migracija0705
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -280,8 +280,13 @@ namespace FindMyRouteAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Prevoznik_id")
+                        .HasColumnType("int");
+
                     b.Property<int>("RadniStaz")
                         .HasColumnType("int");
+
+                    b.HasIndex("Prevoznik_id");
 
                     b.ToTable("RadnikFirme");
                 });
@@ -341,11 +346,17 @@ namespace FindMyRouteAPI.Migrations
 
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.RadnikFirme", b =>
                 {
+                    b.HasOne("FindMyRouteAPI.Modul.Models.Prevoznik", "Prevoznik")
+                        .WithMany()
+                        .HasForeignKey("Prevoznik_id");
+
                     b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
                         .WithOne()
                         .HasForeignKey("FindMyRouteAPI.Modul.Models.RadnikFirme", "id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.Navigation("Prevoznik");
                 });
 #pragma warning restore 612, 618
         }

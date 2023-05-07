@@ -6,5 +6,6 @@ namespace FindMyRouteAPI.Modul.ViewModels
     {
         public string Pozicija { get; set; }
         public int RadniStaz { get; set; }
+        public int? Prevoznik_id { get; set; }
     }
 }

@@ -278,8 +278,13 @@ namespace FindMyRouteAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Prevoznik_id")
+                        .HasColumnType("int");
+
                     b.Property<int>("RadniStaz")
                         .HasColumnType("int");
+
+                    b.HasIndex("Prevoznik_id");
 
                     b.ToTable("RadnikFirme");
                 });
@@ -339,11 +344,17 @@ namespace FindMyRouteAPI.Migrations
 
             modelBuilder.Entity("FindMyRouteAPI.Modul.Models.RadnikFirme", b =>
                 {
+                    b.HasOne("FindMyRouteAPI.Modul.Models.Prevoznik", "Prevoznik")
+                        .WithMany()
+                        .HasForeignKey("Prevoznik_id");
+
                     b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
                         .WithOne()
                         .HasForeignKey("FindMyRouteAPI.Modul.Models.RadnikFirme", "id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.Navigation("Prevoznik");
                 });
 #pragma warning restore 612, 618
         }
