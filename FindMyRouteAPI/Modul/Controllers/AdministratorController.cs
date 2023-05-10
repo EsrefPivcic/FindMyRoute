@@ -36,7 +36,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                 lozinka = x.lozinka.RemoveTags(),
                 Adresa = x.Adresa.RemoveTags(),
                 BrojTelefona = x.BrojTelefona.RemoveTags(),
-                PIN = x.PIN.RemoveTags()
+                PIN = x.PIN.RemoveTags(),
+                isAktiviran = true
             };
             _dbContext.Add(newAdministrator);
             _dbContext.SaveChanges();

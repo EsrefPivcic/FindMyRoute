@@ -236,6 +236,9 @@ namespace FindMyRouteAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAktiviran")
+                        .HasColumnType("bit");
+
                     b.Property<string>("korisnickoIme")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

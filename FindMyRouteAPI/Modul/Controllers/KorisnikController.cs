@@ -37,7 +37,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                 lozinka = x.lozinka.RemoveTags(),
                 Adresa = x.Adresa.RemoveTags(),
                 BrojTelefona = x.BrojTelefona.RemoveTags(),
-                BrojKupljenihKarata = 0
+                BrojKupljenihKarata = 0,
+                isAktiviran = true
             };
             _dbContext.Add(newKorisnik);
             _dbContext.SaveChanges();

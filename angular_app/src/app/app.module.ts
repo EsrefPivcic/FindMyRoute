@@ -27,7 +27,7 @@ import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
     HomeComponent,
     NotFoundComponent,
     PostavkeProfilaComponent,
-    UpravljanjeComponent
+    UpravljanjeComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +39,8 @@ import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
       {path: 'registracija', component: RegistracijaComponent},
       {path: 'home', component: HomeComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'postavke-profila', component: PostavkeProfilaComponent, canActivate: [AutorizacijaLoginProvjera]},
+      {path: 'upravljanje', component: UpravljanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent, canActivate: [AutorizacijaLoginProvjera]},
-      {path: 'upravljanje', component: UpravljanjeComponent, canActivate: [AutorizacijaLoginProvjera]}
     ]),
     FormsModule,
     HttpClientModule,

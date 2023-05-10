@@ -35,7 +35,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                 lozinka = x.lozinka.RemoveTags(),
                 Pozicija = x.Pozicija.RemoveTags(),
                 RadniStaz = x.RadniStaz,
-                Prevoznik_id = x.Prevoznik_id
+                Prevoznik_id = x.Prevoznik_id,
+                isAktiviran = true
             };
             _dbContext.Add(newRadnikFirme);
             _dbContext.SaveChanges();
