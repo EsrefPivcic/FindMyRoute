@@ -28,11 +28,35 @@ namespace FindMyRouteAPI.Modul.Controllers
         {
             var newPrevoznik = new Prevoznik
             {
-                Naziv = x.Naziv
+                Naziv = x.Naziv,
+                Adresa = x.Adresa,
+                Email = x.Email,
+                BrojTelefona = x.BrojTelefona
             };
             _dbContext.Add(newPrevoznik);
             _dbContext.SaveChanges();
             return Get(newPrevoznik.Id);
+        }
+
+        [HttpGet]
+        public ActionResult<List<Prevoznik>> GetAll()
+        {
+            var data = _dbContext.Prevoznik.AsQueryable();
+            return data.Take(100).ToList();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            Prevoznik? prevoznik = _dbContext.Prevoznik.Find(id);
+
+            if (prevoznik == null)
+                return BadRequest("pogresan ID");
+
+            _dbContext.Remove(prevoznik);
+
+            _dbContext.SaveChanges();
+            return Ok(prevoznik);
         }
     }
 }
