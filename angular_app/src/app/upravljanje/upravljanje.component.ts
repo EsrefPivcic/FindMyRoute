@@ -18,17 +18,38 @@ const EmailRegex = new RegExp('Email');
 })
 
 export class UpravljanjeComponent implements OnInit {
+  prevoznici: boolean = true;
   txtNaziv: any;
   txtAdresa: any;
   txtEmail: any;
   txtBrojTelefona: any;
   prevoznikPodaci: any;
+  txtIme: any;
+  txtPrezime: any;
+  txtEmailRadnik: any;
+  txtKorisnickoIme: any;
+  txtLozinka: any;
+  txtAdresaRadnik: any;
+  txtBrojTelefonaRadnik: any;
+  txtPozicija: any;
+  txtRadniStaz: any;
+  txtPrevoznik: any;
+  radnikPodaci: any;
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
   ngOnInit(): void {
     this.UcitajPrevoznike();
+    this.UcitajRadnike();
+  }
+
+  Radnici(): void {
+    this.prevoznici = false;
+  }
+
+  Prevoznici(): void {
+    this.prevoznici = true;
   }
 
   UcitajPrevoznike(): void {
@@ -56,8 +77,33 @@ export class UpravljanjeComponent implements OnInit {
       )
   }
 
+  UcitajRadnike(): void {
+    fetch(MojConfig.adresa_servera+ "/RadnikFirme/GetAll")
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Molimo unesite nazive oba grada!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.radnikPodaci = x;
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
+  }
+
   Validiraj(): boolean {
-    if (this.txtNaziv == null || this.txtAdresa == null || this.txtEmail == null || this.txtBrojTelefona == null) {
+    if (this.txtIme == null || this.txtPrezime == null || this.txtEmail == null || this.txtBrojTelefona == null) {
       porukaError("Sva polja su obavezna!");
       return false;
     }
@@ -66,6 +112,24 @@ export class UpravljanjeComponent implements OnInit {
       return false;
     }
     if (!this.txtEmail.match(Email)) {
+      porukaError("Molimo unesite ispravan email!");
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajRadnike(): boolean {
+    if (this.txtIme == null || this.txtPrezime == null || this.txtEmailRadnik == null || this.txtKorisnickoIme == null ||
+      this.txtLozinka == null || this.txtAdresaRadnik == null || this.txtBrojTelefonaRadnik == null || this.txtPozicija == null ||
+      this.txtRadniStaz == null || this.txtPrevoznik == null) {
+      porukaError("Sva polja su obavezna!");
+      return false;
+    }
+    if (!this.txtBrojTelefonaRadnik.match(BrojTelefona)) {
+      porukaError("Molimo unesite ispravan broj telefona!");
+      return false;
+    }
+    if (!this.txtEmailRadnik.match(Email)) {
       porukaError("Molimo unesite ispravan email!");
       return false;
     }
@@ -91,8 +155,45 @@ export class UpravljanjeComponent implements OnInit {
     }
   }
 
+  btnDodajRadnika() {
+    if (this.ValidirajRadnike()) {
+      let saljemo = {
+        ime: this.txtIme,
+        prezime: this.txtPrezime,
+        email: this.txtEmailRadnik,
+        korisnickoIme: this.txtKorisnickoIme,
+        lozinka: this.txtLozinka,
+        adresa: this.txtAdresaRadnik,
+        brojTelefona: "+387" + this.txtBrojTelefonaRadnik,
+        pozicija: this.txtPozicija,
+        radniStaz: this.txtRadniStaz,
+        prevoznik_id: this.txtPrevoznik
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/Add`, saljemo, MojConfig.http_opcije()).subscribe(x => {
+        this.txtIme = null;
+        this.txtPrezime = null;
+        this.txtEmailRadnik = null;
+        this.txtKorisnickoIme = null;
+        this.txtLozinka = null;
+        this.txtAdresaRadnik = null;
+        this.txtBrojTelefonaRadnik = null;
+        this.txtPozicija = null;
+        this.txtRadniStaz = null;
+        this.txtPrevoznik = null;
+        this.ngOnInit();
+        porukaSuccess("Radnik je uspješno dodan!")
+      });
+    }
+  }
+
   UkloniPrevoznika(prevoznik: any) {
     this.httpKlijent.delete(`${MojConfig.adresa_servera}/Prevoznik/Delete/${prevoznik.id}`, MojConfig.http_opcije()).subscribe(x=>{
+      this.ngOnInit();
+    });
+  }
+
+  UkloniRadnika(radnik: any) {
+    this.httpKlijent.delete(`${MojConfig.adresa_servera}/RadnikFirme/Delete/${radnik.id}`, MojConfig.http_opcije()).subscribe(x=>{
       this.ngOnInit();
     });
   }

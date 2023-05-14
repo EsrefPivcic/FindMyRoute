@@ -31,8 +31,11 @@ namespace FindMyRouteAPI.Modul.Controllers
             {
                 Ime = x.Ime.RemoveTags(),
                 Prezime = x.Prezime.RemoveTags(),
+                Email = x.Email.RemoveTags(),
                 korisnickoIme = x.korisnickoIme.RemoveTags(),
                 lozinka = x.lozinka.RemoveTags(),
+                Adresa = x.Adresa.RemoveTags(),
+                BrojTelefona = x.BrojTelefona.RemoveTags(),
                 Pozicija = x.Pozicija.RemoveTags(),
                 RadniStaz = x.RadniStaz,
                 Prevoznik_id = x.Prevoznik_id,
@@ -41,6 +44,27 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.Add(newRadnikFirme);
             _dbContext.SaveChanges();
             return Get(newRadnikFirme.id);
+        }
+
+        [HttpGet]
+        public ActionResult<List<RadnikFirme>> GetAll()
+        {
+            var data = _dbContext.RadnikFirme.Include(r => r.Prevoznik).AsQueryable();
+            return data.Take(100).ToList();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            RadnikFirme? radnik = _dbContext.RadnikFirme.Find(id);
+
+            if (radnik == null)
+                return BadRequest("pogresan ID");
+
+            _dbContext.Remove(radnik);
+
+            _dbContext.SaveChanges();
+            return Ok(radnik);
         }
     }
 }
