@@ -41,8 +41,8 @@
               <td>{{l.presjedanje}}</td>
               <td>{{l.grad2}}</td>
               <td>{{l.prevoznik.naziv || l.prevoznik}}</td>
-              <td>{{l.polazakSati}}:{{l.polazakMinute}}</td>
-              <td>{{l.dolazakSati}}:{{l.dolazakMinute}}</td>
+              <td>{{l.polazakSati.toString().padStart(2, '0')}}:{{l.polazakMinute.toString().padStart(2, '0')}}</td>
+              <td>{{l.dolazakSati.toString().padStart(2, '0')}}:{{l.dolazakMinute.toString().padStart(2, '0')}}</td>
               <td>{{l.cijena}} KM</td>
               <td><button class="btn btn-outline-secondary btn-sm" (click)="GetLinijaByID(l)">Detalji</button></td>
             </tr>

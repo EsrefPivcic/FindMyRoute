@@ -1,0 +1,235 @@
+<!--<div class="container">
+  <div class="row justify-content-left mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="mb-0">Upravljanje linijama</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="txtGrad1" class="form-label">Polazište</label>
+              <input name="txtGrad1" id="txtGrad1" [(ngModel)]="txtGrad1" class="form-control" type="text">
+            </div>
+            <div class="mb-3">
+              <label for="txtGrad2" class="form-label">Destinacija</label>
+              <input name="txtGrad2" id="txtGrad2" [(ngModel)]="txtGrad2" class="form-control" type="text">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Polazak</label>
+              <input style="width: 30%" name="txtPolazakSati" id="txtPolazakSati" [(ngModel)]="txtPolazakSati" class="form-control" type="text">
+              <input style="width: 30%" name="txtPolazakMinute" id="txtPolazakMinute" [(ngModel)]="txtPolazakMinute" class="form-control" type="text">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Dolazak</label>
+              <input style="width: 30%" name="txtDolazakSati" id="txtDolazakSati" [(ngModel)]="txtDolazakSati" class="form-control" type="text">
+              <input style="width: 30%" name="txtDolazakMinute" id="txtDolazakMinute" [(ngModel)]="txtDolazakMinute" class="form-control" type="text">
+            </div>
+            <div class="mb-3">
+              <label for="chkPonedjeljak" class="form-label">Ponedjeljak </label>
+              <input name="chkPonedjeljak" id="chkPonedjeljak" [(ngModel)]="chkPonedjeljak" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkUtorak" class="form-label">Utorak </label>
+              <input name="chkUtorak" id="chkUtorak" [(ngModel)]="chkUtorak" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkSrijeda" class="form-label">Srijeda </label>
+              <input name="chkSrijeda" id="chkSrijeda" [(ngModel)]="chkSrijeda" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkCetvrtak" class="form-label">Četvrtak </label>
+              <input name="chkCetvrtak" id="chkCetvrtak" [(ngModel)]="chkCetvrtak" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkPetak" class="form-label">Petak </label>
+              <input name="chkPetak" id="chkPetak" [(ngModel)]="chkPetak" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkSubota" class="form-label">Subota </label>
+              <input name="chkSubota" id="chkSubota" [(ngModel)]="chkSubota" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="chkNedjelja" class="form-label">Nedjelja </label>
+              <input name="chkNedjelja" id="chkNedjelja" [(ngModel)]="chkNedjelja" class="form-check-input" type="checkbox">
+            </div>
+            <div class="mb-3">
+              <label for="txtKilometraza" class="form-label">Kilometraža</label>
+              <input name="txtKilometraza" id="txtKilometraza" [(ngModel)]="txtKilometraza" class="form-control" type="text">
+            </div>
+            <div class="mb-3">
+              <label for="txtCijena" class="form-label">Cijena karte</label>
+              <input name="txtCijena" id="txtCijena" [(ngModel)]="txtCijena" class="form-control" type="text">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" (click)="btnDodajLiniju()">Dodaj liniju</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-4">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Polazište</th>
+          <th scope="col">Destinacija</th>
+          <th scope="col">Polazak</th>
+          <th scope="col">Dolazak</th>
+          <th scope="col">Cijena</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container>
+          <tr *ngFor="let l of linijePodaci">
+            <td>{{l.grad1}}</td>
+            <td>{{l.grad2}}</td>
+            <td>{{l.polazakSati}}:{{l.polazakMinute}}</td>
+            <td>{{l.dolazakSati}}:{{l.dolazakMinute}}</td>
+            <td>{{l.cijena}}KM</td>
+            <td><button class="btn btn-outline-secondary btn-sm" (click)="Detalji(l)">Detalji</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" (click)="UkloniLiniju(l)">Ukloni liniju</button></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="container">
+  <div class="row justify-content-left mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="mb-0">Upravljanje linijama</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="txtGrad1" class="form-label">Polazište</label>
+              <input name="txtGrad1" id="txtGrad1" [(ngModel)]="txtGrad1" class="form-control" type="text" placeholder="Unesite ime grada">
+            </div>
+            <div class="mb-3">
+              <label for="txtGrad2" class="form-label">Destinacija</label>
+              <input name="txtGrad2" id="txtGrad2" [(ngModel)]="txtGrad2" class="form-control" type="text" placeholder="Unesite ime grada">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Polazak</label>
+              <div class="d-flex align-items-center">
+                <input style="width: 25%; margin-right: 10px" name="txtPolazakSati" id="txtPolazakSati" [(ngModel)]="txtPolazakSati" class="form-control" type="number" min="0" max="23" placeholder="hh">
+                <input style="width: 25%" name="txtPolazakMinute" id="txtPolazakMinute" [(ngModel)]="txtPolazakMinute" class="form-control" type="number" min="0" max="59" placeholder="mm">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Dolazak</label>
+              <div class="d-flex align-items-center">
+                <input style="width: 25%; margin-right: 10px" name="txtDolazakSati" id="txtDolazakSati" [(ngModel)]="txtDolazakSati" class="form-control" type="number" min="00" max="23" placeholder="hh">
+                <input style="width: 25%" name="txtDolazakMinute" id="txtDolazakMinute" [(ngModel)]="txtDolazakMinute" class="form-control" type="number" min="00" max="59" placeholder="mm">
+              </div>
+            </div>
+            <!--<div class="mb-3">
+              <label class="form-label">Polazak</label>
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <input name="txtPolazakSati" id="txtPolazakSati" [(ngModel)]="txtPolazakSati" class="form-control" type="number" min="0" max="23" placeholder="Sat">
+                </div>
+                <div class="col-6">
+                  <input name="txtPolazakMinute" id="txtPolazakMinute" [(ngModel)]="txtPolazakMinute" class="form-control" type="number" min="0" max="59" placeholder="Minute">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Dolazak</label>
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <input name="txtDolazakSati" id="txtDolazakSati" [(ngModel)]="txtDolazakSati" class="form-control" type="number" min="0" max="23" placeholder="Sat">
+                </div>
+                <div class="col-6">
+                  <input name="txtDolazakMinute" id="txtDolazakMinute" [(ngModel)]="txtDolazakMinute" class="form-control" type="number" min="0" max="59" placeholder="Minute">
+                </div>
+              </div>
+            </div>-->
+            <div class="mb-3">
+              <label class="form-label">Dostupni dani</label>
+              <div class="d-flex">
+                <div class="form-check me-5">
+                  <input name="chkPonedjeljak" id="chkPonedjeljak" [(ngModel)]="chkPonedjeljak" class="form-check-input" type="checkbox">
+                  <label for="chkPonedjeljak" class="form-check-label">Ponedjeljak</label>
+                </div>
+                <div class="form-check me-5">
+                  <input name="chkUtorak" id="chkUtorak" [(ngModel)]="chkUtorak" class="form-check-input" type="checkbox">
+                  <label for="chkUtorak" class="form-check-label">Utorak</label>
+                </div>
+                <div class="form-check me-5">
+                  <input name="chkSrijeda" id="chkSrijeda" [(ngModel)]="chkSrijeda" class="form-check-input" type="checkbox">
+                  <label for="chkSrijeda" class="form-check-label">Srijeda</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <div class="form-check me-5">
+                  <input name="chkCetvrtak" id="chkCetvrtak" [(ngModel)]="chkCetvrtak" class="form-check-input" type="checkbox">
+                  <label for="chkCetvrtak" class="form-check-label">Četvrtak</label>
+                </div>
+                <div class="form-check me-5">
+                  <input name="chkPetak" id="chkPetak" [(ngModel)]="chkPetak" class="form-check-input" type="checkbox">
+                  <label for="chkPetak" class="form-check-label">Petak</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <div class="form-check me-5">
+                  <input name="chkSubota" id="chkSubota" [(ngModel)]="chkSubota" class="form-check-input" type="checkbox">
+                  <label for="chkSubota" class="form-check-label">Subota</label>
+                </div>
+                <div class="form-check me-5">
+                  <input name="chkNedjelja" id="chkNedjelja" [(ngModel)]="chkNedjelja" class="form-check-input" type="checkbox">
+                  <label for="chkNedjelja" class="form-check-label">Nedjelja</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtKilometraza" class="form-label">Kilometraža</label>
+              <input name="txtKilometraza" id="txtKilometraza" [(ngModel)]="txtKilometraza" class="form-control" type="text" placeholder="km">
+            </div>
+              <div class="mb-3">
+                <label for="txtCijena" class="form-label">Cijena karte</label>
+                <input name="txtCijena" id="txtCijena" [(ngModel)]="txtCijena" class="form-control" type="text" placeholder="KM">
+              </div>
+            <button class="btn btn-primary w-100 mt-3" (click)="btnDodajLiniju()">Dodaj liniju</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-4">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Polazište</th>
+          <th scope="col">Destinacija</th>
+          <th scope="col">Polazak</th>
+          <th scope="col">Dolazak</th>
+          <th scope="col">Cijena</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container>
+          <tr *ngFor="let l of linijePodaci">
+            <td>{{l.grad1}}</td>
+            <td>{{l.grad2}}</td>
+            <td>{{l.polazakSati.toString().padStart(2, '0')}}:{{l.polazakMinute.toString().padStart(2, '0')}}</td>
+            <td>{{l.dolazakSati.toString().padStart(2, '0')}}:{{l.dolazakMinute.toString().padStart(2, '0')}}</td>
+            <td>{{l.cijena}}KM</td>
+            <td><button class="btn btn-outline-secondary btn-sm" (click)="Detalji(l)">Detalji</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" (click)="UkloniLiniju(l)">Ukloni liniju</button></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

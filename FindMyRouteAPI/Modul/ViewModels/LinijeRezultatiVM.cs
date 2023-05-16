@@ -15,12 +15,13 @@ namespace FindMyRouteAPI.Modul.ViewModels
         //public DateTime DatumVrijeme { get; set; }
         //public TimeOnly VrijemePolaska { get; set; }
         //public TimeOnly VrijemeDolaska { get; set; }
-        public string PolazakSati { get; set; }
-        public string PolazakMinute { get; set; }
-        public string DolazakSati { get; set; }
-        public string DolazakMinute { get; set; }
+        public int PolazakSati { get; set; }
+        public int PolazakMinute { get; set; }
+        public int DolazakSati { get; set; }
+        public int DolazakMinute { get; set; }
         public int Kilometraza { get; set; }
         public int Trajanje { get; set; }
         public int Cijena { get; set; }
+        public int Cekanje { get; set; }
     }
 }

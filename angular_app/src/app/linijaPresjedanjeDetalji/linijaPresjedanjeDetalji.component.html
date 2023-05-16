@@ -96,13 +96,13 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme polaska</h5>
-          <p class="card-text">{{this.linijaPodaci1.polazakSati}}:{{this.linijaPodaci1.polazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci1.polazakSati.toString().padStart(2, '0')}}:{{linijaPodaci1.polazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme dolaska</h5>
-          <p class="card-text">{{this.linijaPodaci1.dolazakSati}}:{{this.linijaPodaci1.dolazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci1.dolazakSati.toString().padStart(2, '0')}}:{{linijaPodaci1.dolazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -153,13 +153,13 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme polaska</h5>
-          <p class="card-text">{{this.linijaPodaci2.polazakSati}}:{{this.linijaPodaci2.polazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci2.polazakSati.toString().padStart(2, '0')}}:{{linijaPodaci2.polazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme dolaska</h5>
-          <p class="card-text">{{this.linijaPodaci2.dolazakSati}}:{{this.linijaPodaci2.dolazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci2.dolazakSati.toString().padStart(2, '0')}}:{{linijaPodaci2.dolazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -196,7 +196,13 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Trajanje</h5>
-          <p class="card-text">{{this.linijaPodaci1.trajanje + this.linijaPodaci2.trajanje}} min</p>
+          <p class="card-text">{{this.linijaPodaci1.trajanje + this.linijaPodaci2.trajanje + this.cekanjePresjedanja}} min</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Vrijeme čekanja između presjedanja</h5>
+          <p class="card-text">{{this.cekanjePresjedanja}} min</p>
         </div>
       </div>
       <div class="card mb-4">

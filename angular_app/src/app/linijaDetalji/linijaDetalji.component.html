@@ -29,13 +29,13 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme polaska</h5>
-          <p class="card-text">{{this.linijaPodaci.polazakSati}}:{{this.linijaPodaci.polazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci.polazakSati.toString().padStart(2, '0')}}:{{linijaPodaci.polazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Vrijeme dolaska</h5>
-          <p class="card-text">{{this.linijaPodaci.dolazakSati}}:{{this.linijaPodaci.dolazakMinute}}</p>
+          <p class="card-text">{{linijaPodaci.dolazakSati.toString().padStart(2, '0')}}:{{linijaPodaci.dolazakMinute.toString().padStart(2, '0')}}</p>
         </div>
       </div>
       <div class="card mb-4">

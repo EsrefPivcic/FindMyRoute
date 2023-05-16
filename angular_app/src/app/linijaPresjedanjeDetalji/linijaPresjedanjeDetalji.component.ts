@@ -14,6 +14,7 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
   title: string = 'FindMyRoute - Detalji presjedanja';
   id1 : number;
   id2 : number;
+  cekanjePresjedanja : number;
   linijaPodaci1 : any;
   linijaPodaci2 : any;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {
@@ -26,6 +27,9 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
     });
     this.route.params.subscribe(params => {
       this.id2 = +params['id2']; // (+) converts string 'id' to a number
+    });
+    this.route.params.subscribe(params => {
+      this.cekanjePresjedanja = +params['cekanje']; // (+) converts string 'id' to a number
     });
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id1)
       .then(

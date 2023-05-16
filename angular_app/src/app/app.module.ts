@@ -15,6 +15,7 @@ import {linijaDetaljiComponent} from "./linijaDetalji/linijaDetalji.component";
 import {linijaPresjedanjeDetaljiComponent} from "./linijaPresjedanjeDetalji/linijaPresjedanjeDetalji.component";
 import {PretragaComponent} from "./pretraga/pretraga.component";
 import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
+import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.component";
 
 @NgModule({
   declarations: [
@@ -28,19 +29,21 @@ import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
     NotFoundComponent,
     PostavkeProfilaComponent,
     UpravljanjeComponent,
+    UpravljanjeLinijeComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: 'pretraga', component: PretragaComponent},
       {path: 'detalji/:id', component: linijaDetaljiComponent},
-      {path: 'detaljiPresjedanje/:id1/:id2', component: linijaPresjedanjeDetaljiComponent},
+      {path: 'detaljiPresjedanje/:id1/:id2/:cekanje', component: linijaPresjedanjeDetaljiComponent},
       {path: 'login', component: LoginComponent},
       {path: 'registracija', component: RegistracijaComponent},
       {path: 'home', component: HomeComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'postavke-profila', component: PostavkeProfilaComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'upravljanje', component: UpravljanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
-      {path: '**', component: NotFoundComponent, canActivate: [AutorizacijaLoginProvjera]},
+      {path: 'upravljanjeLinije', component: UpravljanjeLinijeComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,
     HttpClientModule,

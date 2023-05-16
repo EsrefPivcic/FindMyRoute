@@ -42,13 +42,25 @@ export class UpravljanjeComponent implements OnInit {
   ngOnInit(): void {
     this.UcitajPrevoznike();
     this.UcitajRadnike();
+    if (this.prevoznici == true) {
+      document.getElementById("btnPrevoznici").className = "btn btn-outline-primary";
+      document.getElementById("btnRadnici").className = "btn btn-outline-secondary";
+    }
+    else {
+      document.getElementById("btnPrevoznici").className = "btn btn-outline-secondary";
+      document.getElementById("btnRadnici").className = "btn btn-outline-primary";
+    }
   }
 
   Radnici(): void {
     this.prevoznici = false;
+    document.getElementById("btnPrevoznici").className = "btn btn-outline-secondary";
+    document.getElementById("btnRadnici").className = "btn btn-outline-primary";
   }
 
   Prevoznici(): void {
+    document.getElementById("btnPrevoznici").className = "btn btn-outline-primary";
+    document.getElementById("btnRadnici").className = "btn btn-outline-secondary";
     this.prevoznici = true;
   }
 
@@ -103,7 +115,7 @@ export class UpravljanjeComponent implements OnInit {
   }
 
   Validiraj(): boolean {
-    if (this.txtIme == null || this.txtPrezime == null || this.txtEmail == null || this.txtBrojTelefona == null) {
+    if (this.txtNaziv == null || this.txtAdresa == null || this.txtEmail == null || this.txtBrojTelefona == null) {
       porukaError("Sva polja su obavezna!");
       return false;
     }

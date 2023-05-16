@@ -26,7 +26,7 @@ export class PretragaComponent implements OnInit {
       this.router.navigate(['/detalji', linija.id]);
     }
     else {
-      this.router.navigate(['/detaljiPresjedanje', linija.id1, linija.id2]);
+      this.router.navigate(['/detaljiPresjedanje', linija.id1, linija.id2, linija.cekanje]);
     }
   }
 
