@@ -20,7 +20,14 @@ namespace FindMyRouteAPI.Modul.Controllers
         [HttpGet("id")]
         public ActionResult Get(int id)
         {
-            return Ok(_dbContext.Prevoznik.FirstOrDefault(k => k.Id == id));
+            return Ok(_dbContext.Prevoznik.FirstOrDefault(p => p.Id == id));
+        }
+
+        [HttpGet("radnikId")]
+        public ActionResult GetByRadnik(int radnikId)
+        {
+            int prevoznik = _dbContext.RadnikFirme.Include(r => r.Prevoznik).Where(r => r.id == radnikId).FirstOrDefault().Prevoznik.Id;
+            return Ok(_dbContext.Prevoznik.FirstOrDefault(p => p.Id == prevoznik));
         }
 
         [HttpPost]

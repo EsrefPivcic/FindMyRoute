@@ -37,12 +37,14 @@ export class UpravljanjeLinijeComponent implements OnInit {
   txtKilometraza: any;
   txtCijena: any;
   linijePodaci: any;
+  prevoznikPodaci: any;
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
   ngOnInit(): void {
     this.UcitajLinije();
+    this.UcitajPrevoznika();
     console.log(this.linijePodaci);
   }
 
@@ -52,6 +54,31 @@ export class UpravljanjeLinijeComponent implements OnInit {
 
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  UcitajPrevoznika():void {
+    fetch(MojConfig.adresa_servera+ "/Prevoznik/GetByRadnik/radnikId?radnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id)
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Molimo unesite nazive oba grada!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.prevoznikPodaci = x;
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
   }
 
     UcitajLinije(): void {

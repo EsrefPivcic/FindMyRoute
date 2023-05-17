@@ -1,8 +1,8 @@
 ﻿using FindMyRouteAPI.Data;
 using FindMyRouteAPI.Helper;
 using FindMyRouteAPI.Modul.Models;
-using FindMyRouteAPI.Modul.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using FindMyRouteAPI.Modul.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace FindMyRouteAPI.Modul.Controllers
