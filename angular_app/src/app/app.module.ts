@@ -16,6 +16,7 @@ import {linijaPresjedanjeDetaljiComponent} from "./linijaPresjedanjeDetalji/lini
 import {PretragaComponent} from "./pretraga/pretraga.component";
 import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
 import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.component";
+import {KupovinaComponent} from "./kupovina/kupovina.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.
     PostavkeProfilaComponent,
     UpravljanjeComponent,
     UpravljanjeLinijeComponent,
+    KupovinaComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.
       {path: 'postavke-profila', component: PostavkeProfilaComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'upravljanje', component: UpravljanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'upravljanjeLinije', component: UpravljanjeLinijeComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'kupovina/:id', component: KupovinaComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,

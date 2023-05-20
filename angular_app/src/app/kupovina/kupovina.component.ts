@@ -6,16 +6,20 @@ import {Router} from "@angular/router";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 
+declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;
+
 @Component({
-  selector: 'app-linijaDetalji',
-  templateUrl: './linijaDetalji.component.html',
-  styleUrls: ['./linijaDetalji.component.css']
+  selector: 'app-kupovina',
+  templateUrl: './kupovina.component.html',
+  styleUrls: ['./kupovina.component.css']
 })
-export class linijaDetaljiComponent implements OnInit {
+export class KupovinaComponent implements OnInit {
 
   title: string = 'FindMyRoute - Detalji linije';
-  id : number;
+  linija_id : number;
   linijaPodaci : any;
+  txtKolicina: any = 1;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -23,16 +27,11 @@ export class linijaDetaljiComponent implements OnInit {
     return AutentifikacijaHelper.getLoginInfo();
   }
 
-  btnKupovina(): void {
-    this.router.navigate(['/kupovina', this.linijaPodaci.id]);
-  }
-
   ngOnInit(): void {
-    //preuzima ID linije iz URL query parametra
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.linija_id = +params['id']; // (+) converts string 'id' to a number
     });
-    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id)
+    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija_id)
       .then(
         r=> {
           if (r.status != 200) {
@@ -54,6 +53,18 @@ export class linijaDetaljiComponent implements OnInit {
           alert("greska" + err);
         }
       )
+  }
+
+  btnKupi(): void {
+    let saljemo = {
+      linija_id: this.linija_id,
+      korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+      kolicina: this.txtKolicina };
+
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Add`, saljemo, MojConfig.http_opcije()).subscribe(x => {
+      this.router.navigate(['/pretraga']);
+      porukaSuccess("Kupovina uspješna!")
+    });
   }
 }
 

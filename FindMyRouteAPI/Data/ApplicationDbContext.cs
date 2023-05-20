@@ -16,6 +16,7 @@ namespace FindMyRouteAPI.Data
         public DbSet<Grad> Grad { get; set;}
         public DbSet<Prevoznik> Prevoznik { get; set;}
         public DbSet<Linija> Linija { get; set;}
+        public DbSet<Kupovina> Kupovina { get; set;}
         public ApplicationDbContext(
             DbContextOptions options) : base(options)
         {

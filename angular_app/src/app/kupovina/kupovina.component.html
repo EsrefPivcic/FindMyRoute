@@ -1,0 +1,46 @@
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Detalji kupovine</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Linija</h5>
+          <p class="card-text">{{this.linijaPodaci.grad1}} - {{this.linijaPodaci.grad2}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Prevoznik</h5>
+          <p class="card-text">{{this.linijaPodaci.prevoznik.naziv}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Cijena</h5>
+          <p class="card-text">{{this.linijaPodaci.cijena}} KM</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Količina</h5>
+          <div class="d-flex align-items-center">
+            <input style="width: 25%; margin-right: 10px" name="txtKolicina" id="txtKolicina" [(ngModel)]="txtKolicina" class="form-control" type="number" min="1" max="10" placeholder="Broj karata">
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Ukupna cijena</h5>
+          <p class="card-text">{{this.linijaPodaci.cijena * txtKolicina}} KM</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Plaćanje</h5>
+          <button class="btn btn-outline-primary" (click)="btnKupi()">Plati</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

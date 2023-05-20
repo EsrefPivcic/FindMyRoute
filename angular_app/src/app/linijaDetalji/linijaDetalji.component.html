@@ -50,41 +50,47 @@
           <p class="card-text">{{this.linijaPodaci.trajanje}} min</p>
         </div>
       </div>
-<div class="card mb-4">
-  <div class="card-body">
-    <h5 class="card-title">Cijena</h5>
-    <p class="card-text">{{this.linijaPodaci.cijena}} KM</p>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Cijena</h5>
+          <p class="card-text">{{this.linijaPodaci.cijena}} KM</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Dostupni dani vožnje</h5>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Pon</th>
+              <th>Uto</th>
+              <th>Sri</th>
+              <th>Čet</th>
+              <th>Pet</th>
+              <th>Sub</th>
+              <th>Ned</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{this.linijaPodaci.daniVoznje.ponedjeljak ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.utorak ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.srijeda ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.cetvrtak ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.petak ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.subota ? "Da" : "Ne"}}</td>
+              <td>{{this.linijaPodaci.daniVoznje.nedjelja ? "Da" : "Ne"}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik" class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Kupovina</h5>
+          <button class="btn btn-outline-primary" (click)="btnKupovina()">Kupovina</button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="card mb-4">
-  <div class="card-body">
-    <h5 class="card-title">Dostupni dani vožnje</h5>
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Pon</th>
-        <th>Uto</th>
-        <th>Sri</th>
-        <th>Čet</th>
-        <th>Pet</th>
-        <th>Sub</th>
-        <th>Ned</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{this.linijaPodaci.daniVoznje.ponedjeljak ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.utorak ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.srijeda ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.cetvrtak ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.petak ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.subota ? "Da" : "Ne"}}</td>
-        <td>{{this.linijaPodaci.daniVoznje.nedjelja ? "Da" : "Ne"}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-</div>
 </div>
