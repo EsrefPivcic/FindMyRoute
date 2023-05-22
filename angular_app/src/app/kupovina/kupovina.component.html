@@ -17,10 +17,21 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Dan vožnje</h5>
+          <p class="card-text">Dostupni dani:</p>
+          <ul>
+            <li *ngIf="this.linijaPodaci.daniVoznje.ponedjeljak">Ponedjeljak</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.utorak">Utorak</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.srijeda">Srijeda</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.cetvrtak">Četvrtak</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.petak">Petak</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.subota">Subota</li>
+            <li *ngIf="this.linijaPodaci.daniVoznje.nedjelja">Nedjelja</li>
+          </ul>
           <input
             id="datum"
             placeholder="Odaberite datum"
             type="date"
+            class ="bs-datepicker"
             #datepicker
             (change)="onDateSelection(datepicker.value)"
           >

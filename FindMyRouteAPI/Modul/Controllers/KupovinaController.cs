@@ -39,6 +39,7 @@ namespace FindMyRouteAPI.Modul.Controllers
                 Korisnik_id = x.Korisnik_id,
                 Kolicina = x.Kolicina,
                 DatumKupovine = DateTime.Now,
+                DatumVoznje = x.DatumVoznje,
                 UkupnaCijena = cijenaKarte * x.Kolicina
             };
             _dbContext.Add(newKupovina);

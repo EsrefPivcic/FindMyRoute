@@ -13,6 +13,7 @@ namespace FindMyRouteAPI.Modul.Models
         public int? Korisnik_id { get; set; }
         public Korisnik Korisnik { get; set; }
         public DateTime DatumKupovine { get; set; }
+        public DateTime DatumVoznje { get; set; }
         public int Kolicina { get; set; }
         public int UkupnaCijena { get; set; }
     }

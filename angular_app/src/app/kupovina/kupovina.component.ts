@@ -23,6 +23,7 @@ export class KupovinaComponent implements OnInit {
   txtKolicina: any = 1;
   daniVoznje: number[] = [];
   isInvalidDate = false;
+  datumVoznje: string = '';
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -32,19 +33,26 @@ export class KupovinaComponent implements OnInit {
 
   onDateSelection(selectedDate: string) {
     const date = new Date(selectedDate);
-    const dateInput = document.getElementById('datum') as HTMLInputElement;
-    const dayOfWeek = date.getDay();
-    if (!this.ProvjeriDan(dayOfWeek)) {
+    if (!this.ProvjeriDan(date)) {
       this.isInvalidDate = true;
+      const dateInput = document.getElementById('datum') as HTMLInputElement;
       dateInput.value = '';
+      this.datumVoznje = '';
     }
     else {
       this.isInvalidDate = false;
+      this.datumVoznje = selectedDate;
+      console.log(this.datumVoznje);
     }
   }
 
-  ProvjeriDan(dan: number): boolean {
-    return this.daniVoznje.includes(dan);
+  ProvjeriDan(datum: Date): boolean {
+    const dan = datum.getDay();
+    const danas = new Date();
+    if (this.daniVoznje.includes(dan) && datum >= danas) {
+      return true;
+    }
+    return false;
   }
 
   DodajDaneVoznje(): void {
@@ -100,16 +108,30 @@ export class KupovinaComponent implements OnInit {
       )
   }
 
-  btnKupi(): void {
-    let saljemo = {
-      linija_id: this.linija_id,
-      korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
-      kolicina: this.txtKolicina };
+  Validiraj(): boolean {
+    if (this.datumVoznje == '') {
+      return false;
+    }
+    return true;
+  }
 
-    this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Add`, saljemo, MojConfig.http_opcije()).subscribe(x => {
-      this.router.navigate(['/pretraga']);
-      porukaSuccess("Kupovina uspješna!")
-    });
+  btnKupi(): void {
+    if (this.Validiraj()) {
+      let saljemo = {
+        linija_id: this.linija_id,
+        korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        kolicina: this.txtKolicina,
+        datumVoznje: this.datumVoznje
+      };
+
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Add`, saljemo, MojConfig.http_opcije()).subscribe(x => {
+        this.router.navigate(['/pretraga']);
+        porukaSuccess("Kupovina uspješna!")
+      });
+    }
+    else {porukaError("Molimo odaberite datum vožnje!");
+
+    }
   }
 }
 

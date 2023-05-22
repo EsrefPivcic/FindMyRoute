@@ -49,6 +49,30 @@
       <h2 class="mb-3">Ukupno: </h2>
       <div class="card mb-4">
         <div class="card-body">
+          <h5 class="card-title">Dan vožnje</h5>
+          <p class="card-text">Dostupni dani za obe linije:</p>
+          <ul>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.ponedjeljak && this.linijaPodaci2.daniVoznje.ponedjeljak">Ponedjeljak</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.utorak && this.linijaPodaci2.daniVoznje.utorak">Utorak</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.srijeda && this.linijaPodaci2.daniVoznje.srijeda">Srijeda</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.cetvrtak && this.linijaPodaci2.daniVoznje.cetvrtak">Četvrtak</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.petak && this.linijaPodaci2.daniVoznje.petak">Petak</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.subota && this.linijaPodaci2.daniVoznje.subota">Subota</li>
+            <li *ngIf="this.linijaPodaci1.daniVoznje.nedjelja && this.linijaPodaci2.daniVoznje.nedjelja">Nedjelja</li>
+          </ul>
+          <input
+            id="datum"
+            placeholder="Odaberite datum"
+            type="date"
+            class ="bs-datepicker"
+            #datepicker
+            (change)="onDateSelection(datepicker.value)"
+          >
+          <p class="card-text" *ngIf="isInvalidDate" style="color: red">Odaberite jedan od dana kada voze obe linije!</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
           <h5 class="card-title">Količina</h5>
           <div class="d-flex align-items-center">
             <input style="width: 25%; margin-right: 10px" name="txtKolicina" id="txtKolicina" [(ngModel)]="txtKolicina" class="form-control" type="number" min="1" max="10" placeholder="Broj karata">
