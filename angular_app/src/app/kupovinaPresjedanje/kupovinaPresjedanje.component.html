@@ -1,38 +1,52 @@
 <div class="container mt-5">
+  <h2 class="mb-3">Detalji kupovine</h2>
   <div class="row">
-    <div class="col-md-8">
-      <h2 class="mb-3">Detalji kupovine</h2>
+    <div class="col-md-6">
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">Linija</h5>
-          <p class="card-text">{{this.linijaPodaci.grad1}} - {{this.linijaPodaci.grad2}}</p>
+          <h5 class="card-title">Linija 1</h5>
+          <p class="card-text">{{this.linijaPodaci1.grad1}} - {{this.linijaPodaci1.grad2}}</p>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Prevoznik</h5>
-          <p >{{this.linijaPodaci.prevoznik.naziv}}</p>
-        </div>
-      </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">Dan vožnje</h5>
-          <input
-            id="datum"
-            placeholder="Odaberite datum"
-            type="date"
-            #datepicker
-            (change)="onDateSelection(datepicker.value)"
-          >
-          <p class="card-text" *ngIf="isInvalidDate" style="color: red">Ova linija ne vozi odabranim danom, odaberite validan dan!</p>
+          <p class="card-text">{{this.linijaPodaci1.prevoznik.naziv}}</p>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Cijena</h5>
-          <p class="card-text">{{this.linijaPodaci.cijena}} KM</p>
+          <p class="card-text">{{this.linijaPodaci1.cijena}} KM</p>
         </div>
       </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Linija 2</h5>
+          <p class="card-text">{{this.linijaPodaci2.grad1}} - {{this.linijaPodaci2.grad2}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Prevoznik</h5>
+          <p class="card-text">{{this.linijaPodaci2.prevoznik.naziv}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Cijena</h5>
+          <p class="card-text">{{this.linijaPodaci2.cijena}} KM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="mb-3">Ukupno: </h2>
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Količina</h5>
@@ -44,7 +58,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Ukupna cijena</h5>
-          <p class="card-text">{{this.linijaPodaci.cijena * txtKolicina}} KM</p>
+          <p class="card-text">{{(this.linijaPodaci1.cijena + this.linijaPodaci2.cijena) * txtKolicina}} KM</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -56,3 +70,4 @@
     </div>
   </div>
 </div>
+

@@ -19,8 +19,10 @@
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
     "@microsoft/signalr": "^6.0.1",
+    "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.3",
+    "ngx-bootstrap": "^6.2.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

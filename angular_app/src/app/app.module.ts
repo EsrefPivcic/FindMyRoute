@@ -17,6 +17,9 @@ import {PretragaComponent} from "./pretraga/pretraga.component";
 import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
 import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.component";
 import {KupovinaComponent} from "./kupovina/kupovina.component";
+import {KupovinaPresjedanjeComponent} from "./kupovinaPresjedanje/kupovinaPresjedanje.component";
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import {KupovinaComponent} from "./kupovina/kupovina.component";
     UpravljanjeComponent,
     UpravljanjeLinijeComponent,
     KupovinaComponent,
+    KupovinaPresjedanjeComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,11 +50,14 @@ import {KupovinaComponent} from "./kupovina/kupovina.component";
       {path: 'upravljanje', component: UpravljanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'upravljanjeLinije', component: UpravljanjeLinijeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'kupovina/:id', component: KupovinaComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'kupovinaPresjedanje/:id1/:id2', component: KupovinaPresjedanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,
     HttpClientModule,
     ChartsModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     AutorizacijaLoginProvjera,

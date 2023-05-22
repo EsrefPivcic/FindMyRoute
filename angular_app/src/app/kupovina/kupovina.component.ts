@@ -12,19 +12,63 @@ declare function porukaError(a: string):any;
 @Component({
   selector: 'app-kupovina',
   templateUrl: './kupovina.component.html',
-  styleUrls: ['./kupovina.component.css']
+  styleUrls: ['./kupovina.component.css'],
 })
+
 export class KupovinaComponent implements OnInit {
 
-  title: string = 'FindMyRoute - Detalji linije';
+  title: string = 'FindMyRoute - Kupovina';
   linija_id : number;
   linijaPodaci : any;
   txtKolicina: any = 1;
+  daniVoznje: number[] = [];
+  isInvalidDate = false;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  onDateSelection(selectedDate: string) {
+    const date = new Date(selectedDate);
+    const dateInput = document.getElementById('datum') as HTMLInputElement;
+    const dayOfWeek = date.getDay();
+    if (!this.ProvjeriDan(dayOfWeek)) {
+      this.isInvalidDate = true;
+      dateInput.value = '';
+    }
+    else {
+      this.isInvalidDate = false;
+    }
+  }
+
+  ProvjeriDan(dan: number): boolean {
+    return this.daniVoznje.includes(dan);
+  }
+
+  DodajDaneVoznje(): void {
+    if (this.linijaPodaci.daniVoznje.ponedjeljak == true) {
+      this.daniVoznje.push(1);
+    }
+    if (this.linijaPodaci.daniVoznje.utorak == true) {
+      this.daniVoznje.push(2);
+    }
+    if (this.linijaPodaci.daniVoznje.srijeda == true) {
+      this.daniVoznje.push(3);
+    }
+    if (this.linijaPodaci.daniVoznje.cetvrtak == true) {
+      this.daniVoznje.push(4);
+    }
+    if (this.linijaPodaci.daniVoznje.petak == true) {
+      this.daniVoznje.push(5);
+    }
+    if (this.linijaPodaci.daniVoznje.subota == true) {
+      this.daniVoznje.push(6);
+    }
+    if (this.linijaPodaci.daniVoznje.nedjelja == true) {
+      this.daniVoznje.push(0);
+    }
   }
 
   ngOnInit(): void {
@@ -45,6 +89,7 @@ export class KupovinaComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci = x;
+            this.DodajDaneVoznje();
           });
         }
       )

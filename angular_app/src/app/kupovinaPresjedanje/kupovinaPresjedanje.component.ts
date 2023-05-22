@@ -5,20 +5,24 @@ import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
+import {getLocaleDateTimeFormat, getLocaleDayNames} from "@angular/common";
+
+declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;
 
 @Component({
-  selector: 'app-linijaPresjedanjeDetalji',
-  templateUrl: './linijaPresjedanjeDetalji.component.html',
-  styleUrls: ['./linijaPresjedanjeDetalji.component.css']
+  selector: 'app-kupovinaPresjedanje',
+  templateUrl: './kupovinaPresjedanje.component.html',
+  styleUrls: ['./kupovinaPresjedanje.component.html']
 })
-export class linijaPresjedanjeDetaljiComponent implements OnInit {
+export class KupovinaPresjedanjeComponent implements OnInit {
 
-  title: string = 'FindMyRoute - Detalji presjedanja';
-  id1 : number;
-  id2 : number;
-  cekanjePresjedanja : number;
+  title: string = 'FindMyRoute - Kupovina';
+  linija1_id : number;
+  linija2_id : number;
   linijaPodaci1 : any;
   linijaPodaci2 : any;
+  txtKolicina: any = 1;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -26,22 +30,14 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
     return AutentifikacijaHelper.getLoginInfo();
   }
 
-  btnKupovina(): void {
-    this.router.navigate(['/kupovinaPresjedanje', this.linijaPodaci1.id, this.linijaPodaci2.id]);
-  }
-
   ngOnInit(): void {
-    //preuzima ID linije iz URL query parametra
     this.route.params.subscribe(params => {
-      this.id1 = +params['id1']; // (+) converts string 'id' to a number
+      this.linija1_id = +params['id1']; // (+) converts string 'id' to a number
     });
     this.route.params.subscribe(params => {
-      this.id2 = +params['id2']; // (+) converts string 'id' to a number
+      this.linija2_id = +params['id2']; // (+) converts string 'id' to a number
     });
-    this.route.params.subscribe(params => {
-      this.cekanjePresjedanja = +params['cekanje']; // (+) converts string 'id' to a number
-    });
-    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id1)
+    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija1_id)
       .then(
         r=> {
           if (r.status != 200) {
@@ -63,7 +59,7 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           alert("greska" + err);
         }
       )
-    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id2)
+    fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija2_id)
       .then(
         r=> {
           if (r.status != 200) {
@@ -85,6 +81,23 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           alert("greska" + err);
         }
       )
+  }
+
+  btnKupi(): void {
+    let kupovina1 = {
+      linija_id: this.linija1_id,
+      korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+      kolicina: this.txtKolicina };
+    let kupovina2 = {
+      linija_id: this.linija2_id,
+      korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+      kolicina: this.txtKolicina };
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Add`, kupovina1, MojConfig.http_opcije()).subscribe(x => {
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Add`, kupovina2, MojConfig.http_opcije()).subscribe(x => {
+        this.router.navigate(['/pretraga']);
+        porukaSuccess("Kupovina uspješna!")
+      });
+    });
   }
 }
 
