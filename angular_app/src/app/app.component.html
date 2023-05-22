@@ -17,6 +17,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/kontakt" routerLinkActive="active">Kontakt</a>
         </li>
+          <li class="nav-item">
+            <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="nav-link" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
+          </li>
         <li class="nav-item">
           <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator == true" class="nav-link" routerLink="/upravljanje" routerLinkActive="active" >Upravljanje</a>
         </li>

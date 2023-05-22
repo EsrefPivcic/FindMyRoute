@@ -20,6 +20,7 @@ import {KupovinaComponent} from "./kupovina/kupovina.component";
 import {ONamaComponent} from "./oNama/oNama.component";
 import {KontaktComponent} from "./kontakt/kontakt.component";
 import {KupovinaPresjedanjeComponent} from "./kupovinaPresjedanje/kupovinaPresjedanje.component";
+import {KorisnickiRacunComponent} from "./korisnickiRacun/korisnickiRacun.component";
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -40,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     KupovinaPresjedanjeComponent,
     ONamaComponent,
     KontaktComponent,
+    KorisnickiRacunComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path: 'kupovinaPresjedanje/:id1/:id2', component: KupovinaPresjedanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'oNama', component: ONamaComponent},
       {path: 'kontakt', component: KontaktComponent},
+      {path: 'korisnickiRacun', component: KorisnickiRacunComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,

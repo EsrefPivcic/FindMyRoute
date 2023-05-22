@@ -10,8 +10,6 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['kontakt.component.css']
 })
 export class KontaktComponent implements OnInit {
-
-  title:string = 'FindMyRoute';
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 

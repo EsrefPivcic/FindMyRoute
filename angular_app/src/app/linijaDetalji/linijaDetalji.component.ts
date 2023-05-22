@@ -12,8 +12,6 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
   styleUrls: ['./linijaDetalji.component.css']
 })
 export class linijaDetaljiComponent implements OnInit {
-
-  title: string = 'FindMyRoute - Detalji linije';
   id : number;
   linijaPodaci : any;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {

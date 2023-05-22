@@ -10,8 +10,6 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['oNama.component.css']
 })
 export class ONamaComponent implements OnInit {
-
-  title:string = 'FindMyRoute';
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
