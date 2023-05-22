@@ -17,6 +17,8 @@ import {PretragaComponent} from "./pretraga/pretraga.component";
 import {UpravljanjeComponent} from "./upravljanje/upravljanje.component";
 import {UpravljanjeLinijeComponent} from "./upravljanjeLinije/upravljanjeLinije.component";
 import {KupovinaComponent} from "./kupovina/kupovina.component";
+import {ONamaComponent} from "./oNama/oNama.component";
+import {KontaktComponent} from "./kontakt/kontakt.component";
 import {KupovinaPresjedanjeComponent} from "./kupovinaPresjedanje/kupovinaPresjedanje.component";
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UpravljanjeLinijeComponent,
     KupovinaComponent,
     KupovinaPresjedanjeComponent,
+    ONamaComponent,
+    KontaktComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path: 'upravljanjeLinije', component: UpravljanjeLinijeComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'kupovina/:id', component: KupovinaComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'kupovinaPresjedanje/:id1/:id2', component: KupovinaPresjedanjeComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'oNama', component: ONamaComponent},
+      {path: 'kontakt', component: KontaktComponent},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,
