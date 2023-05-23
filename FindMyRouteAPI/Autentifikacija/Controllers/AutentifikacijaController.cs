@@ -79,5 +79,6 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
 
             return autentifikacijaToken;
         }
+
     }
 }

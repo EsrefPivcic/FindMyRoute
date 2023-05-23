@@ -1,70 +1,3 @@
-<!--<br> <h3 style="font-weight: bold">Detalji linija sa presjedanjem</h3>
-<div>
-  <h5>Polazište: {{this.linijaPodaci1.grad1}}</h5>
-  <h5>Presjedanje: {{this.linijaPodaci1.presjedanje}}</h5>
-  <h5>Destinacija: {{this.linijaPodaci1.grad2}}</h5>
-  <h5>Prevoznik: {{this.linijaPodaci1.prevoznik.naziv}}</h5>
-  <h5>Vrijeme polaska: {{this.linijaPodaci1.polazakSati}}:{{this.linijaPodaci1.polazakMinute}}</h5>
-  <h5>Vrijeme dolaska: {{this.linijaPodaci1.dolazakSati}}:{{this.linijaPodaci1.dolazakMinute}}</h5>
-  <h5>Kilometraža: {{this.linijaPodaci1.kilometraza}} km</h5>
-  <h5>Trajanje: {{this.linijaPodaci1.trajanje}} min</h5>
-  <h5>Cijena: {{this.linijaPodaci1.cijena}} KM</h5>
-</div>
-<br>
-<div>
-  <h5>Polazište: {{this.linijaPodaci2.grad1}}</h5>
-  <h5>Presjedanje: {{this.linijaPodaci2.presjedanje}}</h5>
-  <h5>Destinacija: {{this.linijaPodaci2.grad2}}</h5>
-  <h5>Prevoznik: {{this.linijaPodaci2.prevoznik.naziv}}</h5>
-  <h5>Vrijeme polaska: {{this.linijaPodaci2.polazakSati}}:{{this.linijaPodaci2.polazakMinute}}</h5>
-  <h5>Vrijeme dolaska: {{this.linijaPodaci2.dolazakSati}}:{{this.linijaPodaci2.dolazakMinute}}</h5>
-  <h5>Kilometraža: {{this.linijaPodaci2.kilometraza}} km</h5>
-  <h5>Trajanje: {{this.linijaPodaci2.trajanje}} min</h5>
-  <h5>Cijena: {{this.linijaPodaci2.cijena}} KM</h5>
-</div>
-<br>
-<div>
-  <h4>Ukupno:</h4>
-  <h5>Kilometraža: {{this.linijaPodaci1.kilometraza + this.linijaPodaci2.kilometraza}} km</h5>
-  <h5>Trajanje: {{this.linijaPodaci1.trajanje + this.linijaPodaci2.trajanje}} min</h5>
-  <h5>Cijena: {{this.linijaPodaci1.cijena + this.linijaPodaci2.cijena}} KM</h5>
-  <table id="tabela" style="font-size: large; opacity: 1;" class="table table-warning">
-    <tr>
-      <th>Linija</th>
-      <th>Ponedjeljak</th>
-      <th>Utorak</th>
-      <th>Srijeda</th>
-      <th>Četvrtak</th>
-      <th>Petak</th>
-      <th>Subota</th>
-      <th>Nedjelja</th>
-    </tr>
-    <tbody>
-    <tr>
-      <td>{{this.linijaPodaci1.grad1}} - {{this.linijaPodaci1.grad2}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.ponedjeljak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.utorak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.srijeda == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.cetvrtak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.petak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.subota == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci1.daniVoznje.nedjelja == true ? "Da":"Ne"}}</td>
-    </tr>
-    <tr>
-      <td>{{this.linijaPodaci2.grad1}} - {{this.linijaPodaci2.grad2}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.ponedjeljak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.utorak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.srijeda == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.cetvrtak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.petak == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.subota == true ? "Da":"Ne"}}</td>
-      <td>{{this.linijaPodaci2.daniVoznje.nedjelja == true ? "Da":"Ne"}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
--->
-
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
@@ -107,7 +40,7 @@
       </div>
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">Kilometraza</h5>
+          <h5 class="card-title">Kilometraža</h5>
           <p class="card-text">{{this.linijaPodaci1.kilometraza}} km</p>
         </div>
       </div>
@@ -164,7 +97,7 @@
       </div>
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">Kilometraza</h5>
+          <h5 class="card-title">Kilometraža</h5>
           <p class="card-text">{{this.linijaPodaci2.kilometraza}} km</p>
         </div>
       </div>
@@ -255,7 +188,7 @@
       <div *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik" class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Kupovina</h5>
-          <button class="btn btn-outline-primary" (click)="btnKupovina()">Kupovina</button>
+          <button class="btn btn-outline-primary" (click)="btnKupovina()">Kupi kartu</button>
         </div>
       </div>
     </div>

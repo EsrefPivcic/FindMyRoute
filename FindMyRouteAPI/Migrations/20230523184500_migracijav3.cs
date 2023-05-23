@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FindMyRouteAPI.Migrations
 {
-    public partial class migracija2205 : Migration
+    public partial class migracijav3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
