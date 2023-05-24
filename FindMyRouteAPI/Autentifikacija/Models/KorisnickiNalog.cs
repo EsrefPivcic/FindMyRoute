@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Serialization;
@@ -30,7 +31,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public bool isKorisnik => korisnik != null;
         public bool isAdministrator => administrator != null;
         public bool isRadnikFirme => radnikFirme != null;
+        public bool posjedujeKreditnu { get; set; } 
         public bool isAktiviran { get; set; }
- 
     }
 }

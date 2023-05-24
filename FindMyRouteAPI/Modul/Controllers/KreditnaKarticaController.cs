@@ -30,10 +30,14 @@ namespace FindMyRouteAPI.Modul.Controllers
             var newKreditna = new KreditnaKartica
             {
                 Korisnik_id = x.Korisnik_id,
+                TipKartice = x.TipKartice,
                 BrojKartice = x.BrojKartice.RemoveTags(),
                 DatumIsteka = x.DatumIsteka,
                 SigurnosniBroj = x.SigurnosniBroj.RemoveTags()
             };
+            Korisnik korisnik;
+            korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id);
+            korisnik.posjedujeKreditnu = true;
             _dbContext.Add(newKreditna);
             _dbContext.SaveChanges();
             return Get(newKreditna.Id);

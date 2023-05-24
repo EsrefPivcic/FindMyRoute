@@ -95,6 +95,10 @@ namespace FindMyRouteAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TipKartice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Korisnik_id");
@@ -289,6 +293,9 @@ namespace FindMyRouteAPI.Migrations
                     b.Property<string>("lozinka")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("posjedujeKreditnu")
+                        .HasColumnType("bit");
 
                     b.HasKey("id");
 

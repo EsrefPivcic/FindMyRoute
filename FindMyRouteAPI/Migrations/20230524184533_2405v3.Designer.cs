@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindMyRouteAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230524131026_migracija")]
-    partial class migracija
+    [Migration("20230524184533_2405v3")]
+    partial class _2405v3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,6 +94,10 @@ namespace FindMyRouteAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SigurnosniBroj")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipKartice")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -291,6 +295,9 @@ namespace FindMyRouteAPI.Migrations
                     b.Property<string>("lozinka")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("posjedujeKreditnu")
+                        .HasColumnType("bit");
 
                     b.HasKey("id");
 

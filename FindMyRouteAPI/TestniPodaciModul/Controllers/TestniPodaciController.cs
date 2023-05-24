@@ -2,6 +2,7 @@
 using FindMyRouteAPI.Helper;
 using FindMyRouteAPI.Modul.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace FindMyRouteAPI.TestniPodaci.Controllers
 {
@@ -27,6 +28,7 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             data.Add("Korisnik", _dbContext.Korisnik.Count());
             data.Add("Linija", _dbContext.Linija.Count());
             data.Add("DaniVoznje", _dbContext.DaniVoznje.Count());
+            data.Add("KreditnaKartica", _dbContext.KreditnaKartica.Count());
             return Ok(data);
         }
 
@@ -41,6 +43,7 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
                 lozinka = "mia",
                 Adresa = "Zalik",
                 BrojTelefona = "+38761957153",
+                posjedujeKreditnu = false,
                 isAktiviran = true,
                 PIN = "3004"
             };
@@ -81,6 +84,7 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
                 Pozicija = "IT Manager",
                 RadniStaz = 10,
                 Prevoznik_id = livnobus.Id,
+                posjedujeKreditnu = false,
                 isAktiviran = true
             };
 
@@ -99,6 +103,7 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
                 Pozicija = "IT Manager",
                 RadniStaz = 10,
                 Prevoznik_id = autoprevoz.Id,
+                posjedujeKreditnu = false,
                 isAktiviran = true
             };
 
@@ -241,11 +246,27 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
                     Adresa = "adresa" + i.ToString(),
                     BrojTelefona = "+3876333330"+i.ToString(),
                     BrojKupljenihKarata = i,
+                    posjedujeKreditnu = false,
                     isAktiviran = true
                 });
             }
 
             _dbContext.Korisnik.AddRange(korisnici);
+            _dbContext.SaveChanges();
+
+            var kreditnaKartica = new KreditnaKartica
+            {
+                Korisnik_id = 4,
+                TipKartice = "Visa",
+                BrojKartice = "5555 4444 3333 2222",
+                DatumIsteka = DateTime.Now,
+                SigurnosniBroj = "999"
+            };
+
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == 4);
+            korisnik.posjedujeKreditnu = true;
+
+            _dbContext.KreditnaKartica.Add(kreditnaKartica);
             _dbContext.SaveChanges();
 
             return Count();

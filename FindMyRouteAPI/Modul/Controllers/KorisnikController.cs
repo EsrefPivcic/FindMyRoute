@@ -38,6 +38,7 @@ namespace FindMyRouteAPI.Modul.Controllers
                 Adresa = x.Adresa.RemoveTags(),
                 BrojTelefona = x.BrojTelefona.RemoveTags(),
                 BrojKupljenihKarata = 0,
+                posjedujeKreditnu = false,
                 isAktiviran = true
             };
             _dbContext.Add(newKorisnik);
