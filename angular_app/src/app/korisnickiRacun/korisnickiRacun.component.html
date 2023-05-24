@@ -3,31 +3,73 @@
 <head>
   <title>Korisnički račun</title>
   <link rel="stylesheet" type="text/css" href="korisnickiRacun.component.css">
+  <link rel="stylesheet" type="text/css" href="korisnickiRacun.component.css">
 </head>
 <body>
 <div class="container">
   <h2 class="heading">Detalji korisničkog računa</h2>
   <div class="details">
-    <p><strong>Ime: </strong> <span id="ime">{{racunPodaci?.ime}}</span></p>
-    <p><strong>Prezime: </strong> <span id="prezime">{{racunPodaci?.prezime}}</span></p>
-    <p><strong>Email: </strong> <span id="email">{{racunPodaci?.email}}</span></p>
-    <p><strong>Korisničko ime: </strong> <span id="korisnicko-ime">{{racunPodaci?.korisnickoIme}}</span></p>
-    <p><strong>Adresa: </strong> <span id="adresa">{{racunPodaci?.adresa}}</span></p>
-    <p><strong>Broj telefona: </strong> <span id="broj-telefona">{{racunPodaci?.brojTelefona}}</span></p>
+    <div class="detail-row">
+      <label class="detail-label">Ime:</label>
+      <div class="detail-value">
+        <span id="ime">{{racunPodaci?.ime}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
+    <div class="detail-row">
+      <label class="detail-label">Prezime:</label>
+      <div class="detail-value">
+        <span id="prezime">{{racunPodaci?.prezime}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
+    <div class="detail-row">
+      <label class="detail-label">Email:</label>
+      <div class="detail-value">
+        <span id="email">{{racunPodaci?.email}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
+    <div class="detail-row">
+      <label class="detail-label">Korisničko ime:</label>
+      <div class="detail-value">
+        <span id="korisnicko-ime">{{racunPodaci?.korisnickoIme}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
+    <div class="detail-row">
+      <label class="detail-label">Adresa:</label>
+      <div class="detail-value">
+        <span id="adresa">{{racunPodaci?.adresa}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
+    <div class="detail-row">
+      <label class="detail-label">Broj telefona:</label>
+      <div class="detail-value">
+        <span id="broj-telefona">{{racunPodaci?.brojTelefona}}</span>
+        <span class="edit-button">Uredi</span>
+      </div>
+    </div>
   </div>
 
   <h3 class="heading">Promijenite lozinku</h3>
   <form class="password-form">
-    <label for="trenutna-lozinka">Trenutna lozinka:</label>
-    <input type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
-
-    <label for="nova-lozinka">Nova lozinka:</label>
-    <input type="password" id="nova-lozinka" name="nova-lozinka" required>
-
-    <label for="potvrda-lozinke">Potvrdite lozinku:</label>
-    <input type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
-
-    <input type="submit" value="Promijenite lozinku">
+    <div class="form-row">
+      <label for="trenutna-lozinka">Trenutna lozinka:</label>
+      <input type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
+    </div>
+    <div class="form-row">
+      <label for="nova-lozinka">Nova lozinka:</label>
+      <input type="password" id="nova-lozinka" name="nova-lozinka" required>
+    </div>
+    <div class="form-row">
+      <label for="potvrda-lozinke">Potvrdite lozinku:</label>
+      <input type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
+    </div>
+    <div class="form-row">
+      <input type="submit" value="Promijenite lozinku">
+    </div>
   </form>
 
 </div>
