@@ -51,6 +51,13 @@
         <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
+    <div class="detail-row">
+      <label class="detail-label">Lozinka:</label>
+      <div class="detail-value">
+        <span id="lozinka">**********</span>
+        <span (click)="promjenaLozinke = true" class="btn btn-primary form-control">Uredi</span>
+      </div>
+    </div>
     <div *ngIf="!this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
       <label class="detail-label">Kreditna kartica:</label>
       <div class="detail-value">
@@ -66,24 +73,26 @@
       </div>
     </div>
   </div>
+  <div *ngIf="promjenaLozinke == true">
   <h3 class="heading">Promijenite lozinku</h3>
   <form class="password-form">
     <div class="form-row">
       <label for="trenutna-lozinka">Trenutna lozinka:</label>
-      <input type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
+      <input [(ngModel)]="txtTrenutnaLozinka" type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
     </div>
     <div class="form-row">
       <label for="nova-lozinka">Nova lozinka:</label>
-      <input type="password" id="nova-lozinka" name="nova-lozinka" required>
+      <input [(ngModel)]="txtNovaLozinka" type="password" id="nova-lozinka" name="nova-lozinka" required>
     </div>
     <div class="form-row">
       <label for="potvrda-lozinke">Potvrdite lozinku:</label>
-      <input type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
+      <input [(ngModel)]="txtNovaPotvrdaLozinka" type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
     </div>
     <div class="form-row">
-      <button class="btn btn-primary form-control">Promijenite lozinku</button>
+      <button (click)="PromijeniLozinku()" class="btn btn-primary form-control">Promijenite lozinku</button>
     </div>
   </form>
+  </div>
 </div>
 </body>
 </html>

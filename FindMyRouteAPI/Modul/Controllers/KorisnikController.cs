@@ -52,5 +52,28 @@ namespace FindMyRouteAPI.Modul.Controllers
             var data = _dbContext.Korisnik.AsQueryable();
             return data.Take(100).ToList();
         }
+
+        [HttpPost]
+        public ActionResult PromijeniLozinku([FromBody] PromjenaLozinkeAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                if (korisnik.lozinka == x.TrenutnaLozinka)
+                {
+                    korisnik.lozinka = x.NovaLozinka;
+                    _dbContext.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Pogrešna lozinka");
+                }
+            }
+        }
     }
 }

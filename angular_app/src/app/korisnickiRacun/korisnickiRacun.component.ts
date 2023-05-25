@@ -19,6 +19,10 @@ export class KorisnickiRacunComponent implements OnInit {
   id: number;
   racunPodaci: any;
   kreditnaPodaci: any;
+  promjenaLozinke: boolean = false;
+  txtTrenutnaLozinka: string = "";
+  txtNovaLozinka: string = "";
+  txtNovaPotvrdaLozinka: string = "";
 
   constructor(
     private httpKlijent: HttpClient,
@@ -39,11 +43,46 @@ export class KorisnickiRacunComponent implements OnInit {
     }
   }
 
+  LogOut(): void {
+    AutentifikacijaHelper.setLoginInfo(null);
+    this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, MojConfig.http_opcije())
+      .subscribe((x: any) => {
+        this.router.navigateByUrl("/pretraga");
+        porukaSuccess("Kreditna kartica uspješno uklonjena, potrebno se ponovo ulogirati!");
+      });
+  }
+
   btnUkloniKarticu(): void {
     this.httpKlijent.delete(`${MojConfig.adresa_servera}/KreditnaKartica/Delete/${this.kreditnaPodaci.id}`, MojConfig.http_opcije()).subscribe(x=>{
-      porukaSuccess("Kredtina kartica uspješno uklonjena!");
-      this.ngOnInit();
+      this.LogOut();
     });
+  }
+
+  PromijeniLozinku(): void {
+    if (this.Validiraj()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        trenutnaLozinka: this.txtTrenutnaLozinka,
+        novaLozinka: this.txtNovaLozinka
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniLozinku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Lozinka uspješno promijenjena!");
+        this.promjenaLozinke = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  Validiraj(): boolean {
+    if (this.txtTrenutnaLozinka == "" || this.txtNovaLozinka == "" || this.txtNovaPotvrdaLozinka == ""){
+      porukaError("Sva polja su obavezna!")
+      return false;
+    }
+    if (this.txtNovaLozinka != this.txtNovaPotvrdaLozinka) {
+      porukaError("Lozinke se ne poklapaju!")
+      return false;
+    }
+    return true;
   }
 
   ngOnInit(): void {
