@@ -13,46 +13,59 @@
       <label class="detail-label">Ime:</label>
       <div class="detail-value">
         <span id="ime">{{racunPodaci?.ime}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Prezime:</label>
       <div class="detail-value">
         <span id="prezime">{{racunPodaci?.prezime}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Email:</label>
       <div class="detail-value">
         <span id="email">{{racunPodaci?.email}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Korisničko ime:</label>
       <div class="detail-value">
         <span id="korisnicko-ime">{{racunPodaci?.korisnickoIme}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Adresa:</label>
       <div class="detail-value">
         <span id="adresa">{{racunPodaci?.adresa}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Broj telefona:</label>
       <div class="detail-value">
         <span id="broj-telefona">{{racunPodaci?.brojTelefona}}</span>
-        <span class="edit-button">Uredi</span>
+        <span class="btn btn-primary form-control">Uredi</span>
+      </div>
+    </div>
+    <div *ngIf="!this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
+      <label class="detail-label">Kreditna kartica:</label>
+      <div class="detail-value">
+        <span class="btn btn-primary form-control" (click)="this.btnKreditna(0)">Poveži</span>
+      </div>
+    </div>
+    <div *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
+      <label class="detail-label">Kreditna kartica:</label>
+      <div class="detail-value">
+        <span id="kreditna-kartica">{{kreditnaPodaci?.tipKartice}}</span>
+        <span class="btn btn-primary form-control" (click)="this.btnKreditna(kreditnaPodaci)">Uredi</span>
+        <span class="btn btn-primary form-control" (click)="this.btnUkloniKarticu()">Ukloni</span>
       </div>
     </div>
   </div>
-
   <h3 class="heading">Promijenite lozinku</h3>
   <form class="password-form">
     <div class="form-row">
@@ -68,10 +81,9 @@
       <input type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
     </div>
     <div class="form-row">
-      <input type="submit" value="Promijenite lozinku">
+      <button class="btn btn-primary form-control">Promijenite lozinku</button>
     </div>
   </form>
-
 </div>
 </body>
 </html>

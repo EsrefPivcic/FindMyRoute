@@ -24,6 +24,13 @@ namespace FindMyRouteAPI.Modul.Controllers
             return Ok(_dbContext.KreditnaKartica.FirstOrDefault(k => k.Id == id));
         }
 
+        [HttpGet("korisnikId")]
+        public ActionResult GetByKorisnik(int korisnikId)
+        {
+            var data = _dbContext.KreditnaKartica.Include(k=> k.Korisnik).FirstOrDefault(k => k.Korisnik_id == korisnikId);
+            return Ok(data);
+        }
+
         [HttpPost]
         public ActionResult Add([FromBody] KreditnaKarticaAddVM x)
         {
@@ -41,6 +48,53 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.Add(newKreditna);
             _dbContext.SaveChanges();
             return Get(newKreditna.Id);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([FromBody] KreditnaKarticaEditVM x)
+        {
+            KreditnaKartica? kartica = _dbContext.KreditnaKartica.Find(x.Id);
+
+            if (kartica == null)
+            {
+                return BadRequest("Pogresan ID!");
+            }
+            else
+            {
+                if (kartica.SigurnosniBroj == x.TrenutniSigBroj)
+                {
+                    kartica.TipKartice = x.TipKartice == "" ? kartica.TipKartice : x.TipKartice;
+                    kartica.BrojKartice = x.BrojKartice == "" ? kartica.BrojKartice : x.BrojKartice;
+                    kartica.DatumIsteka = x.DatumIsteka == "" ? kartica.DatumIsteka : x.DatumIsteka;
+                    kartica.SigurnosniBroj = x.SigurnosniBroj == "" ? kartica.SigurnosniBroj : x.SigurnosniBroj;
+                    _dbContext.SaveChanges();
+                    return Ok(kartica);
+                }
+                else
+                {
+                    return BadRequest("Pogresan sigurnosni broj!");
+                }
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            KreditnaKartica? kartica = _dbContext.KreditnaKartica.Find(id);
+
+            if (kartica == null)
+            {
+                return BadRequest("Pogresan ID!");
+            }
+            else
+            {
+                Korisnik korisnik;
+                korisnik = _dbContext.Korisnik.FirstOrDefault(k=> k.id == kartica.Korisnik_id);
+                korisnik.posjedujeKreditnu = false;
+                _dbContext.Remove(kartica);
+                _dbContext.SaveChanges();
+                return Ok(kartica);
+            }            
         }
     }
 }

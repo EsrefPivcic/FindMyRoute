@@ -10,9 +10,7 @@ declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
 const BrojTelefona = /[0-9]{8}/;
-const BrojTelefonaRegex = new RegExp('BrojTelefona');
 const Email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const EmailRegex = new RegExp('Email');
 
 @Component({
   selector: 'app-registracija',

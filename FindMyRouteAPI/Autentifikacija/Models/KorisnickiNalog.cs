@@ -31,7 +31,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public bool isKorisnik => korisnik != null;
         public bool isAdministrator => administrator != null;
         public bool isRadnikFirme => radnikFirme != null;
-        public bool posjedujeKreditnu { get; set; } 
+        public bool posjedujeKreditnu { get; set; }
         public bool isAktiviran { get; set; }
     }
 }

@@ -61,7 +61,65 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Plaćanje</h5>
-          <button class="btn btn-outline-primary" (click)="btnKupi()">Plati</button>
+          <label for="txtNacinPlacanja" class="form-label">Način plaćanja</label>
+          <select name="txtNacinPlacanja" id="txtNacinPlacanja" [(ngModel)]="txtNacinPlacanja" class="form-control">
+            <option value="" disabled selected>Odaberite način plaćanja</option>
+            <option *ngIf="loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" value="1">Povezana {{this.kreditnaPodaci.tipKartice}} kreditna kartica</option>
+            <option *ngIf="loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" value="2">Druga kreditna kartica</option>
+            <option *ngIf="!loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" value="2">Kreditna kartica</option>
+            <option value="3">PayPal</option>
+          </select>
+          <div *ngIf="txtNacinPlacanja == '1'" class="mb-3" style="margin-top: 10px">
+            <label for="txtSigBrojPotvrdi" class="form-label">Sigurnosni broj kartice</label>
+            <input name="txtSigBrojPotvrdi" id="txtSigBrojPotvrdi" [(ngModel)]="txtSigBrojPotvrdi" class="form-control" style="-webkit-text-security: disc; width: 70px" maxlength="3">
+            <button class="btn btn-outline-primary" (click)="btnPlatiPovezanom()" style="margin-top: 10px">Plati</button>
+          </div>
+          <div *ngIf="txtNacinPlacanja == '3'" class="mb-3" style="margin-top: 10px">
+          <label for="txtPayPalMail" class="form-label">PayPal email adresa</label>
+          <input name="txtPayPalMail" id="txtPayPalMail" [(ngModel)]="txtPayPalMail" class="form-control" style="width: 200px">
+          <button class="btn btn-outline-primary" (click)="btnPlatiPayPal()" style="margin-top: 10px">Plati</button>
+          </div>
+        </div>
+        <div *ngIf="txtNacinPlacanja == '2'" class="card-body">
+          <form>
+            <div class="mb-3">
+              <p style="font-weight: bold" class="card-text">Unesite podatke kreditne kartice</p>
+              <label for="txtTip" class="form-label">Tip kartice</label>
+              <select name="txtTip" id="txtTip" [(ngModel)]="txtTip" class="form-control">
+                <option value="" disabled selected>Odaberite tip kartice</option>
+                <option value="Visa">Visa</option>
+                <option value="MasterCard">MasterCard</option>
+                <option value="Maestro">Maestro</option>
+                <option value="American Express">American Express</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="txtBroj1" class="form-label">Broj kartice</label>
+              <div class="input-group">
+                <input name="txtBroj1" id="txtBroj1" [(ngModel)]="txtBroj1" class="form-control" type="text" maxlength="4">
+                <span class="input-group-text">-</span>
+                <input name="txtBroj2" id="txtBroj2" [(ngModel)]="txtBroj2" class="form-control" type="text" maxlength="4">
+                <span class="input-group-text">-</span>
+                <input name="txtBroj3" id="txtBroj3" [(ngModel)]="txtBroj3" class="form-control" type="text" maxlength="4">
+                <span class="input-group-text">-</span>
+                <input name="txtBroj4" id="txtBroj4" [(ngModel)]="txtBroj4" class="form-control" type="text" maxlength="4">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtDatum1" class="form-label">Datum isteka</label>
+              <div class="input-group">
+                <input name="txtDatum1" id="txtDatum1" [(ngModel)]="txtDatum1" class="form-control" type="text" maxlength="2">
+                <span class="input-group-text">/</span>
+                <input name="txtDatum2" id="txtDatum2" [(ngModel)]="txtDatum2" class="form-control" type="text" maxlength="2">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtSigBroj" class="form-label">Sigurnosni broj</label>
+              <input name="txtSigBroj" id="txtSigBroj" [(ngModel)]="txtSigBroj" class="form-control" style="-webkit-text-security: disc;" maxlength="3">
+            </div>
+            <button class="btn btn-outline-primary" (click)="btnPlatiNovom(false)">Plati</button>
+            <button style="margin-left: 10px" *ngIf="!loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="btn btn-outline-primary" (click)="btnPlatiNovom(true)">Plati i poveži karticu</button>
+          </form>
         </div>
       </div>
     </div>

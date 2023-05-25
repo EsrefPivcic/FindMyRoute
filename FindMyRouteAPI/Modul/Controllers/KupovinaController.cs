@@ -30,13 +30,40 @@ namespace FindMyRouteAPI.Modul.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public ActionResult Add([FromBody] KupovinaAddVM x)
+        public ActionResult Plati([FromBody] KupovinaAddVM x)
         {
-            int cijenaKarte = _dbContext.Linija.Where(l => l.Id == x.Linija_id).FirstOrDefault().Cijena;
+            if (_dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id).SigurnosniBroj == x.SigurnosniBroj)
+            {
+                int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+                var newKupovina = new Kupovina
+                {
+                    Linija_id = x.Linija_id,
+                    Korisnik_id = x.Korisnik_id,
+                    KreditnaKartica_id = x.Kreditna_id,
+                    Kolicina = x.Kolicina,
+                    DatumKupovine = DateTime.Now,
+                    DatumVoznje = x.DatumVoznje,
+                    UkupnaCijena = cijenaKarte * x.Kolicina
+                };
+                _dbContext.Add(newKupovina);
+                _dbContext.SaveChanges();
+                _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+                _dbContext.SaveChanges();
+                return Get(newKupovina.Id);
+            }
+            return BadRequest("Krivi sigurnosni broj kartice!");
+        }
+
+        [HttpPost]
+        public ActionResult PlatiPresjedanje([FromBody] KupovinaKarticaAddVM x)
+        {
+            int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+            int kreditnaId = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id).Id;
             var newKupovina = new Kupovina
             {
-                Linija_id= x.Linija_id,
+                Linija_id = x.Linija_id,
                 Korisnik_id = x.Korisnik_id,
+                KreditnaKartica_id = kreditnaId,
                 Kolicina = x.Kolicina,
                 DatumKupovine = DateTime.Now,
                 DatumVoznje = x.DatumVoznje,
@@ -44,7 +71,119 @@ namespace FindMyRouteAPI.Modul.Controllers
             };
             _dbContext.Add(newKupovina);
             _dbContext.SaveChanges();
+            _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+            _dbContext.SaveChanges();
             return Get(newKupovina.Id);
+        }
+
+        [HttpPost]
+        public ActionResult PlatiPayPal([FromBody] KupovinaAddVM x)
+        {
+            int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+            var newKupovina = new Kupovina
+            {
+                Linija_id = x.Linija_id,
+                Korisnik_id = x.Korisnik_id,
+                Kolicina = x.Kolicina,
+                DatumKupovine = DateTime.Now,
+                DatumVoznje = x.DatumVoznje,
+                UkupnaCijena = cijenaKarte * x.Kolicina,
+                PayPalEmail = x.PayPalEmail
+            };
+            _dbContext.Add(newKupovina);
+            _dbContext.SaveChanges();
+            _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+            _dbContext.SaveChanges();
+            return Get(newKupovina.Id);
+        }
+
+        [HttpPost]
+        public ActionResult PlatiNovomKarticom([FromBody] KupovinaKarticaAddVM x)
+        {
+            if (x.PoveziKarticu)
+            {
+                var newKartica = new KreditnaKartica
+                {
+                    Korisnik_id = x.Korisnik_id,
+                    TipKartice = x.TipKartice,
+                    BrojKartice = x.BrojKartice,
+                    DatumIsteka = x.DatumIsteka,
+                    SigurnosniBroj = x.SigurnosniBroj
+                };
+                Korisnik korisnik;
+                korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id);
+                korisnik.posjedujeKreditnu = true;
+                _dbContext.Add(newKartica);
+                _dbContext.SaveChanges();
+                int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+                var newKupovina = new Kupovina
+                {
+                    Linija_id = x.Linija_id,
+                    Korisnik_id = x.Korisnik_id,
+                    KreditnaKartica_id = newKartica.Id,
+                    Kolicina = x.Kolicina,
+                    DatumKupovine = DateTime.Now,
+                    DatumVoznje = x.DatumVoznje,
+                    UkupnaCijena = cijenaKarte * x.Kolicina
+                };
+                _dbContext.Add(newKupovina);
+                _dbContext.SaveChanges();
+                _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+                _dbContext.SaveChanges();
+                return Get(newKupovina.Id);
+            }
+            else
+            {
+                var kartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.TipKartice == x.TipKartice && k.BrojKartice == x.BrojKartice &&
+                k.DatumIsteka == x.DatumIsteka && k.SigurnosniBroj == x.SigurnosniBroj);
+                if (kartica == null)
+                {
+                    kartica = new KreditnaKartica
+                    {
+                        TipKartice = x.TipKartice,
+                        BrojKartice = x.BrojKartice,
+                        DatumIsteka = x.DatumIsteka,
+                        SigurnosniBroj = x.SigurnosniBroj
+                    };
+                    _dbContext.Add(kartica);
+                    _dbContext.SaveChanges();
+                    int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+                    var newKupovina = new Kupovina
+                    {
+                        Linija_id = x.Linija_id,
+                        Korisnik_id = x.Korisnik_id,
+                        KreditnaKartica_id = kartica.Id,
+                        Kolicina = x.Kolicina,
+                        DatumKupovine = DateTime.Now,
+                        DatumVoznje = x.DatumVoznje,
+                        UkupnaCijena = cijenaKarte * x.Kolicina
+                    };
+                    _dbContext.Add(newKupovina);
+                    _dbContext.SaveChanges();
+                    _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+                    _dbContext.SaveChanges();
+                    return Get(newKupovina.Id);
+                }
+                else
+                {
+                    int cijenaKarte = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id).Cijena;
+                    var newKupovina = new Kupovina
+                    {
+                        Linija_id = x.Linija_id,
+                        Korisnik_id = x.Korisnik_id,
+                        KreditnaKartica_id = kartica.Id,
+                        Kolicina = x.Kolicina,
+                        DatumKupovine = DateTime.Now,
+                        DatumVoznje = x.DatumVoznje,
+                        UkupnaCijena = cijenaKarte * x.Kolicina
+                    };
+                    _dbContext.Add(newKupovina);
+                    _dbContext.SaveChanges();
+                    _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
+                    _dbContext.SaveChanges();
+                    return Get(newKupovina.Id);
+                }           
+            }
         }
     }
 }

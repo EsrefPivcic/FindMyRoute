@@ -12,9 +12,13 @@ namespace FindMyRouteAPI.Modul.Models
         [ForeignKey(nameof(Korisnik))]
         public int? Korisnik_id { get; set; }
         public Korisnik Korisnik { get; set; }
+        [ForeignKey(nameof(KreditnaKartica))]
+        public int? KreditnaKartica_id { get; set; }
+        public KreditnaKartica? KreditnaKartica { get; set; }
         public DateTime DatumKupovine { get; set; }
         public DateTime DatumVoznje { get; set; }
         public int Kolicina { get; set; }
         public int UkupnaCijena { get; set; }
+        public string? PayPalEmail { get; set; }
     }
 }

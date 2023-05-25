@@ -54,5 +54,6 @@ export interface KorisnickiNalog {
   isKorisnik:        boolean;
   isAdministrator:   boolean;
   isRadnikFirme:     boolean;
+  posjedujeKreditnu: boolean;
   isAktiviran: boolean;
 }

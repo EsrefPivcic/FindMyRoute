@@ -62,7 +62,7 @@ import {UpravljanjeKreditnaComponent} from "./upravljanjeKreditna/upravljanjeKre
       {path: 'oNama', component: ONamaComponent},
       {path: 'kontakt', component: KontaktComponent},
       {path: 'korisnickiRacun', component: KorisnickiRacunComponent, canActivate:[AutorizacijaLoginProvjera]},
-      {path: 'upravljanjeKreditna', component: UpravljanjeKreditnaComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'upravljanjeKreditna/:id', component: UpravljanjeKreditnaComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,

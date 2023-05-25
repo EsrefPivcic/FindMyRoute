@@ -1,8 +1,10 @@
 ﻿using FindMyRouteAPI.Data;
 using FindMyRouteAPI.Helper;
 using FindMyRouteAPI.Modul.Models;
+using FIT_Api_Examples.Modul0_Autentifikacija.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace FindMyRouteAPI.TestniPodaci.Controllers
 {
@@ -258,16 +260,19 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             {
                 Korisnik_id = 4,
                 TipKartice = "Visa",
-                BrojKartice = "5555 4444 3333 2222",
-                DatumIsteka = DateTime.Now,
+                BrojKartice = "5555-4444-3333-2222",
+                DatumIsteka = "09/27",
                 SigurnosniBroj = "999"
             };
 
-            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == 4);
-            korisnik.posjedujeKreditnu = true;
-
             _dbContext.KreditnaKartica.Add(kreditnaKartica);
             _dbContext.SaveChanges();
+            var korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == 4);
+            if (korisnik != null)
+            {
+                korisnik.posjedujeKreditnu = true;
+                _dbContext.SaveChanges();
+            }
 
             return Count();
         }
