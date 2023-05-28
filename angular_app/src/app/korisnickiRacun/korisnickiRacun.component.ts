@@ -134,7 +134,7 @@ export class KorisnickiRacunComponent implements OnInit {
     if (this.ValidirajKorisnickoIme()){
       let podaci = {
         id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
-        novoKorisnicko: this.txtNovoKorisnicko
+        novoKorisnickoIme: this.txtNovoKorisnicko
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniKorisnickoIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
         porukaSuccess("Korisničko ime uspješno promijenjeno!");
@@ -162,7 +162,7 @@ export class KorisnickiRacunComponent implements OnInit {
     if (this.ValidirajBrojTelefona()){
       let podaci = {
         id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
-        noviBroj: this.txtNoviBroj
+        noviBrojTelefona: "+387"+this.txtNoviBroj
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniBroj`, podaci, MojConfig.http_opcije()).subscribe(x=>{
         porukaSuccess("Broj telefona uspješno promijenjen!");

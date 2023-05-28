@@ -13,49 +13,49 @@
       <label class="detail-label">Ime:</label>
       <div class="detail-value">
         <span id="ime">{{racunPodaci?.ime}}</span>
-        <span (click)="promjenaImena = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaImena == false ? promjenaImena = true : promjenaImena = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Prezime:</label>
       <div class="detail-value">
         <span id="prezime">{{racunPodaci?.prezime}}</span>
-        <span (click)="promjenaPrezimena = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaPrezimena == false ? promjenaPrezimena = true : promjenaPrezimena = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Email:</label>
       <div class="detail-value">
         <span id="email">{{racunPodaci?.email}}</span>
-        <span (click)="promjenaEmaila = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaEmaila == false ? promjenaEmaila = true : promjenaEmaila = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Korisničko ime:</label>
       <div class="detail-value">
         <span id="korisnicko-ime">{{racunPodaci?.korisnickoIme}}</span>
-        <span (click)="promjenaKorisnickog = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaKorisnickog == false ? promjenaKorisnickog = true : promjenaKorisnickog = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Adresa:</label>
       <div class="detail-value">
         <span id="adresa">{{racunPodaci?.adresa}}</span>
-        <span (click)="promjenaAdrese = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaAdrese == false ? promjenaAdrese = true : promjenaAdrese = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Broj telefona:</label>
       <div class="detail-value">
         <span id="broj-telefona">{{racunPodaci?.brojTelefona}}</span>
-        <span (click)="promjenaBroja = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaBroja == false ? promjenaBroja = true : promjenaBroja = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div class="detail-row">
       <label class="detail-label">Lozinka:</label>
       <div class="detail-value">
         <span id="lozinka">**********</span>
-        <span (click)="promjenaLozinke = true" class="btn btn-primary form-control">Uredi</span>
+        <span (click)="promjenaLozinke == false ? promjenaLozinke = true : promjenaLozinke = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
     <div *ngIf="!this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
@@ -72,26 +72,6 @@
         <span class="btn btn-primary form-control" (click)="this.btnUkloniKarticu()">Ukloni</span>
       </div>
     </div>
-  </div>
-  <div *ngIf="promjenaLozinke == true">
-  <h3 class="heading">Promijenite lozinku</h3>
-  <form class="password-form">
-    <div class="form-row">
-      <label for="trenutna-lozinka">Trenutna lozinka:</label>
-      <input [(ngModel)]="txtTrenutnaLozinka" type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
-    </div>
-    <div class="form-row">
-      <label for="nova-lozinka">Nova lozinka:</label>
-      <input [(ngModel)]="txtNovaLozinka" type="password" id="nova-lozinka" name="nova-lozinka" required>
-    </div>
-    <div class="form-row">
-      <label for="potvrda-lozinke">Potvrdite lozinku:</label>
-      <input [(ngModel)]="txtNovaPotvrdaLozinka" type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
-    </div>
-    <div class="form-row">
-      <button (click)="PromijeniLozinku()" class="btn btn-primary form-control">Promijenite lozinku</button>
-    </div>
-  </form>
   </div>
   <div *ngIf="promjenaImena == true">
     <h3 class="heading">Promijenite ime</h3>
@@ -162,6 +142,26 @@
       </div>
       <div class="form-row">
         <button (click)="PromijeniBrojTelefona()" class="btn btn-primary form-control">Promijenite broj telefona</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaLozinke == true">
+    <h3 class="heading">Promijenite lozinku</h3>
+    <form class="password-form">
+      <div class="form-row">
+        <label for="trenutna-lozinka">Trenutna lozinka:</label>
+        <input [(ngModel)]="txtTrenutnaLozinka" type="password" id="trenutna-lozinka" name="trenutna-lozinka" required>
+      </div>
+      <div class="form-row">
+        <label for="nova-lozinka">Nova lozinka:</label>
+        <input [(ngModel)]="txtNovaLozinka" type="password" id="nova-lozinka" name="nova-lozinka" required>
+      </div>
+      <div class="form-row">
+        <label for="potvrda-lozinke">Potvrdite lozinku:</label>
+        <input [(ngModel)]="txtNovaPotvrdaLozinka" type="password" id="potvrda-lozinke" name="potvrda-lozinke" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniLozinku()" class="btn btn-primary form-control">Promijenite lozinku</button>
       </div>
     </form>
   </div>

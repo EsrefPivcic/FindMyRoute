@@ -77,7 +77,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniIme([FromBody] PromjenaImenaAddVM x)
+        public ActionResult PromijeniIme([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
@@ -93,7 +93,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniPrezime([FromBody] PromjenaPrezmenaAddVM x)
+        public ActionResult PromijeniPrezime([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
@@ -109,7 +109,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniEmail([FromBody] PromjenaEmailaAddVM x)
+        public ActionResult PromijeniEmail([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
@@ -125,7 +125,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniKorisnickoIme([FromBody] PromjenaKorisnickogImenaAddVM x)
+        public ActionResult PromijeniKorisnickoIme([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
@@ -141,7 +141,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniAdresu([FromBody] PromjenaAdreseAddVM x)
+        public ActionResult PromijeniAdresu([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
@@ -157,7 +157,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult PromijeniBroj([FromBody] PromjenaBrojaAddVM x)
+        public ActionResult PromijeniBroj([FromBody] KorisnikEditVM x)
         {
             Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
             if (korisnik == null)
