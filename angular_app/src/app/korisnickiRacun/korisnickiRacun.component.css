@@ -84,6 +84,14 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
 input[type="submit"] {
   background-color: #4CAF50;
   color: #fff;

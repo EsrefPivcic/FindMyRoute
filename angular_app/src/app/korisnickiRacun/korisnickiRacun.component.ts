@@ -9,6 +9,9 @@ import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
+const BrojTelefona = /[0-9]{8}/;
+const Email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 @Component({
   selector: 'app-korisnickiRacun',
   templateUrl: 'korisnickiRacun.component.html',
@@ -20,6 +23,18 @@ export class KorisnickiRacunComponent implements OnInit {
   racunPodaci: any;
   kreditnaPodaci: any;
   promjenaLozinke: boolean = false;
+  promjenaImena: boolean = false;
+  txtNovoIme: string = "";
+  promjenaPrezimena: boolean = false;
+  txtNovoPrezime: string = "";
+  promjenaEmaila: boolean = false;
+  txtNoviEmail: string = "";
+  promjenaKorisnickog: boolean = false;
+  txtNovoKorisnicko: string = "";
+  promjenaAdrese: boolean = false;
+  txtNovaAdresa: string = "";
+  promjenaBroja: boolean = false;
+  txtNoviBroj: string = "";
   txtTrenutnaLozinka: string = "";
   txtNovaLozinka: string = "";
   txtNovaPotvrdaLozinka: string = "";
@@ -73,6 +88,90 @@ export class KorisnickiRacunComponent implements OnInit {
     }
   }
 
+  PromijeniIme(): void {
+    if (this.ValidirajIme()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        novoIme: this.txtNovoIme
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Ime uspješno promijenjeno!");
+        this.promjenaImena = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  PromijeniPrezime(): void {
+    if (this.ValidirajPrezime()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        novoPrezime: this.txtNovoPrezime
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniPrezime`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Prezime uspješno promijenjeno!");
+        this.promjenaPrezimena = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  PromijeniEmail(): void {
+    if (this.ValidirajEmail()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        noviEmail: this.txtNoviEmail
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniEmail`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Email uspješno promijenjen!");
+        this.promjenaEmaila = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  PromijeniKorisnickoIme(): void {
+    if (this.ValidirajKorisnickoIme()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        novoKorisnicko: this.txtNovoKorisnicko
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniKorisnickoIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Korisničko ime uspješno promijenjeno!");
+        this.promjenaKorisnickog = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  PromijeniAdresu(): void {
+    if (this.ValidirajAdresu()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        novaAdresa: this.txtNovaAdresa
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniAdresu`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Adresa uspješno promijenjena!");
+        this.promjenaAdrese = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
+  PromijeniBrojTelefona(): void {
+    if (this.ValidirajBrojTelefona()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        noviBroj: this.txtNoviBroj
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniBroj`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Broj telefona uspješno promijenjen!");
+        this.promjenaBroja = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
   Validiraj(): boolean {
     if (this.txtTrenutnaLozinka == "" || this.txtNovaLozinka == "" || this.txtNovaPotvrdaLozinka == ""){
       porukaError("Sva polja su obavezna!")
@@ -80,6 +179,62 @@ export class KorisnickiRacunComponent implements OnInit {
     }
     if (this.txtNovaLozinka != this.txtNovaPotvrdaLozinka) {
       porukaError("Lozinke se ne poklapaju!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajIme(): boolean {
+    if (this.txtNovoIme == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajPrezime(): boolean {
+    if (this.txtNovoPrezime == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajEmail(): boolean {
+    if (this.txtNoviEmail == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    if (!this.txtNoviEmail.match(Email)) {
+      porukaError("Molimo unesite ispravan email!");
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajKorisnickoIme(): boolean {
+    if (this.txtNovoKorisnicko == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajAdresu(): boolean {
+    if (this.txtNovaAdresa == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajBrojTelefona(): boolean {
+    if (this.txtNoviBroj == ""){
+      porukaError("Polje je obavezno!")
+      return false;
+    }
+    if (!this.txtNoviBroj.match(BrojTelefona)) {
+      porukaError("Molimo unesite ispravan broj telefona!");
       return false;
     }
     return true;

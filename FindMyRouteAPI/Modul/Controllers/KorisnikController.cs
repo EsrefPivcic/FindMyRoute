@@ -75,5 +75,101 @@ namespace FindMyRouteAPI.Modul.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        public ActionResult PromijeniIme([FromBody] PromjenaImenaAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.Ime = x.NovoIme;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniPrezime([FromBody] PromjenaPrezmenaAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.Prezime = x.NovoPrezime;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniEmail([FromBody] PromjenaEmailaAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.Email = x.NoviEmail;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniKorisnickoIme([FromBody] PromjenaKorisnickogImenaAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.korisnickoIme = x.NovoKorisnickoIme;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniAdresu([FromBody] PromjenaAdreseAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.Adresa = x.NovaAdresa;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniBroj([FromBody] PromjenaBrojaAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                korisnik.BrojTelefona = x.NoviBrojTelefona;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }
