@@ -3,19 +3,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FindMyRoute</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css">
-  <style>
-    body {
-      padding: 20px;
-    }
-
-    .form-control {
-      width: 100%;
-    }
-
-    .table {
-      margin-top: 20px;
-    }
-  </style>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,6 +27,9 @@
           <li class="nav-item">
             <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="nav-link" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
           </li>
+        <li class="nav-item">
+          <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="nav-link" routerLink="/historijaKupovine" routerLinkActive="active">Historija kupovine</a>
+        </li>
         <li class="nav-item">
           <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator == true" class="nav-link" routerLink="/upravljanje" routerLinkActive="active" >Upravljanje</a>
         </li>

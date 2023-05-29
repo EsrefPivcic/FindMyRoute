@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Detalji kupoovine</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Polazište</h5>
+          <p class="card-text">{{this.kupovina.linija.grad1}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Destinacija</h5>
+          <p class="card-text">{{this.kupovina.linija.grad2}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Prevoznik</h5>
+          <p class="card-text">{{this.kupovina.linija.prevoznik.naziv}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Datum kupovine</h5>
+          <p class="card-text">{{formatirajDatum(this.kupovina.datumKupovine)}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Datum vožnje</h5>
+          <p class="card-text">{{formatirajDatum(this.kupovina.datumVoznje)}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Broj karata</h5>
+          <p class="card-text">{{this.kupovina.kolicina}}</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Cijena karte</h5>
+          <p class="card-text">{{this.kupovina.linija.cijena}} KM</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Ukupna cijena</h5>
+          <p class="card-text">{{this.kupovina.ukupnaCijena}} KM</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Način plaćanja</h5>
+          <p *ngIf="this.kupovina.kreditnaKartica != null" class="card-text">{{this.kupovina.kreditnaKartica.tipKartice}} kartica</p>
+          <p *ngIf="this.kupovina.payPalEmail != null" class="card-text">PayPal: {{this.kupovina.payPalEmail}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

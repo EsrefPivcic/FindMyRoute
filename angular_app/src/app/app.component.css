@@ -9,6 +9,18 @@ nav {
   line-height: 1.5;
 }
 
+body {
+  padding: 20px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.table {
+  margin-top: 20px;
+}
+
 @media (min-width: 992px) {
   .navbar {
     padding: 16px 24px;
