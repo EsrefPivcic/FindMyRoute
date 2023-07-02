@@ -4,6 +4,7 @@ using FindMyRouteAPI.Modul.Models;
 using Microsoft.AspNetCore.Mvc;
 using FindMyRouteAPI.Modul.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace FindMyRouteAPI.Modul.Controllers
 {
@@ -33,7 +34,7 @@ namespace FindMyRouteAPI.Modul.Controllers
                 Ime = x.Ime.RemoveTags(),
                 Prezime = x.Prezime.RemoveTags(),
                 Email= x.Email.RemoveTags(),
-                korisnickoIme= x.korisnickoIme.RemoveTags(),
+                korisnickoIme= x.korisnickoIme.RemoveTags(),      
                 lozinka = x.lozinka.RemoveTags(),
                 Adresa = x.Adresa.RemoveTags(),
                 BrojTelefona = x.BrojTelefona.RemoveTags(),
@@ -41,9 +42,30 @@ namespace FindMyRouteAPI.Modul.Controllers
                 posjedujeKreditnu = false,
                 isAktiviran = true
             };
+            if (!string.IsNullOrEmpty(x.Slika))
+            {
+                byte[]? slika_bajtovi = x.Slika?.ParsirajBase64();
+
+                if (slika_bajtovi == null)
+                    return BadRequest("Format slike nije base64");
+
+                byte[]? slika_bajtovi_resized_velika = Slike.resize(slika_bajtovi, 200);
+                byte[]? slika_bajtovi_resized_mala = Slike.resize(slika_bajtovi, 50);
+                newKorisnik.Slika = slika_bajtovi_resized_velika;
+                newKorisnik.SlikaMala = slika_bajtovi_resized_mala;
+            }
             _dbContext.Add(newKorisnik);
             _dbContext.SaveChanges();
             return Get(newKorisnik.id);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetSlikaDB(int id)
+        {
+            byte[]? bajtovi_slike = _dbContext.Korisnik.Find(id).Slika ?? Fajlovi.Ucitaj("Images/empty.png");
+            if (bajtovi_slike == null)
+                throw new Exception();
+            return File(bajtovi_slike, "image/png");
         }
 
         [HttpGet]
@@ -73,6 +95,33 @@ namespace FindMyRouteAPI.Modul.Controllers
                 {
                     return BadRequest("Pogrešna lozinka");
                 }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PromijeniSliku([FromBody] PromjenaSlikeAddVM x)
+        {
+            Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Id);
+            if (korisnik == null)
+            {
+                return BadRequest("Pogrešan ID");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(x.NovaSlika))
+                {
+                    byte[]? slika_bajtovi = x.NovaSlika?.ParsirajBase64();
+
+                    if (slika_bajtovi == null)
+                        return BadRequest("Format slike nije base64");
+
+                    byte[]? slika_bajtovi_resized_velika = Slike.resize(slika_bajtovi, 200);
+                    byte[]? slika_bajtovi_resized_mala = Slike.resize(slika_bajtovi, 50);
+                    korisnik.Slika = slika_bajtovi_resized_velika;
+                    korisnik.SlikaMala = slika_bajtovi_resized_mala;
+                }
+                _dbContext.SaveChanges();
+                return Ok();
             }
         }
 

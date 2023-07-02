@@ -11,5 +11,6 @@ namespace FindMyRouteAPI.Autentifikacija.ViewModels
         public string lozinka { get; set; }
         public string Adresa { get; set; }
         public string BrojTelefona { get; set; }
+        public string? Slika { get; set; }
     }
 }

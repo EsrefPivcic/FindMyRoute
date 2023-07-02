@@ -10,6 +10,22 @@
   <h2 class="heading">Detalji korisničkog računa</h2>
   <div class="details">
     <div class="detail-row">
+      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <img style="width: 200px; height: 200px; border-radius: 50%;" src="{{Slika}}">
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <input class="form-control" #slikaInput id="slika-input" type="file" accept="image/*" (change)="Preview()" />
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <span (click)="PromijeniSliku()" class="btn btn-primary form-control">Sačuvaj sliku</span>
+      </div>
+    </div>
+  </div>
+    <div class="detail-row">
       <label class="detail-label">Ime:</label>
       <div class="detail-value">
         <span id="ime">{{racunPodaci?.ime}}</span>
@@ -165,6 +181,5 @@
       </div>
     </form>
   </div>
-</div>
 </body>
 </html>

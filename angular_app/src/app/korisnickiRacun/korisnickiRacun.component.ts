@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MojConfig } from '../moj-config';
@@ -19,10 +19,12 @@ const Email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+
 })
 export class KorisnickiRacunComponent implements OnInit {
 
+  @ViewChild('slikaInput') slikaInputRef!: ElementRef<HTMLInputElement>;
   id: number;
   racunPodaci: any;
   kreditnaPodaci: any;
   promjenaLozinke: boolean = false;
+  promjenaSlike: boolean = false;
   promjenaImena: boolean = false;
   txtNovoIme: string = "";
   promjenaPrezimena: boolean = false;
@@ -37,13 +39,63 @@ export class KorisnickiRacunComponent implements OnInit {
   txtNoviBroj: string = "";
   txtTrenutnaLozinka: string = "";
   txtNovaLozinka: string = "";
-  txtNovaPotvrdaLozinka: string = "";
-
+  txtNovaPotvrdaLozinka: string = ""
+  Slika: string = "";
   constructor(
     private httpKlijent: HttpClient,
     private route: ActivatedRoute,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    fetch(MojConfig.adresa_servera+ "/Korisnik/Get/id?id="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Nepoznat korisnik!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.racunPodaci = x;
+            this.GetSlika(this.racunPodaci.id);
+            if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
+              fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
+                .then(
+                  r=> {
+                    if (r.status != 200) {
+                      if (r.status == 400) {
+                        alert("Nepoznat korisnik!");
+                      }
+                      else {
+                        alert("greska" + r.status);
+                      }
+                      return;
+                    }
+                    r.json().then(x=>{
+                      this.kreditnaPodaci = x;
+                    });
+                  }
+                )
+                .catch(
+                  err=>{
+                    alert("greska" + err);
+                  }
+                )
+            }
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
+  }
 
   loginInfo(): LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
@@ -55,6 +107,20 @@ export class KorisnickiRacunComponent implements OnInit {
     }
     else {
       this.router.navigate(['/upravljanjeKreditna', this.kreditnaPodaci.id]);
+    }
+  }
+
+  Preview() {
+    // @ts-ignore
+    var file = document.getElementById("slika-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      let this2=this;
+      reader.onload = function () {
+        this2.Slika = reader.result?.toString();
+      }
+      reader.readAsDataURL(file);
+      this.promjenaSlike = true;
     }
   }
 
@@ -85,6 +151,25 @@ export class KorisnickiRacunComponent implements OnInit {
         this.promjenaLozinke = false;
         this.ngOnInit();
       });
+    }
+  }
+
+  PromijeniSliku(): void {
+    if (this.promjenaSlike == true) {
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        novaSlika: this.Slika
+      }
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniSliku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+        porukaSuccess("Slika uspješno promijenjena!");
+        this.GetSlika(this.racunPodaci.id);
+        this.ngOnInit();
+        this.slikaInputRef.nativeElement.value = '';
+        this.promjenaSlike = false;
+      });
+    }
+    else {
+      porukaError("Niste odabrali novu sliku!");
     }
   }
 
@@ -240,52 +325,8 @@ export class KorisnickiRacunComponent implements OnInit {
     return true;
   }
 
-  ngOnInit(): void {
-    fetch(MojConfig.adresa_servera+ "/Korisnik/Get/id?id="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
-      .then(
-        r=> {
-          if (r.status != 200) {
-            if (r.status == 400) {
-              alert("Nepoznat korisnik!");
-            }
-            else {
-              alert("greska" + r.status);
-            }
-            return;
-          }
-          r.json().then(x=>{
-            this.racunPodaci = x;
-            if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
-              fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
-                .then(
-                  r=> {
-                    if (r.status != 200) {
-                      if (r.status == 400) {
-                        alert("Nepoznat korisnik!");
-                      }
-                      else {
-                        alert("greska" + r.status);
-                      }
-                      return;
-                    }
-                    r.json().then(x=>{
-                      this.kreditnaPodaci = x;
-                    });
-                  }
-                )
-                .catch(
-                  err=>{
-                    alert("greska" + err);
-                  }
-                )
-            }
-          });
-        }
-      )
-      .catch(
-        err=>{
-          alert("greska" + err);
-        }
-      )
+  GetSlika(id: number): void {
+    const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+    this.Slika = `${MojConfig.adresa_servera}/Korisnik/GetSlikaDB/${id}?v=${uniqueParam}`;
   }
 }

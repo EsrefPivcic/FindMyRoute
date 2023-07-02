@@ -48,6 +48,7 @@ export interface KorisnickiNalog {
   Ime:                 string;
   Prezime:             string;
   korisnickoIme:      string;
+  Slika:              string;
   lozinka:            string;
   slika_korisnika:    string;
   isNastavnik:        boolean;
