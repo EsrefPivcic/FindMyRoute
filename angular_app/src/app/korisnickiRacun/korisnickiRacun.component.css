@@ -12,6 +12,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+
 }
 
 .flex-center {
@@ -120,4 +121,10 @@ label {
   display: block;
   margin-bottom: 10px;
   color: #555;
+}
+
+.slika {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
