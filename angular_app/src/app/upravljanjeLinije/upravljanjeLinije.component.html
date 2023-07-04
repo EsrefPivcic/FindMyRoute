@@ -4,8 +4,7 @@
       <div class="card">
         <div class="card-header text-center">
           <h3 class="mb-0">Upravljanje linijama</h3>
-          <br>
-          <h3 class="mb-0">{{prevoznikPodaci.naziv}}</h3>
+          <img style="width: 50%; height: 50%; border-radius: 10%; margin-top: 10px" src="{{Logo}}">
         </div>
         <div class="card-body">
           <form>
@@ -31,28 +30,6 @@
                 <input style="width: 25%" name="txtDolazakMinute" id="txtDolazakMinute" [(ngModel)]="txtDolazakMinute" class="form-control" type="number" min="00" max="59" placeholder="mm">
               </div>
             </div>
-            <!--<div class="mb-3">
-              <label class="form-label">Polazak</label>
-              <div class="row align-items-center">
-                <div class="col-6">
-                  <input name="txtPolazakSati" id="txtPolazakSati" [(ngModel)]="txtPolazakSati" class="form-control" type="number" min="0" max="23" placeholder="Sat">
-                </div>
-                <div class="col-6">
-                  <input name="txtPolazakMinute" id="txtPolazakMinute" [(ngModel)]="txtPolazakMinute" class="form-control" type="number" min="0" max="59" placeholder="Minute">
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Dolazak</label>
-              <div class="row align-items-center">
-                <div class="col-6">
-                  <input name="txtDolazakSati" id="txtDolazakSati" [(ngModel)]="txtDolazakSati" class="form-control" type="number" min="0" max="23" placeholder="Sat">
-                </div>
-                <div class="col-6">
-                  <input name="txtDolazakMinute" id="txtDolazakMinute" [(ngModel)]="txtDolazakMinute" class="form-control" type="number" min="0" max="59" placeholder="Minute">
-                </div>
-              </div>
-            </div>-->
             <div class="mb-3">
               <label class="form-label">Dostupni dani</label>
               <div class="d-flex">
@@ -116,7 +93,6 @@
           <th scope="col">Polazak</th>
           <th scope="col">Dolazak</th>
           <th scope="col">Cijena</th>
-          <th scope="col"></th>
         </tr>
         </thead>
         <tbody>

@@ -1,0 +1,20 @@
+h5 {
+  margin-top: 10%;
+  font-size: large;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.container {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}

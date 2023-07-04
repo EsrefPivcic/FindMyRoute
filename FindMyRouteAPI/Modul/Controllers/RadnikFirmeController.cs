@@ -54,6 +54,15 @@ namespace FindMyRouteAPI.Modul.Controllers
             return data.Take(100).ToList();
         }
 
+        [HttpGet("{id}")]
+        public ActionResult GetSlikaDB(int id)
+        {
+            byte[]? bajtovi_slike = _dbContext.RadnikFirme.Find(id).Slika ?? Fajlovi.Ucitaj("Images/empty.png");
+            if (bajtovi_slike == null)
+                throw new Exception();
+            return File(bajtovi_slike, "image/png");
+        }
+
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

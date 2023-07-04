@@ -3,24 +3,23 @@
 <head>
   <title>Korisnički račun</title>
   <link rel="stylesheet" type="text/css" href="korisnickiRacun.component.css">
-  <link rel="stylesheet" type="text/css" href="korisnickiRacun.component.css">
 </head>
 <body>
 <div class="container">
   <h2 class="heading">Detalji korisničkog računa</h2>
   <div class="details">
     <div class="detail-row">
-      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
         <img style="width: 200px; height: 200px; border-radius: 50%;" src="{{Slika}}">
       </div>
     </div>
     <div class="detail-row">
-      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
         <input class="form-control" #slikaInput id="slika-input" type="file" accept="image/*" (change)="Preview()" />
       </div>
     </div>
     <div class="detail-row">
-      <div class="detail-value text-center flex-center"> <!-- Add 'text-center' and 'flex-center' classes -->
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
         <span (click)="PromijeniSliku()" class="btn btn-primary form-control">Sačuvaj sliku</span>
       </div>
     </div>
@@ -88,7 +87,6 @@
         <span class="btn btn-primary form-control" (click)="this.btnUkloniKarticu()">Ukloni</span>
       </div>
     </div>
-  </div>
   <div *ngIf="promjenaImena == true">
     <h3 class="heading">Promijenite ime</h3>
     <form>
@@ -180,6 +178,7 @@
         <button (click)="PromijeniLozinku()" class="btn btn-primary form-control">Promijenite lozinku</button>
       </div>
     </form>
+  </div>
   </div>
 </body>
 </html>

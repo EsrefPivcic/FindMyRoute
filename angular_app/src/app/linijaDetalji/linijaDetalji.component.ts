@@ -14,6 +14,7 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 export class linijaDetaljiComponent implements OnInit {
   id : number;
   linijaPodaci : any;
+  prevoznikLogo: string;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -26,10 +27,17 @@ export class linijaDetaljiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //preuzima ID linije iz URL query parametra
     this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
     });
+    this.GetLinija();
+  }
+
+  Prevoznik(): void {
+    this.router.navigate(['/prevoznik', this.linijaPodaci.prevoznik.id]);
+  }
+
+  GetLinija(): void {
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id)
       .then(
         r=> {
@@ -44,6 +52,8 @@ export class linijaDetaljiComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci = x;
+            const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+            this.prevoznikLogo = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci.prevoznik.id}?v=${uniqueParam}`;
           });
         }
       )

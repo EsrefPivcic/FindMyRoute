@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{this.prevoznikPodaci.naziv}}</title>
+  <link rel="stylesheet" type="text/css" href="upravljanjePrevoznik.component.css">
+  <link rel="stylesheet" type="text/css" href="upravljanjePrevoznik.component.css">
+</head>
+<body>
+<div class="container">
+  <h2 class="heading">Detalji firme</h2>
+  <div class="details">
+    <div class="detail-row">
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <img style="width: 70%; height: 70%; border-radius: 10%;" src="{{Logo}}">
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <input class="form-control" #slikaInput id="slika-input" type="file" accept="image/*" (change)="Preview()"/>
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-value" style="justify-content: center; display: flex"> <!-- Add 'text-center' and 'flex-center' classes -->
+        <span (click)="PromijeniLogo()" class="btn btn-primary form-control">Sačuvaj logo</span>
+      </div>
+    </div>
+  </div>
+  <div class="detail-row">
+    <label class="detail-label">Naziv:</label>
+    <div class="detail-value">
+      <span id="naziv">{{prevoznikPodaci?.naziv}}</span>
+      <span (click)="promjenaNaziva == false ? promjenaNaziva = true : promjenaNaziva = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
+  <div class="detail-row">
+    <label class="detail-label">Adresa:</label>
+    <div class="detail-value">
+      <span id="adresa">{{prevoznikPodaci?.adresa}}</span>
+      <span (click)="promjenaAdrese == false ? promjenaAdrese = true : promjenaAdrese = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
+  <div class="detail-row">
+    <label class="detail-label">Email:</label>
+    <div class="detail-value">
+      <span id="email">{{prevoznikPodaci?.email}}</span>
+      <span (click)="promjenaEmaila == false ? promjenaEmaila = true : promjenaEmaila = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
+  <div class="detail-row">
+    <label class="detail-label">Broj telefona:</label>
+    <div class="detail-value">
+      <span id="broj-telefona">{{prevoznikPodaci?.brojTelefona}}</span>
+      <span (click)="promjenaBroja == false ? promjenaBroja = true : promjenaBroja = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
+  <div *ngIf="promjenaNaziva == true">
+    <h3 class="heading">Promijenite naziv</h3>
+    <form>
+      <div class="form-row">
+        <label for="novi-naziv">Novi naziv:</label>
+        <input [(ngModel)]="txtNoviNaziv" type="text" id="novi-naziv" name="novi-naziv" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniNaziv()" class="btn btn-primary form-control">Promijenite naziv</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaAdrese == true">
+    <h3 class="heading">Promijenite adresu</h3>
+    <form>
+      <div class="form-row">
+        <label for="nova-adresa">Nova adresa:</label>
+        <input [(ngModel)]="txtNovaAdresa" type="text" id="nova-adresa" name="nova-adresa" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniAdresu()" class="btn btn-primary form-control">Promijenite adresu</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaEmaila == true">
+    <h3 class="heading">Promijenite email</h3>
+    <form>
+      <div class="form-row">
+        <label for="novi-email">Novi email:</label>
+        <input [(ngModel)]="txtNoviEmail" type="text" id="novi-email" name="novi-email" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniEmail()" class="btn btn-primary form-control">Promijenite email</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaBroja == true">
+    <h3 class="heading">Promijenite broj telefona</h3>
+    <form>
+      <div class="form-row">
+        <label for="novi-broj">Novi broj telefona:</label>
+        <input [(ngModel)]="txtNoviBroj" type="text" id="novi-broj" name="novi-broj" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniBrojTelefona()" class="btn btn-primary form-control">Promijenite broj telefona</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

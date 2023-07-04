@@ -40,6 +40,8 @@ export class KupovinaPresjedanjeComponent implements OnInit {
   txtSigBroj: string = "";
   txtSigBrojPotvrdi: string = "";
   txtPayPalMail: string = "";
+  prevoznikLogo1: string = "";
+  prevoznikLogo2: string = "";
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -50,6 +52,38 @@ export class KupovinaPresjedanjeComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.linija2_id = +params['id2']; // (+) converts string 'id' to a number
     });
+    this.GetLinije();
+    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
+      this.GetKreditna();
+    }
+  }
+
+  GetKreditna(): void {
+    fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Nepoznat korisnik!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.kreditnaPodaci = x;
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
+  }
+
+  GetLinije(): void {
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija1_id)
       .then(
         r=> {
@@ -64,6 +98,8 @@ export class KupovinaPresjedanjeComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci1 = x;
+            const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+            this.prevoznikLogo1 = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci1.prevoznik.id}?v=${uniqueParam}`;
             fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija2_id)
               .then(
                 r=> {
@@ -78,6 +114,8 @@ export class KupovinaPresjedanjeComponent implements OnInit {
                   }
                   r.json().then(x=>{
                     this.linijaPodaci2 = x;
+                    const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+                    this.prevoznikLogo2 = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci2.prevoznik.id}?v=${uniqueParam}`;
                     this.DodajDaneVoznje();
                   });
                 }
@@ -95,34 +133,14 @@ export class KupovinaPresjedanjeComponent implements OnInit {
           alert("greska" + err);
         }
       )
-    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
-      fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
-        .then(
-          r=> {
-            if (r.status != 200) {
-              if (r.status == 400) {
-                alert("Nepoznat korisnik!");
-              }
-              else {
-                alert("greska" + r.status);
-              }
-              return;
-            }
-            r.json().then(x=>{
-              this.kreditnaPodaci = x;
-            });
-          }
-        )
-        .catch(
-          err=>{
-            alert("greska" + err);
-          }
-        )
-    }
   }
 
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  Prevoznik(id: number): void {
+    this.router.navigate(['/prevoznik', id]);
   }
 
   onDateSelection(selectedDate: string) {

@@ -26,6 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UpravljanjeKreditnaComponent} from "./upravljanjeKreditna/upravljanjeKreditna.component";
 import {HistorijaKupovineComponent} from "./historijaKupovine/historijaKupovine.component";
 import {DetaljiKupovineComponent} from "./detaljiKupovine/detaljiKupovine.component";
+import {UpravljanjePrevoznikComponent} from "./upravljanjePrevoznik/upravljanjePrevoznik.component";
+import {PrevoznikComponent} from "./prevoznik/prevoznik.component";
+import {PrevozniciComponent} from "./prevoznici/prevoznici.component";
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import {DetaljiKupovineComponent} from "./detaljiKupovine/detaljiKupovine.compon
     UpravljanjeKreditnaComponent,
     HistorijaKupovineComponent,
     DetaljiKupovineComponent,
+    UpravljanjePrevoznikComponent,
+    PrevoznikComponent,
+    PrevozniciComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +75,9 @@ import {DetaljiKupovineComponent} from "./detaljiKupovine/detaljiKupovine.compon
       {path: 'upravljanjeKreditna/:id', component: UpravljanjeKreditnaComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'historijaKupovine', component: HistorijaKupovineComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: 'detaljiKupovine/:id', component: DetaljiKupovineComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'upravljanjePrevoznik', component: UpravljanjePrevoznikComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'prevoznik/:id', component: PrevoznikComponent, canActivate:[AutorizacijaLoginProvjera]},
+      {path: 'prevoznici', component: PrevozniciComponent, canActivate:[AutorizacijaLoginProvjera]},
       {path: '**', component: NotFoundComponent},
     ]),
     FormsModule,

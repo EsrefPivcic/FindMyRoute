@@ -4,11 +4,11 @@
   <title>FindMyRoute</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css">
 </head>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <h2 style="font-weight: bold; margin: 0;">FindMyRoute</h2>
+      <!--<h2 style="font-weight: bold; margin: 0;">FindMyRoute</h2>-->
+      <img id="logo" style="width: 100px; height: 100px; margin-top: 7px" src="{{Logo}}">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,26 +19,41 @@
           <a class="nav-link" routerLink="/pretraga" routerLinkActive="active" aria-current="page">Početna</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/prevoznici" routerLinkActive="active">Prevoznici</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/oNama" routerLinkActive="active">O nama</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/kontakt" routerLinkActive="active">Kontakt</a>
         </li>
-          <li class="nav-item">
-            <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="nav-link" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
-          </li>
-        <li class="nav-item">
-          <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="nav-link" routerLink="/historijaKupovine" routerLinkActive="active">Historija kupovine</a>
+        <li *ngIf="loginInfo().isLogiran == true && this.RefreshProfilnu() == true" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ProfilnaSlika}}">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="dropdown-item" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
+            </li>
+            <li>
+              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="dropdown-item" routerLink="/historijaKupovine" routerLinkActive="active">Historija kupovine</a>
+            </li>
+            <li>
+              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme == true" class="dropdown-item" routerLink="/upravljanjePrevoznik" routerLinkActive="active">Upravljanje firmom</a>
+            </li>
+            <li>
+              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme == true" class="dropdown-item" routerLink="/upravljanjeLinije" routerLinkActive="active" >Upravljanje linijama</a>
+            </li>
+            <li>
+              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator == true" class="dropdown-item" routerLink="/upravljanje" routerLinkActive="active" >Upravljanje</a>
+            </li>
+            <li>
+              <button *ngIf="loginInfo().isLogiran == true" class="dropdown-item" (click)="logoutButton()">Odjava</button>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator == true" class="nav-link" routerLink="/upravljanje" routerLinkActive="active" >Upravljanje</a>
-        </li>
-        <li class="nav-item">
-        <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme == true" class="nav-link" routerLink="/upravljanjeLinije" routerLinkActive="active" >Upravljanje linijama</a>
-      </li>
         <li class="nav-item">
           <button *ngIf="loginInfo().isLogiran == false" class="btn btn-outline-primary" routerLink="/login">Prijava</button>
-          <button *ngIf="loginInfo().isLogiran == true" class="btn btn-outline-secondary" (click)="logoutButton()">Odjava</button>
         </li>
       </ul>
     </div>

@@ -44,5 +44,14 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             return Get(newAdministrator.id);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult GetSlikaDB(int id)
+        {
+            byte[]? bajtovi_slike = _dbContext.Administrator.Find(id).Slika ?? Fajlovi.Ucitaj("Images/empty.png");
+            if (bajtovi_slike == null)
+                throw new Exception();
+            return File(bajtovi_slike, "image/png");
+        }
     }
 }

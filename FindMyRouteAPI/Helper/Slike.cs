@@ -3,7 +3,7 @@
     using SkiaSharp;
     public class Slike
     {
-        public static byte[]? resize(byte[] slikaBajtovi, int size, int quality = 75)
+        public static byte[]? resize(byte[] slikaBajtovi, int size, int quality = 95)
         {
             using var input = new MemoryStream(slikaBajtovi);
             using var inputStream = new SKManagedStream(input);
@@ -25,7 +25,7 @@
             if (resized == null) return null;
 
             using var image = SKImage.FromBitmap(resized);
-            return image.Encode(SKEncodedImageFormat.Jpeg, quality)
+            return image.Encode(SKEncodedImageFormat.Png, quality)
                 .ToArray();
         }
     }

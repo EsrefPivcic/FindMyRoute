@@ -39,6 +39,7 @@ export class KupovinaComponent implements OnInit {
   txtSigBroj: string = "";
   txtSigBrojPotvrdi: string = "";
   txtPayPalMail: string = "";
+  prevoznikLogo: string = "";
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -98,6 +99,38 @@ export class KupovinaComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.linija_id = +params['id']; // (+) converts string 'id' to a number
     });
+    this.GetLinija();
+    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
+      this.GetKreditna();
+    }
+  }
+
+  GetKreditna(): void {
+    fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
+      .then(
+        r=> {
+          if (r.status != 200) {
+            if (r.status == 400) {
+              alert("Nepoznat korisnik!");
+            }
+            else {
+              alert("greska" + r.status);
+            }
+            return;
+          }
+          r.json().then(x=>{
+            this.kreditnaPodaci = x;
+          });
+        }
+      )
+      .catch(
+        err=>{
+          alert("greska" + err);
+        }
+      )
+  }
+
+  GetLinija(): void{
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.linija_id)
       .then(
         r=> {
@@ -112,6 +145,8 @@ export class KupovinaComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci = x;
+            const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+            this.prevoznikLogo = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci.prevoznik.id}?v=${uniqueParam}`;
             this.DodajDaneVoznje();
           });
         }
@@ -121,30 +156,6 @@ export class KupovinaComponent implements OnInit {
           alert("greska" + err);
         }
       )
-    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu) {
-      fetch(MojConfig.adresa_servera+ "/KreditnaKartica/GetByKorisnik/korisnikId?korisnikId="+this.loginInfo().autentifikacijaToken.korisnickiNalog.id )
-        .then(
-          r=> {
-            if (r.status != 200) {
-              if (r.status == 400) {
-                alert("Nepoznat korisnik!");
-              }
-              else {
-                alert("greska" + r.status);
-              }
-              return;
-            }
-            r.json().then(x=>{
-              this.kreditnaPodaci = x;
-            });
-          }
-        )
-        .catch(
-          err=>{
-            alert("greska" + err);
-          }
-        )
-    }
   }
 
   Validiraj(): boolean {
@@ -242,6 +253,10 @@ export class KupovinaComponent implements OnInit {
         }
       });
     }
+  }
+
+  Prevoznik(): void {
+    this.router.navigate(['/prevoznik', this.linijaPodaci.prevoznik.id]);
   }
 
   btnPlatiPovezanom(): void {

@@ -27,6 +27,13 @@ body {
   }
 }
 
+@media (max-width: 720px) {
+  #logo {
+    width: 75px!important;
+    height: 75px!important;
+  }
+}
+
 .navbar-brand {
   position: absolute;
   left: 50%;

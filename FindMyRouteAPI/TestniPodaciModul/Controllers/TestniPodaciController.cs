@@ -53,22 +53,32 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             _dbContext.Administrator.Add(administrator);
             _dbContext.SaveChanges();
 
+            byte[]? LivnoBusVelika = Slike.resize(Fajlovi.Ucitaj("Images/livnobus.png"), 200);
+            byte[]? LivnoBusMala = Slike.resize(Fajlovi.Ucitaj("Images/livnobus.png"), 50);
+
             var livnobus = new Prevoznik { 
                 Naziv = "Livno Bus",
                 Adresa = "Livno",
                 Email = "livno.bus@livno.ba",
-                BrojTelefona = "+38763505404"
+                BrojTelefona = "+38763505404",
+                Logo = LivnoBusVelika,
+                LogoMali = LivnoBusMala
             };
 
             _dbContext.Prevoznik.Add(livnobus);
             _dbContext.SaveChanges();
+
+            byte[]? AutoprevozVelika = Slike.resize(Fajlovi.Ucitaj("Images/autoprevoz.png"), 200);
+            byte[]? AutoprevozMala = Slike.resize(Fajlovi.Ucitaj("Images/autoprevoz.png"), 50);
 
             var autoprevoz = new Prevoznik
             {
                 Naziv = "Autoprevoz Mostar",
                 Adresa = "Mostar",
                 Email = "autoprevoz@mostar.ba",
-                BrojTelefona = "+38761555444"
+                BrojTelefona = "+38761555444",
+                Logo = AutoprevozVelika,
+                LogoMali = AutoprevozMala
             };
 
             _dbContext.Prevoznik.Add(autoprevoz);

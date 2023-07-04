@@ -6,5 +6,6 @@
         public string Adresa { get; set; }
         public string Email { get; set; }
         public string BrojTelefona { get; set; }
+        public string? Logo { get; set; }
     }
 }

@@ -28,6 +28,13 @@
               <label for="txtBrojTelefona" class="form-label">Broj telefona</label>
               <input name="txtBrojTelefona" id="txtBrojTelefona" [(ngModel)]="txtBrojTelefona" class="form-control" type="text">
             </div>
+            <div class="mb-3">
+              <label for="slika-input" class="form-label">Logo</label>
+              <input class="form-control" #slikaInput id="slika-input" type="file" accept="image/*" (change)="Preview()" />
+            </div>
+            <div class="mb-3" style="justify-content: center; display: flex">
+              <img *ngIf="slikaPrikaz==true" style="width: 200px; height: 200px; border-radius: 50%;" src="{{Slika}}">
+            </div>
             <button class="btn btn-primary w-100 mt-3" (click)="btnDodajPrevoznika()">Dodaj prevoznika</button>
           </form>
         </div>

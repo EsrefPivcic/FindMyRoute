@@ -6,7 +6,6 @@ import {AutentifikacijaHelper} from "./_helpers/autentifikacija-helper";
 import {LoginInformacije} from "./_helpers/login-informacije";
 
 declare function porukaSuccess(a: string):any;
-declare function porukaError(a: string):any;
 
 @Component({
   selector: 'app-root',
@@ -15,10 +14,44 @@ declare function porukaError(a: string):any;
 })
 
 export class AppComponent implements OnInit {
-  constructor(private httpKlijent: HttpClient, private router: Router) {}
+
+  Logo: string;
+  ProfilnaSlika: string;
+  prevoznikPodaci: any;
+  constructor(private httpKlijent: HttpClient, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.UcitajLogo();
+    if (this.loginInfo().isLogiran) {
+      this.UcitajProfilnu(this.loginInfo().autentifikacijaToken.korisnickiNalog.id);
+    }
+    else {
+      this.ProfilnaSlika = "";
+    }
     this.router.navigate(['/pretraga']);
+  }
+
+  RefreshProfilnu(): boolean {
+      this.UcitajProfilnu(this.loginInfo().autentifikacijaToken.korisnickiNalog.id);
+      return true;
+  }
+
+  UcitajLogo(): void {
+    this.Logo = `${MojConfig.adresa_servera}/LogoAplikacije/Get`;
+  }
+
+  public UcitajProfilnu(id: number): void {
+    const uniqueParam = new Date().getTime();
+    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik) {
+      this.ProfilnaSlika = `${MojConfig.adresa_servera}/Korisnik/GetSlikaDB/${id}?v=${uniqueParam}`;
+    }
+    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme) {
+      this.ProfilnaSlika = `${MojConfig.adresa_servera}/RadnikFirme/GetSlikaDB/${id}?v=${uniqueParam}`;
+    }
+    if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+      this.ProfilnaSlika = `${MojConfig.adresa_servera}/Administrator/GetSlikaDB/${id}?v=${uniqueParam}`;
+    }
   }
 
   loginInfo():LoginInformacije {
@@ -35,26 +68,3 @@ export class AppComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 }
-
-/*export class AppComponent {
-
-
-  constructor(private httpKlijent: HttpClient, private router: Router) {
-  }
-  ngOnInit(): void {
-    this.router.navigateByUrl("/app-korisnici");
-  }
-  logoutButton() {
-    AutentifikacijaHelper.setLoginInfo(null);
-
-    this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, MojConfig.http_opcije())
-      .subscribe((x: any) => {
-        this.router.navigateByUrl("/app-login");
-        porukaSuccess("Logout uspješan");
-      });
-  }
-
-  loginInfo():LoginInformacije {
-    return AutentifikacijaHelper.getLoginInfo();
-  }
-}*/

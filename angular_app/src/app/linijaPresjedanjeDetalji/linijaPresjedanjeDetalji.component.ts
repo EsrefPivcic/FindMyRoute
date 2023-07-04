@@ -19,6 +19,8 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
   cekanjePresjedanja : number;
   linijaPodaci1 : any;
   linijaPodaci2 : any;
+  prevoznikLogo1: string;
+  prevoznikLogo2: string;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -41,6 +43,10 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.cekanjePresjedanja = +params['cekanje']; // (+) converts string 'id' to a number
     });
+    this.GetLinija1();
+    this.GetLinija2();
+  }
+  GetLinija1(): void {
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id1)
       .then(
         r=> {
@@ -55,6 +61,8 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci1 = x;
+            const uniqueParam = new Date().getTime();
+            this.prevoznikLogo1 = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci1.prevoznik.id}?v=${uniqueParam}`;
           });
         }
       )
@@ -63,6 +71,9 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           alert("greska" + err);
         }
       )
+  }
+
+  GetLinija2(): void {
     fetch(MojConfig.adresa_servera+ "/Linija/Get/id?id="+this.id2)
       .then(
         r=> {
@@ -77,6 +88,8 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci2 = x;
+            const uniqueParam = new Date().getTime();
+            this.prevoznikLogo2 = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci2.prevoznik.id}?v=${uniqueParam}`;
           });
         }
       )
@@ -85,6 +98,10 @@ export class linijaPresjedanjeDetaljiComponent implements OnInit {
           alert("greska" + err);
         }
       )
+  }
+
+  Prevoznik(id: number): void {
+    this.router.navigate(['/prevoznik', id]);
   }
 }
 

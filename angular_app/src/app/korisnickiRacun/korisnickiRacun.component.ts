@@ -149,6 +149,9 @@ export class KorisnickiRacunComponent implements OnInit {
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniLozinku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
         porukaSuccess("Lozinka uspješno promijenjena!");
         this.promjenaLozinke = false;
+        this.txtNovaLozinka = "";
+        this.txtTrenutnaLozinka = "";
+        this.txtNovaPotvrdaLozinka = "";
         this.ngOnInit();
       });
     }
@@ -326,7 +329,7 @@ export class KorisnickiRacunComponent implements OnInit {
   }
 
   GetSlika(id: number): void {
-    const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+    const uniqueParam = new Date().getTime();
     this.Slika = `${MojConfig.adresa_servera}/Korisnik/GetSlikaDB/${id}?v=${uniqueParam}`;
   }
 }

@@ -38,18 +38,20 @@ export class UpravljanjeLinijeComponent implements OnInit {
   txtCijena: any;
   linijePodaci: any;
   prevoznikPodaci: any;
+  Logo: string;
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.UcitajLinije();
     this.UcitajPrevoznika();
+    this.UcitajLinije();
     console.log(this.linijePodaci);
   }
 
-  parseInt(value: any): number {
-    return parseInt(value, 10);
+  UcitajLogo(id: number): void {
+    const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+    this.Logo = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${id}?v=${uniqueParam}`;
   }
 
   loginInfo():LoginInformacije {
@@ -71,6 +73,7 @@ export class UpravljanjeLinijeComponent implements OnInit {
           }
           r.json().then(x=>{
             this.prevoznikPodaci = x;
+            this.UcitajLogo(x.id);
           });
         }
       )

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
@@ -18,6 +18,7 @@ const EmailRegex = new RegExp('Email');
 })
 
 export class UpravljanjeComponent implements OnInit {
+  @ViewChild('slikaInput') slikaInputRef!: ElementRef<HTMLInputElement>;
   prevoznici: boolean = true;
   txtNaziv: any;
   txtAdresa: any;
@@ -35,6 +36,8 @@ export class UpravljanjeComponent implements OnInit {
   txtRadniStaz: any;
   txtPrevoznik: any;
   radnikPodaci: any;
+  slikaPrikaz: boolean = false;
+  Slika: string = "";
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
@@ -148,19 +151,37 @@ export class UpravljanjeComponent implements OnInit {
     return true;
   }
 
+  Preview() {
+    // @ts-ignore
+    var file = document.getElementById("slika-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      let this2=this;
+      reader.onload = function () {
+        this2.Slika = reader.result?.toString();
+      }
+      reader.readAsDataURL(file);
+      this.slikaPrikaz = true;
+    }
+  }
+
   btnDodajPrevoznika() {
     if (this.Validiraj()) {
       let saljemo = {
         naziv: this.txtNaziv,
         adresa: this.txtAdresa,
         email: this.txtEmail,
-        brojTelefona: "+387" + this.txtBrojTelefona
+        brojTelefona: "+387" + this.txtBrojTelefona,
+        logo: this.Slika
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Prevoznik/Add`, saljemo, MojConfig.http_opcije()).subscribe(x => {
         this.txtNaziv = null;
         this.txtAdresa = null;
         this.txtEmail = null;
         this.txtBrojTelefona = null;
+        this.slikaInputRef.nativeElement.value = '';
+        this.slikaPrikaz = false;
+        this.Slika = "";
         this.ngOnInit();
         porukaSuccess("Prevoznik je uspješno dodan!")
       });
