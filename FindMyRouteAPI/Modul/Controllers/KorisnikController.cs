@@ -4,7 +4,6 @@ using FindMyRouteAPI.Modul.Models;
 using Microsoft.AspNetCore.Mvc;
 using FindMyRouteAPI.Modul.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 
 namespace FindMyRouteAPI.Modul.Controllers
 {
@@ -14,9 +13,12 @@ namespace FindMyRouteAPI.Modul.Controllers
     public class KorisnikController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly EmailService _emailService;
 
-        public KorisnikController(ApplicationDbContext dbContext) {
+        public KorisnikController(ApplicationDbContext dbContext, EmailService emailService = null)
+        {
             _dbContext = dbContext;
+            _emailService = emailService;
         }
 
         [HttpGet("id")]
@@ -28,13 +30,12 @@ namespace FindMyRouteAPI.Modul.Controllers
         [HttpPost]
         public ActionResult Add([FromBody] KorisnikAddVM x)
         {
-
             var newKorisnik = new Korisnik
             {
                 Ime = x.Ime.RemoveTags(),
                 Prezime = x.Prezime.RemoveTags(),
-                Email= x.Email.RemoveTags(),
-                korisnickoIme= x.korisnickoIme.RemoveTags(),      
+                Email = x.Email.RemoveTags(),
+                korisnickoIme = x.korisnickoIme.RemoveTags(),
                 lozinka = x.lozinka.RemoveTags(),
                 Adresa = x.Adresa.RemoveTags(),
                 BrojTelefona = x.BrojTelefona.RemoveTags(),
@@ -56,6 +57,9 @@ namespace FindMyRouteAPI.Modul.Controllers
             }
             _dbContext.Add(newKorisnik);
             _dbContext.SaveChanges();
+            string mail = x.Email;
+            string imePrezime = x.Ime + " " + x.Prezime;
+            _emailService.SendEmail(mail, imePrezime);
             return Get(newKorisnik.id);
         }
 

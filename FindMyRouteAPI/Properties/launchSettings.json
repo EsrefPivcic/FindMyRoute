@@ -1,4 +1,5 @@
-﻿{
+﻿
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -30,6 +31,8 @@
   }
 }
 
+
+//STARO:
 //{
 //  "iisSettings": {
 //    "windowsAuthentication": false,
