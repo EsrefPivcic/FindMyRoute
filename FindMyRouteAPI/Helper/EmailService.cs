@@ -17,7 +17,7 @@ public class EmailService
     public void SendEmail(string recipient, string name)
     {
         string subject = "FindMyRoute - Registracija uspješna";
-        string body = $"Poštovana/i {name}.\n\nObavještavamo Vas da ste se uspješno registrirali na FindMyRoute.\nHvala na ukazanoj prilici i dobro došli.\n\nFindMyRoute Team";
+        string body = $"Poštovani/a {name},\n\nObavještavamo Vas da ste se uspješno registrirali na FindMyRoute.\nHvala na ukazanoj prilici i dobro došli.\n\nFindMyRoute Team";
         var senderName = _configuration["EmailSettings:SenderName"];
         var senderEmail = _configuration["EmailSettings:SenderEmail"];
 

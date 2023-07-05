@@ -59,6 +59,7 @@ body {
 .detail-value span {
   margin-right: 10px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .edit-button {
@@ -69,6 +70,7 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: fit-content;
 }
 
 .edit-button:hover {

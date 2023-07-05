@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
     AutentifikacijaHelper.setLoginInfo(null);
     this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, token)
       .subscribe((x: any) => {
-        porukaSuccess("Logout uspješan", { position: 'top-left' });
+        /*porukaSuccess("Logout uspješan", { position: 'top-left' });*/
       });
     this.router.navigateByUrl("/login");
   }
