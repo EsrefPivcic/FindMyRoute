@@ -17,8 +17,7 @@ namespace FindMyRouteAPI.Data
         public DbSet<Prevoznik> Prevoznik { get; set;}
         public DbSet<Linija> Linija { get; set;}
         public DbSet<Kupovina> Kupovina { get; set;}
-        public ApplicationDbContext(
-            DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

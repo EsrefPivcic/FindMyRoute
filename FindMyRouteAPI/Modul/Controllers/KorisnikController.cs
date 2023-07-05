@@ -59,7 +59,7 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             string mail = x.Email;
             string imePrezime = x.Ime + " " + x.Prezime;
-            _emailService.SendEmail(mail, imePrezime);
+            _emailService.SendEmailRegister(newKorisnik);
             return Get(newKorisnik.id);
         }
 

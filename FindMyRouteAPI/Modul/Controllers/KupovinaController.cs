@@ -5,6 +5,7 @@ using FindMyRouteAPI.Modul.Models;
 using FindMyRouteAPI.Modul.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace FindMyRouteAPI.Modul.Controllers
 {
@@ -14,9 +15,12 @@ namespace FindMyRouteAPI.Modul.Controllers
     public class KupovinaController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
-        public KupovinaController(ApplicationDbContext dbContext)
+        private readonly EmailService _emailService;
+
+        public KupovinaController(ApplicationDbContext dbContext, EmailService emailService = null)
         {
             _dbContext = dbContext;
+            _emailService = emailService;
         }
         [HttpGet("id")]
         public ActionResult Get(int id)
@@ -49,6 +53,9 @@ namespace FindMyRouteAPI.Modul.Controllers
                 _dbContext.SaveChanges();
                 _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                 _dbContext.SaveChanges();
+                KreditnaKartica kreditnaKartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id);
+                string kartica = kreditnaKartica.TipKartice;
+                _emailService.SendEmailPurchase(newKupovina, kartica);
                 return Get(newKupovina.Id);
             }
             return BadRequest("Krivi sigurnosni broj kartice!");
@@ -73,6 +80,9 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
             _dbContext.SaveChanges();
+            KreditnaKartica kreditnaKartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Id == kreditnaId);
+            string kartica = kreditnaKartica.TipKartice;
+            _emailService.SendEmailPurchase(newKupovina, kartica);
             return Get(newKupovina.Id);
         }
 
@@ -94,6 +104,8 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
             _dbContext.SaveChanges();
+            string payPal = "PayPal: " + newKupovina.PayPalEmail;
+            _emailService.SendEmailPurchase(newKupovina, payPal);
             return Get(newKupovina.Id);
         }
 
@@ -130,6 +142,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                 _dbContext.SaveChanges();
                 _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                 _dbContext.SaveChanges();
+                string kartica = newKartica.TipKartice;
+                _emailService.SendEmailPurchase(newKupovina, kartica);
                 return Get(newKupovina.Id);
             }
             else
@@ -162,6 +176,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                     _dbContext.SaveChanges();
                     _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                     _dbContext.SaveChanges();
+                    string kartica2 = kartica.TipKartice;
+                    _emailService.SendEmailPurchase(newKupovina, kartica2);
                     return Get(newKupovina.Id);
                 }
                 else
@@ -181,6 +197,8 @@ namespace FindMyRouteAPI.Modul.Controllers
                     _dbContext.SaveChanges();
                     _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                     _dbContext.SaveChanges();
+                    string kartica2 = kartica.TipKartice;
+                    _emailService.SendEmailPurchase(newKupovina, kartica2);
                     return Get(newKupovina.Id);
                 }           
             }
