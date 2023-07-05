@@ -14,6 +14,7 @@ namespace FindMyRouteAPI.Modul.ViewModels
         public string DatumIsteka { get; set; }
         public string SigurnosniBroj { get; set; }
         public bool PoveziKarticu { get; set; }
+        public bool Presjedanje { get; set; }
     }
 }
 

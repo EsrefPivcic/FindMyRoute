@@ -40,6 +40,7 @@ export class KupovinaComponent implements OnInit {
   txtSigBrojPotvrdi: string = "";
   txtPayPalMail: string = "";
   prevoznikLogo: string = "";
+  presjedanje: boolean = false;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -211,7 +212,8 @@ export class KupovinaComponent implements OnInit {
         korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
-        payPalEmail: this.txtPayPalMail
+        payPalEmail: this.txtPayPalMail,
+        presjedanje: this.presjedanje
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiPayPal`, kupovina, MojConfig.http_opcije()).subscribe(x => {
         this.router.navigate(['/pretraga']);
@@ -240,7 +242,8 @@ export class KupovinaComponent implements OnInit {
         brojKartice: this.txtBroj1 +"-"+ this.txtBroj2 +"-"+ this.txtBroj3 +"-"+ this.txtBroj4,
         datumIsteka: this.txtDatum1 +"/"+ this.txtDatum2,
         sigurnosniBroj: this.txtSigBroj,
-        poveziKarticu: spremiKarticu
+        poveziKarticu: spremiKarticu,
+        presjedanje: this.presjedanje
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiNovomKarticom`, kupovina, MojConfig.http_opcije()).subscribe(x => {
         if (spremiKarticu) {
@@ -267,7 +270,8 @@ export class KupovinaComponent implements OnInit {
         kreditna_id: this.kreditnaPodaci.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
-        sigurnosniBroj: this.txtSigBrojPotvrdi
+        sigurnosniBroj: this.txtSigBrojPotvrdi,
+        presjedanje: this.presjedanje
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Plati`, kupovina, MojConfig.http_opcije()).subscribe(x => {
         this.router.navigate(['/pretraga']);

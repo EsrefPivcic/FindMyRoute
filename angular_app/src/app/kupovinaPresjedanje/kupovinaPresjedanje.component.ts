@@ -42,6 +42,7 @@ export class KupovinaPresjedanjeComponent implements OnInit {
   txtPayPalMail: string = "";
   prevoznikLogo1: string = "";
   prevoznikLogo2: string = "";
+  presjedanje: boolean = true;
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -254,18 +255,34 @@ export class KupovinaPresjedanjeComponent implements OnInit {
         kreditna_id: this.kreditnaPodaci.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
-        sigurnosniBroj: this.txtSigBrojPotvrdi };
+        sigurnosniBroj: this.txtSigBrojPotvrdi,
+        presjedanje: this.presjedanje
+      };
       let kupovina2 = {
         linija_id: this.linija2_id,
         korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
         kreditna_id: this.kreditnaPodaci.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
-        sigurnosniBroj: this.txtSigBrojPotvrdi };
+        sigurnosniBroj: this.txtSigBrojPotvrdi,
+        presjedanje: this.presjedanje
+      };
+      let mailInfo = {
+        linija1_id: this.linija1_id,
+        linija2_id: this.linija2_id,
+        korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        kreditna_id: this.kreditnaPodaci.id,
+        tipKartice: "",
+        kolicina: this.txtKolicina,
+        datumVoznje: this.datumVoznje,
+        payPalEmail: ""
+      };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Plati`, kupovina1, MojConfig.http_opcije()).subscribe(x => {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/Plati`, kupovina2, MojConfig.http_opcije()).subscribe(x => {
-          this.router.navigate(['/pretraga']);
-          porukaSuccess("Kupovina uspješna!")
+          this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PresjedanjeEmail`, mailInfo, MojConfig.http_opcije()).subscribe(x => {
+            this.router.navigate(['/pretraga']);
+            porukaSuccess("Kupovina uspješna!")
+          });
         });
       });
     }
@@ -278,10 +295,20 @@ export class KupovinaPresjedanjeComponent implements OnInit {
         korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
-        payPalEmail: this.txtPayPalMail
+        payPalEmail: this.txtPayPalMail,
+        presjedanje: this.presjedanje
       };
       let kupovina2 = {
         linija_id: this.linija2_id,
+        korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        kolicina: this.txtKolicina,
+        datumVoznje: this.datumVoznje,
+        payPalEmail: this.txtPayPalMail,
+        presjedanje: this.presjedanje
+      };
+      let mailInfo = {
+        linija1_id: this.linija1_id,
+        linija2_id: this.linija2_id,
         korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
         kolicina: this.txtKolicina,
         datumVoznje: this.datumVoznje,
@@ -289,8 +316,10 @@ export class KupovinaPresjedanjeComponent implements OnInit {
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiPayPal`, kupovina1, MojConfig.http_opcije()).subscribe(x => {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiPayPal`, kupovina2, MojConfig.http_opcije()).subscribe(x => {
-          this.router.navigate(['/pretraga']);
-          porukaSuccess("Kupovina uspješna!")
+          this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PresjedanjeEmail`, mailInfo, MojConfig.http_opcije()).subscribe(x => {
+            this.router.navigate(['/pretraga']);
+            porukaSuccess("Kupovina uspješna!")
+          });
         });
       });
     }
@@ -307,7 +336,8 @@ export class KupovinaPresjedanjeComponent implements OnInit {
         brojKartice: this.txtBroj1 +"-"+ this.txtBroj2 +"-"+ this.txtBroj3 +"-"+ this.txtBroj4,
         datumIsteka: this.txtDatum1 +"/"+ this.txtDatum2,
         sigurnosniBroj: this.txtSigBroj,
-        poveziKarticu: spremiKarticu
+        poveziKarticu: spremiKarticu,
+        presjedanje: this.presjedanje
       };
       let kupovina2 = {
         linija_id: this.linija2_id,
@@ -318,19 +348,32 @@ export class KupovinaPresjedanjeComponent implements OnInit {
         brojKartice: this.txtBroj1 +"-"+ this.txtBroj2 +"-"+ this.txtBroj3 +"-"+ this.txtBroj4,
         datumIsteka: this.txtDatum1 +"/"+ this.txtDatum2,
         sigurnosniBroj: this.txtSigBroj,
-        poveziKarticu: spremiKarticu
+        poveziKarticu: spremiKarticu,
+        presjedanje: this.presjedanje
+      };
+      let mailInfo = {
+        linija1_id: this.linija1_id,
+        linija2_id: this.linija2_id,
+        korisnik_id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        tipKartice: this.txtTip,
+        kolicina: this.txtKolicina,
+        datumVoznje: this.datumVoznje,
       };
       this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiNovomKarticom`, kupovina1, MojConfig.http_opcije()).subscribe(x => {
         if (spremiKarticu) {
           this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiPresjedanje`, kupovina2, MojConfig.http_opcije()).subscribe(x => {
-            porukaSuccess("Kupovina uspješna!");
-            this.LogOut();
+            this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PresjedanjeEmail`, mailInfo, MojConfig.http_opcije()).subscribe(x => {
+              porukaSuccess("Kupovina uspješna!");
+              this.LogOut();
+            });
           });
         }
         else {
           this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PlatiNovomKarticom`, kupovina2, MojConfig.http_opcije()).subscribe(x => {
-            this.router.navigate(['/pretraga']);
-            porukaSuccess("Kupovina uspješna!");
+            this.httpKlijent.post(`${MojConfig.adresa_servera}/Kupovina/PresjedanjeEmail`, mailInfo, MojConfig.http_opcije()).subscribe(x => {
+              this.router.navigate(['/pretraga']);
+              porukaSuccess("Kupovina uspješna!")
+            });
           });
         }
       });

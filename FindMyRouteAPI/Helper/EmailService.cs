@@ -1,5 +1,6 @@
 ﻿using FindMyRouteAPI.Data;
 using FindMyRouteAPI.Modul.Models;
+using FindMyRouteAPI.Modul.ViewModels;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.EntityFrameworkCore;
@@ -65,16 +66,95 @@ public class EmailService
             $"aplikaciju za kupovinu karte za putovanje.\n\nOvim e-mailom potvrđujemo detalje vaše kupovine:\n" +
             $"Polazište: {linija.Grad1}\n" +
             $"Destinacija: {linija.Grad2}\n" +
+            $"Tip linije: Direktna linija\n" +
             $"Prevoznik: {prevoznik.Naziv}\n" +
             $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
             $"Vrijeme polaska: {linija.PolazakSati.ToString("D2") + ":" + linija.PolazakMinute.ToString("D2")}\n" +
             $"Vrijeme dolaska: {linija.DolazakSati.ToString("D2") + ":" + linija.DolazakMinute.ToString("D2")}\n" +
-            $"Cijena po karti: {linija.Cijena}\n" +
+            $"Cijena po karti: {linija.Cijena}KM\n" +
             $"Broj karata: {x.Kolicina}\n" +
-            $"Ukupna cijena: {x.UkupnaCijena}\n" +
+            $"Ukupna cijena: {x.UkupnaCijena}KM\n" +
             $"Način plaćanja: {nacinPlacanja}\n" +
             $"Datum kupovine: {x.DatumKupovine.ToString("dd.MM.yyyy")}\n\n" + 
             $"Vaša karta je uspješno rezervirana i možete je koristiti na dan putovanja. Molimo Vas da na dan " +
+            $"putovanja imate ovu e-potvrdu ili identifikacijski dokument s kojim ste izvršili kupovinu kako biste " +
+            $"je mogli predočiti vozaču/inspektorima.\n\nAko imate bilo kakva pitanja ili trebate dodatne " +
+            $"informacije, slobodno nas kontaktirajte putem našeg korisničkog servisa.\n\nHvala Vam još jednom " +
+            $"na korištenju naše aplikacije i želimo Vam ugodno putovanje!\n\nS poštovanjem, FindMyRoute Team";
+        var senderName = _configuration["EmailSettings:SenderName"];
+        var senderEmail = _configuration["EmailSettings:SenderEmail"];
+
+        var message = new MimeMessage();
+        message.From.Add(new MailboxAddress(senderName, senderEmail));
+        message.To.Add(new MailboxAddress("", korisnik.Email));
+        message.Subject = subject;
+        message.Body = new TextPart("plain")
+        {
+            Text = body
+        };
+        var smtpServer = _configuration.GetValue<string>("EmailSettings:SmtpServer");
+        var smtpPort = _configuration.GetValue<int>("EmailSettings:SmtpPort");
+        var username = _configuration.GetValue<string>("EmailSettings:Username");
+        var password = _configuration.GetValue<string>("EmailSettings:Password");
+        _smtpClient.Connect(smtpServer, smtpPort, SecureSocketOptions.StartTls);
+        _smtpClient.Authenticate(username, password);
+        _smtpClient.Send(message);
+        _smtpClient.Disconnect(true);
+    }
+
+    public void SendEmailPurchaseTransfer(PresjedanjeEmailVM x)
+    {
+        Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id);
+        Linija linija1 = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija1_id);
+        Linija linija2 = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija2_id);
+        Prevoznik prevoznik1 = _dbContext.Prevoznik.FirstOrDefault(p => p.Id == linija1.Prevoznik_id);
+        Prevoznik prevoznik2 = _dbContext.Prevoznik.FirstOrDefault(p => p.Id == linija2.Prevoznik_id);
+        int ukupnaCijena = (x.Kolicina * linija1.Cijena) + (x.Kolicina * linija2.Cijena);
+        string nacinPlacanja = "";
+        if (!string.IsNullOrEmpty(x.PayPalEmail))
+        {
+            nacinPlacanja = "PayPal(" + x.PayPalEmail + ")";
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(x.TipKartice))
+            {
+                nacinPlacanja = x.TipKartice + " kreditna kartica";
+            }
+            else
+            {
+                KreditnaKartica kartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id);
+                nacinPlacanja = kartica.TipKartice + " kreditna kartica";
+            }
+        }
+        string subject = "FindMyRoute - Potvrda o kupovini karata";
+        string body = $"Poštovani/a {korisnik.Ime + " " + korisnik.Prezime},\n\nHvala Vam što ste koristili našu " +
+            $"aplikaciju za kupovinu karti za putovanje.\n\nOvim e-mailom potvrđujemo detalje vaše kupovine:\n" +
+            $"Polazište: {linija1.Grad1}\n" +
+            $"Destinacija: {linija2.Grad2}\n" +
+            $"Tip linije: Presjedanje ({linija1.Grad2})\n\n" +
+            $"Informacije o prvoj liniji (prije presjedanja):\n" +
+            $"Prevoznik: {prevoznik1.Naziv}\n" +
+            $"Polazište: {linija1.Grad1}\n" +
+            $"Destinacija (Presjedanje): {linija1.Grad2}\n" +
+            $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
+            $"Vrijeme polaska: {linija1.PolazakSati.ToString("D2") + ":" + linija1.PolazakMinute.ToString("D2")}\n" +
+            $"Vrijeme dolaska: {linija1.DolazakSati.ToString("D2") + ":" + linija1.DolazakMinute.ToString("D2")}\n" +
+            $"Cijena po karti: {linija1.Cijena}KM\n\n" +
+            $"Informacije o drugoj liniji (poslije presjedanja):\n" +
+            $"Prevoznik: {prevoznik2.Naziv}\n" +
+            $"Polazište (Presjedanje): {linija2.Grad1}\n" +
+            $"Destinacija: {linija2.Grad2}\n" +
+            $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
+            $"Vrijeme polaska: {linija2.PolazakSati.ToString("D2") + ":" + linija2.PolazakMinute.ToString("D2")}\n" +
+            $"Vrijeme dolaska: {linija2.DolazakSati.ToString("D2") + ":" + linija2.DolazakMinute.ToString("D2")}\n" +
+            $"Cijena po karti: {linija2.Cijena}KM\n\n" +
+            $"Ukupno:\n" +
+            $"Broj karata po liniji: {x.Kolicina}\n" +
+            $"Ukupna cijena: {ukupnaCijena}KM\n" +
+            $"Način plaćanja: {nacinPlacanja}\n" +
+            $"Datum kupovine: {DateTime.Now.ToString("dd.MM.yyyy")}\n\n" +
+            $"Vaše karte su uspješno rezervirane i možete ih koristiti na dan putovanja. Molimo Vas da na dan " +
             $"putovanja imate ovu e-potvrdu ili identifikacijski dokument s kojim ste izvršili kupovinu kako biste " +
             $"je mogli predočiti vozaču/inspektorima.\n\nAko imate bilo kakva pitanja ili trebate dodatne " +
             $"informacije, slobodno nas kontaktirajte putem našeg korisničkog servisa.\n\nHvala Vam još jednom " +

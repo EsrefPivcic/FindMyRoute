@@ -53,9 +53,12 @@ namespace FindMyRouteAPI.Modul.Controllers
                 _dbContext.SaveChanges();
                 _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                 _dbContext.SaveChanges();
-                KreditnaKartica kreditnaKartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id);
-                string kartica = kreditnaKartica.TipKartice;
-                _emailService.SendEmailPurchase(newKupovina, kartica);
+                if (x.Presjedanje != true)
+                {
+                    KreditnaKartica kreditnaKartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Korisnik_id == x.Korisnik_id);
+                    string kartica = kreditnaKartica.TipKartice + " kreditna kartica";
+                    _emailService.SendEmailPurchase(newKupovina, kartica);
+                }
                 return Get(newKupovina.Id);
             }
             return BadRequest("Krivi sigurnosni broj kartice!");
@@ -80,9 +83,6 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
             _dbContext.SaveChanges();
-            KreditnaKartica kreditnaKartica = _dbContext.KreditnaKartica.FirstOrDefault(k => k.Id == kreditnaId);
-            string kartica = kreditnaKartica.TipKartice;
-            _emailService.SendEmailPurchase(newKupovina, kartica);
             return Get(newKupovina.Id);
         }
 
@@ -104,8 +104,11 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
             _dbContext.SaveChanges();
-            string payPal = "PayPal: " + newKupovina.PayPalEmail;
-            _emailService.SendEmailPurchase(newKupovina, payPal);
+            if (x.Presjedanje != true)
+            {
+                string payPal = "PayPal(" + newKupovina.PayPalEmail + ")";
+                _emailService.SendEmailPurchase(newKupovina, payPal);
+            }
             return Get(newKupovina.Id);
         }
 
@@ -142,8 +145,11 @@ namespace FindMyRouteAPI.Modul.Controllers
                 _dbContext.SaveChanges();
                 _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                 _dbContext.SaveChanges();
-                string kartica = newKartica.TipKartice;
-                _emailService.SendEmailPurchase(newKupovina, kartica);
+                if (x.Presjedanje != true)
+                {
+                    string kartica = newKartica.TipKartice + " kreditna kartica";
+                    _emailService.SendEmailPurchase(newKupovina, kartica);
+                }
                 return Get(newKupovina.Id);
             }
             else
@@ -176,8 +182,11 @@ namespace FindMyRouteAPI.Modul.Controllers
                     _dbContext.SaveChanges();
                     _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                     _dbContext.SaveChanges();
-                    string kartica2 = kartica.TipKartice;
-                    _emailService.SendEmailPurchase(newKupovina, kartica2);
+                    if (x.Presjedanje != true)
+                    {
+                        string kartica2 = kartica.TipKartice + " kreditna kartica";
+                        _emailService.SendEmailPurchase(newKupovina, kartica2);
+                    }
                     return Get(newKupovina.Id);
                 }
                 else
@@ -197,11 +206,20 @@ namespace FindMyRouteAPI.Modul.Controllers
                     _dbContext.SaveChanges();
                     _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id).BrojKupljenihKarata++;
                     _dbContext.SaveChanges();
-                    string kartica2 = kartica.TipKartice;
-                    _emailService.SendEmailPurchase(newKupovina, kartica2);
+                    if (x.Presjedanje != true)
+                    {
+                        string kartica2 = kartica.TipKartice + " kreditna kartica";
+                        _emailService.SendEmailPurchase(newKupovina, kartica2);
+                    }
                     return Get(newKupovina.Id);
                 }           
             }
+        }
+        [HttpPost]
+        public ActionResult PresjedanjeEmail([FromBody] PresjedanjeEmailVM x)
+        {
+            _emailService.SendEmailPurchaseTransfer(x);
+            return Ok();
         }
     }
 }
