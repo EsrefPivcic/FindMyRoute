@@ -46,4 +46,46 @@ export class PrevozniciComponent implements OnInit {
         }
       )
   }
+
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+    <p>Na ovoj stranici možete pronaći popis različitih prevoznika koji nude širok raspon linija. Da biste saznali više o određenom prevozniku, jednostavno kliknite na dugme "Detaljnije" pored njegovog imena.</p>
+    <p>Klikom na "Detaljnije", otvorit će Vam se novi prozor koji sadrži sve relevantne informacije o tom prevozniku. Naći ćete kontakt podatke, uključujući telefon i e-mail adresu kako biste mogli stupiti u direktan kontakt s njima. Također, pronaći ćete cjelovit popis linija koje prevoznik nudi.</p>
+    <p>Ova stranica je osmišljena kako bismo Vam olakšali planiranje putovanja i omogućili Vam da brzo pronađete sve potrebne informacije o različitim prevoznicima na jednom mjestu.</p>
+
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }

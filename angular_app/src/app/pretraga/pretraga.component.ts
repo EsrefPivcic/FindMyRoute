@@ -66,7 +66,7 @@ export class PretragaComponent implements OnInit {
         }
       )
   }
-   PrikaziHelp(): void {
+  PrikaziHelp(): void {
     // Create a form element dynamically
     const form = document.createElement("form");
 
@@ -84,20 +84,30 @@ export class PretragaComponent implements OnInit {
     form.innerHTML = `
     <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
     <div style="display: flex; flex-direction: column; gap: 10px;">
-    <p>Dobrodošli na našu stranicu za pretragu autobusnih i voznih linija između gradova! Ovdje možete pronaći informacije o dostupnim linijama i rasporedu putovanja. Da biste koristili našu uslugu, slijedite sljedeće korake:</p>
-<p> 1. Unesite grad polaska: U prvi tekstualni okvir, unesite ime grada iz kojeg želite započeti putovanje. Na primjer, možete unijeti "Livno".</p>
-<p> 2. Unesite grad odredišta: U drugi tekstualni okvir, unesite ime grada u koji želite stići. Na primjer, možete unijeti "Mostar".</p>
-<p> 3. Kliknite na dugme "Pretraži": Nakon što ste unijeli gradove polaska i odredišta, pritisnite dugme "Pretraži" kako biste pokrenuli pretragu linija.</p>
-<p> 4. Prikaz rezultata: Nakon što pritisnete dugme "Pretraži", stranica će prikazati listu dostupnih autobusnih i voznih linija između unesenih gradova. Za svaku liniju bit će prikazani detalji kao što su vrijeme polaska, vrijeme dolaska, trajanje putovanja i broj presjedanja, ako ih ima.</p>
-<p> 5. Odabir linije: Kada pronađete željenu liniju, kliknite na dugme "Detalji" za više detalja. Moći ćete vidjeti sve stanice na toj liniji, eventualna presjedanja i druge relevantne informacije.</p>
-<p> To su osnovni koraci za korištenje naše stranice za pretragu autobusnih i voznih linija između gradova. Nadamo se da će vam naša usluga biti od pomoći prilikom planiranja vašeg putovanja. Uživajte u putovanju!</p>
+     <p>Dobrodošli na našu stranicu za pretragu autobusnih i voznih linija između gradova! Ovdje možete pronaći informacije o dostupnim linijama i rasporedu putovanja. Da biste koristili našu uslugu, slijedite sljedeće korake:</p>
+    <p> 1. Unesite grad polaska: U prvi tekstualni okvir, unesite ime grada iz kojeg želite započeti putovanje. Na primjer, možete unijeti "Livno".</p>
+    <p> 2. Unesite grad odredišta: U drugi tekstualni okvir, unesite ime grada u koji želite stići. Na primjer, možete unijeti "Mostar".</p>
+    <p> 3. Kliknite na dugme "Pretraži": Nakon što ste unijeli gradove polaska i odredišta, pritisnite dugme "Pretraži" kako biste pokrenuli pretragu linija.</p>
+    <p> 4. Prikaz rezultata: Nakon što pritisnete dugme "Pretraži", stranica će prikazati listu dostupnih autobusnih i voznih linija između unesenih gradova. Za svaku liniju bit će prikazani detalji kao što su vrijeme polaska, vrijeme dolaska, trajanje putovanja i broj presjedanja, ako ih ima.</p>
+    <p> 5. Odabir linije: Kada pronađete željenu liniju, kliknite na dugme "Detalji" za više detalja. Moći ćete vidjeti sve stanice na toj liniji, eventualna presjedanja i druge relevantne informacije.</p>
+    <p> To su osnovni koraci za korištenje naše stranice za pretragu autobusnih i voznih linija između gradova. Nadamo se da će vam naša usluga biti od pomoći prilikom planiranja vašeg putovanja. Uživajte u putovanju!</p>
+
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-    <button type="submit" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 
     // Append the form to the body element
     document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
   }
 }

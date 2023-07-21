@@ -91,4 +91,46 @@ export class PrevoznikComponent implements OnInit {
       this.router.navigate(['/detaljiPresjedanje', linija.id1, linija.id2]);
     }
   }
+
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+    <p>Na ovoj stranici možete pronaći sve potrebne informacije o našem prevozniku, uključujući kontakte i cjelovit popis linija koje nudi.</p>
+    <p>Naš prevoznik nudi pouzdan i udoban prijevoz do različitih odredišta. Kako biste saznali više o pojedinoj liniji, jednostavno kliknite na dugme "Detalji" pored njenog naziva.</p>
+    <p>Klikom na "Detalji", otvorit će Vam se novi prozor koji sadrži sve relevantne informacije o toj liniji. Naći ćete polazište i odredište, vrijeme polaska i dolaska, red vožnje, kao i dodatne informacije o uslugama koje možemo pružiti tijekom putovanja.</p>
+
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }

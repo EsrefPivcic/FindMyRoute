@@ -279,5 +279,59 @@ export class KupovinaComponent implements OnInit {
       });
     }
   }
-}
 
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+    <p>Uz nekoliko koraka, na ovoj stranici možete kupiti svoje karte i osigurati ugodno putovanje.</p>
+<p>Odabir datuma vožnje:<br>
+Na ovoj stranici, vidjet ćete "Datepicker" s kalendarom na kojem možete odabrati željeni datum putovanja. Kliknite na datum koji Vam odgovara i nastavite dalje.</p>
+<p>Odabir broja karata:<br>
+Unesite željeni broj karata koje želite kupiti za odabrani datum i vožnju.</p>
+<p>Odabir načina plaćanja:<br>
+a) Plaćanje putem kreditne kartice:<br>
+Unesite tip kartice (npr. Visa, Mastercard, American Express).<br>
+Unesite broj kartice koji se sastoji od 16 znamenaka.<br>
+Unesite datum isteka kartice (mjesec i godina).<br>
+Unesite sigurnosni broj kartice koji se nalazi na poleđini kartice (obično trocifreni broj).<br>
+Nakon što unesete tražene podatke, imat ćete opciju samo plaćanja karticom ili plaćanja i povezivanja kartice sa svojim korisničkim profilom, što će olakšati buduće rezervacije.</p>
+<p>b) Plaćanje putem PayPal-a:<br>
+Unesite Vašu registriranu e-mail adresu povezanu s Vašim PayPal računom.</p>
+<p>Završetak narudžbe:<br>
+Nakon što unesete tražene podatke za plaćanje, kliknite na "Plati" kako biste završili postupak kupovine. Nakon uspješne transakcije, dobit ćete potvrdu o kupovini i svoje karte putem e-maila.</p>
+
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
+}
