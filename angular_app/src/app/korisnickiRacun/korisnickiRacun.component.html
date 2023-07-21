@@ -68,6 +68,13 @@
         <span (click)="promjenaBroja == false ? promjenaBroja = true : promjenaBroja = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
+  <div class="detail-row" *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme">
+    <label class="detail-label">Pozicija:</label>
+    <div class="detail-value">
+      <span id="pozicija">{{racunPodaci?.pozicija}}</span>
+      <span (click)="promjenaPozicije == false ? promjenaPozicije = true : promjenaPozicije = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
     <div class="detail-row">
       <label class="detail-label">Lozinka:</label>
       <div class="detail-value">
@@ -75,18 +82,20 @@
         <span (click)="promjenaLozinke == false ? promjenaLozinke = true : promjenaLozinke = false" class="btn btn-primary form-control">Uredi</span>
       </div>
     </div>
-    <div *ngIf="!this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
-      <label class="detail-label">Kreditna kartica:</label>
-      <div class="detail-value">
-        <span class="btn btn-primary form-control" (click)="this.btnKreditna(0)">Poveži</span>
+    <div *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik">
+      <div *ngIf="!this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
+        <label class="detail-label">Kreditna kartica:</label>
+        <div class="detail-value">
+          <span class="btn btn-primary form-control" (click)="this.btnKreditna(0)">Poveži</span>
+        </div>
       </div>
-    </div>
-    <div *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
-      <label class="detail-label">Kreditna kartica:</label>
-      <div class="detail-value">
-        <span id="kreditna-kartica">{{kreditnaPodaci?.tipKartice}}</span>
-        <span class="btn btn-primary form-control" (click)="this.btnKreditna(kreditnaPodaci)">Uredi</span>
-        <span class="btn btn-primary form-control" (click)="this.btnUkloniKarticu()">Ukloni</span>
+      <div *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="detail-row">
+        <label class="detail-label">Kreditna kartica:</label>
+        <div class="detail-value">
+          <span id="kreditna-kartica">{{kreditnaPodaci?.tipKartice}}</span>
+          <span class="btn btn-primary form-control" (click)="this.btnKreditna(kreditnaPodaci)">Uredi</span>
+          <span class="btn btn-primary form-control" (click)="this.btnUkloniKarticu()">Ukloni</span>
+        </div>
       </div>
     </div>
   <div *ngIf="promjenaImena == true">
@@ -158,6 +167,18 @@
       </div>
       <div class="form-row">
         <button (click)="PromijeniBrojTelefona()" class="btn btn-primary form-control">Promijenite broj telefona</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaPozicije == true">
+    <h3 class="heading">Promijenite poziciju u firmi</h3>
+    <form>
+      <div class="form-row">
+        <label for="novi-broj">Nova pozicija:</label>
+        <input [(ngModel)]="txtNovaPozicija" type="text" id="nova-pozicija" name="nova-pozicija" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniPoziciju()" class="btn btn-primary form-control">Promijenite poziciju</button>
       </div>
     </form>
   </div>

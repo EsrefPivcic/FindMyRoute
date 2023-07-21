@@ -33,7 +33,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="dropdown-item" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
+              <a *ngIf="loginInfo().isLogiran == true" class="dropdown-item" routerLink="/korisnickiRacun" routerLinkActive="active">Korisnički račun</a>
             </li>
             <li>
               <a *ngIf="loginInfo().isLogiran == true && loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik == true" class="dropdown-item" routerLink="/historijaKupovine" routerLinkActive="active">Historija kupovine</a>
