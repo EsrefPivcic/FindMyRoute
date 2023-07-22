@@ -75,6 +75,13 @@
       <span (click)="promjenaPozicije == false ? promjenaPozicije = true : promjenaPozicije = false" class="btn btn-primary form-control">Uredi</span>
     </div>
   </div>
+  <div class="detail-row" *ngIf="this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator">
+    <label class="detail-label">PIN:</label>
+    <div class="detail-value">
+      <span id="pin">****</span>
+      <span (click)="promjenaPINa == false ? promjenaPINa = true : promjenaPINa = false" class="btn btn-primary form-control">Uredi</span>
+    </div>
+  </div>
     <div class="detail-row">
       <label class="detail-label">Lozinka:</label>
       <div class="detail-value">
@@ -199,6 +206,26 @@
       </div>
       <div class="form-row">
         <button (click)="PromijeniLozinku()" class="btn btn-primary form-control">Promijenite lozinku</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="promjenaPINa == true">
+    <h3 class="heading">Promijenite PIN</h3>
+    <form class="password-form">
+      <div class="form-row">
+        <label for="trenutni-pin">Trenutni PIN:</label>
+        <input [(ngModel)]="txtTrenutniPIN" type="password" id="trenutni-pin" name="trenutni-pin" required>
+      </div>
+      <div class="form-row">
+        <label for="novi-pin">Novi PIN:</label>
+        <input [(ngModel)]="txtNoviPIN" type="password" id="novi-pin" name="novi-pin" required>
+      </div>
+      <div class="form-row">
+        <label for="potvrda-pina">Potvrdite PIN:</label>
+        <input [(ngModel)]="txtNoviPotvrdaPIN" type="password" id="potvrda-pina" name="potvrda-pina" required>
+      </div>
+      <div class="form-row">
+        <button (click)="PromijeniPIN()" class="btn btn-primary form-control">Promijenite PIN</button>
       </div>
     </form>
   </div>

@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
+import {LoginInformacije} from "../_helpers/login-informacije";
+import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -19,7 +21,7 @@ const EmailRegex = new RegExp('Email');
 
 export class UpravljanjeComponent implements OnInit {
   @ViewChild('slikaInput') slikaInputRef!: ElementRef<HTMLInputElement>;
-  prevoznici: boolean = true;
+  prevoznici: boolean = null;
   txtNaziv: any;
   txtAdresa: any;
   txtEmail: any;
@@ -35,9 +37,11 @@ export class UpravljanjeComponent implements OnInit {
   txtPozicija: any;
   txtRadniStaz: any;
   txtPrevoznik: any;
+  txtPIN: any = "";
   radnikPodaci: any;
   slikaPrikaz: boolean = false;
   Slika: string = "";
+  adminPermisije: boolean = false;
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
@@ -90,6 +94,63 @@ export class UpravljanjeComponent implements OnInit {
           alert("greska" + err);
         }
       )
+  }
+
+  loginInfo():LoginInformacije {
+    return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  /*btnPIN(): void {
+    if (this.ValidirajPIN()) {
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        pin: this.txtPIN,
+      };
+      this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PotvrdiPIN`, podaci, MojConfig.http_opcije()).subscribe(x => {
+        this.txtPIN = null;
+        this.adminPermisije = true;
+        porukaSuccess("PIN ispravan!")
+        this.Prevoznici();
+      });
+    }
+    else {
+      porukaError("Molimo unesite PIN!");
+    }
+  }*/
+
+  btnPIN(): void {
+    if (this.ValidirajPIN()) {
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        pin: this.txtPIN,
+      };
+      this.httpKlijent.post<boolean>(`${MojConfig.adresa_servera}/Administrator/PotvrdiPIN`, podaci, MojConfig.http_opcije()).subscribe(
+        (potvrda: boolean) => {
+          this.txtPIN = null;
+          if (potvrda) {
+            this.adminPermisije = true;
+            porukaSuccess("PIN ispravan!");
+          }
+          else {
+            porukaError("Neispravan PIN!");
+          }
+        },
+        (error) => {
+          porukaError("Došlo je do greške prilikom provjere PIN-a.");
+        }
+      );
+    }
+    else {
+      porukaError("Molimo unesite PIN!");
+    }
+  }
+
+
+  ValidirajPIN(): boolean {
+    if (this.txtPIN == "") {
+      return false;
+    }
+    return true;
   }
 
   UcitajRadnike(): void {

@@ -24,6 +24,7 @@ export class KorisnickiRacunComponent implements OnInit {
   racunPodaci: any;
   kreditnaPodaci: any;
   promjenaLozinke: boolean = false;
+  promjenaPINa: boolean = false;
   promjenaSlike: boolean = false;
   promjenaImena: boolean = false;
   txtNovoIme: string = "";
@@ -42,6 +43,9 @@ export class KorisnickiRacunComponent implements OnInit {
   txtTrenutnaLozinka: string = "";
   txtNovaLozinka: string = "";
   txtNovaPotvrdaLozinka: string = ""
+  txtTrenutniPIN: string = "";
+  txtNoviPIN: string = "";
+  txtNoviPotvrdaPIN: string = ""
   Slika: string = "";
   constructor(
     private httpKlijent: HttpClient,
@@ -232,6 +236,34 @@ export class KorisnickiRacunComponent implements OnInit {
           this.ngOnInit();
         });
       }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniLozinku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Lozinka uspješno promijenjena!");
+          this.promjenaLozinke = false;
+          this.txtNovaLozinka = "";
+          this.txtTrenutnaLozinka = "";
+          this.txtNovaPotvrdaLozinka = "";
+          this.ngOnInit();
+        });
+      }
+    }
+  }
+
+  PromijeniPIN(): void {
+    if (this.ValidirajPIN()){
+      let podaci = {
+        id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
+        trenutnaLozinka: this.txtTrenutniPIN,
+        novaLozinka: this.txtNoviPIN
+      };
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniPIN`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("PIN uspješno promijenjen!");
+          this.promjenaPINa = false;
+          this.txtNoviPIN = "";
+          this.txtTrenutniPIN = "";
+          this.txtNoviPotvrdaPIN = "";
+          this.ngOnInit();
+        });
     }
   }
 
@@ -241,13 +273,33 @@ export class KorisnickiRacunComponent implements OnInit {
         id: this.loginInfo().autentifikacijaToken.korisnickiNalog.id,
         novaSlika: this.Slika
       }
-      this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniSliku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
-        porukaSuccess("Slika uspješno promijenjena!");
-        this.GetSlika(this.racunPodaci.id);
-        this.ngOnInit();
-        this.slikaInputRef.nativeElement.value = '';
-        this.promjenaSlike = false;
-      });
+      if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isKorisnik) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniSliku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Slika uspješno promijenjena!");
+          this.GetSlika(this.racunPodaci.id);
+          this.ngOnInit();
+          this.slikaInputRef.nativeElement.value = '';
+          this.promjenaSlike = false;
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isRadnikFirme) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniSliku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Slika uspješno promijenjena!");
+          this.GetSlika(this.racunPodaci.id);
+          this.ngOnInit();
+          this.slikaInputRef.nativeElement.value = '';
+          this.promjenaSlike = false;
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniSliku`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Slika uspješno promijenjena!");
+          this.GetSlika(this.racunPodaci.id);
+          this.ngOnInit();
+          this.slikaInputRef.nativeElement.value = '';
+          this.promjenaSlike = false;
+        });
+      }
     }
     else {
       porukaError("Niste odabrali novu sliku!");
@@ -264,6 +316,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Ime uspješno promijenjeno!");
           this.promjenaImena = false;
+          this.txtNovoIme = "";
           this.ngOnInit();
         });
       }
@@ -271,6 +324,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Ime uspješno promijenjeno!");
           this.promjenaImena = false;
+          this.txtNovoIme = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Ime uspješno promijenjeno!");
+          this.promjenaImena = false;
+          this.txtNovoIme = "";
           this.ngOnInit();
         });
       }
@@ -287,6 +349,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniPrezime`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Prezime uspješno promijenjeno!");
           this.promjenaPrezimena = false;
+          this.txtNovoPrezime = "";
           this.ngOnInit();
         });
       }
@@ -294,6 +357,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniPrezime`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Prezime uspješno promijenjeno!");
           this.promjenaPrezimena = false;
+          this.txtNovoPrezime = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniPrezime`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Prezime uspješno promijenjeno!");
+          this.promjenaPrezimena = false;
+          this.txtNovoPrezime = "";
           this.ngOnInit();
         });
       }
@@ -310,6 +382,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniEmail`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Email uspješno promijenjen!");
           this.promjenaEmaila = false;
+          this.txtNoviEmail = "";
           this.ngOnInit();
         });
       }
@@ -317,6 +390,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniEmail`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Email uspješno promijenjen!");
           this.promjenaEmaila = false;
+          this.txtNoviEmail = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniEmail`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Email uspješno promijenjen!");
+          this.promjenaEmaila = false;
+          this.txtNoviEmail = "";
           this.ngOnInit();
         });
       }
@@ -333,6 +415,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniKorisnickoIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Korisničko ime uspješno promijenjeno!");
           this.promjenaKorisnickog = false;
+          this.txtNovoKorisnicko = "";
           this.ngOnInit();
         });
       }
@@ -340,6 +423,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniKorisnickoIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Korisničko ime uspješno promijenjeno!");
           this.promjenaKorisnickog = false;
+          this.txtNovoKorisnicko = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniKorisnickoIme`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Korisničko ime uspješno promijenjeno!");
+          this.promjenaKorisnickog = false;
+          this.txtNovoKorisnicko = "";
           this.ngOnInit();
         });
       }
@@ -356,6 +448,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniAdresu`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Adresa uspješno promijenjena!");
           this.promjenaAdrese = false;
+          this.txtNovaAdresa = "";
           this.ngOnInit();
         });
       }
@@ -363,6 +456,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniAdresu`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Adresa uspješno promijenjena!");
           this.promjenaAdrese = false;
+          this.txtNovaAdresa = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniAdresu`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Adresa uspješno promijenjena!");
+          this.promjenaAdrese = false;
+          this.txtNovaAdresa = "";
           this.ngOnInit();
         });
       }
@@ -379,6 +481,7 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/Korisnik/PromijeniBroj`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Broj telefona uspješno promijenjen!");
           this.promjenaBroja = false;
+          this.txtNoviBroj = "";
           this.ngOnInit();
         });
       }
@@ -386,6 +489,15 @@ export class KorisnickiRacunComponent implements OnInit {
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniBroj`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Broj telefona uspješno promijenjen!");
           this.promjenaBroja = false;
+          this.txtNoviBroj = "";
+          this.ngOnInit();
+        });
+      }
+      else if (this.loginInfo().autentifikacijaToken.korisnickiNalog.isAdministrator) {
+        this.httpKlijent.post(`${MojConfig.adresa_servera}/Administrator/PromijeniBroj`, podaci, MojConfig.http_opcije()).subscribe(x=>{
+          porukaSuccess("Broj telefona uspješno promijenjen!");
+          this.promjenaBroja = false;
+          this.txtNoviBroj = "";
           this.ngOnInit();
         });
       }
@@ -400,7 +512,8 @@ export class KorisnickiRacunComponent implements OnInit {
       };
         this.httpKlijent.post(`${MojConfig.adresa_servera}/RadnikFirme/PromijeniPoziciju`, podaci, MojConfig.http_opcije()).subscribe(x=>{
           porukaSuccess("Pozicija u firmi uspješno promijenjena!");
-          this.promjenaBroja = false;
+          this.promjenaPozicije = false;
+          this.txtNovaPozicija = "";
           this.ngOnInit();
         });
     }
@@ -412,6 +525,18 @@ export class KorisnickiRacunComponent implements OnInit {
       return false;
     }
     if (this.txtNovaLozinka != this.txtNovaPotvrdaLozinka) {
+      porukaError("Lozinke se ne poklapaju!")
+      return false;
+    }
+    return true;
+  }
+
+  ValidirajPIN(): boolean {
+    if (this.txtTrenutniPIN == "" || this.txtNoviPIN == "" || this.txtNoviPotvrdaPIN == ""){
+      porukaError("Sva polja su obavezna!")
+      return false;
+    }
+    if (this.txtNoviPIN != this.txtNoviPotvrdaPIN) {
       porukaError("Lozinke se ne poklapaju!")
       return false;
     }
