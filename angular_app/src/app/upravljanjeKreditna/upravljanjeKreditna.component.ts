@@ -160,4 +160,96 @@ export class UpravljanjeKreditnaComponent implements OnInit {
     }
   }
 
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p>Korak 1: Odaberite tip kartice<br>
+Prvo odaberite vrstu kreditne kartice koju želite povezati s Vašim korisničkim računom. Kliknite na dropdown meni i odaberite opciju koja odgovara Vašoj kartici.</p>
+<p>Korak 2: Unesite podatke o kartici<br>
+Nakon što ste odabrali tip kartice, unesite sljedeće podatke kako biste uspješno povezali karticu:<br>
+Broj kartice: Unesite 16-cifreni broj Vaše kreditne kartice.<br>
+Datum isteka: Unesite mjesec i godinu isteka Vaše kartice kako biste osigurali uspješnu transakciju.<br>
+Sigurnosni broj: Unesite trocifreni sigurnosni broj s poleđine Vaše kartice radi potvrde identiteta.</p>
+<p>Korak 3: Povežite kreditnu karticu<br>
+Provjerite unesene podatke kako biste bili sigurni da su ispravni. Kada ste spremni, kliknite na "Poveži" dugme kako biste završili postupak povezivanja kartice s Vašim korisničkim računom. Vaša kartica će sada biti spremna za korištenje.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
+  PrikaziHelp2(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p>Korak 1: Odaberite novi tip kartice<br>
+Prvo odaberite vrstu kreditne kartice koju želite povezati s Vašim korisničkim računom. Kliknite na dropdown meni i odaberite opciju koja odgovara Vašoj kartici.</p>
+<p>Korak 2: Unesite nove podatke o kartici<br>
+Nakon što ste odabrali tip kartice, unesite sljedeće podatke kako biste uspješno povezali karticu:<br>
+Broj kartice: Unesite 16-cifreni broj Vaše kreditne kartice.<br>
+Datum isteka: Unesite mjesec i godinu isteka Vaše kartice kako biste osigurali uspješnu transakciju.<br>
+Sigurnosni broj: Unesite trocifreni sigurnosni broj s poleđine Vaše kartice radi potvrde identiteta. Sigurnosni broj je potrebno unijeti dvaput zbog potvrde.</p>
+<p>Korak 3: Povežite kreditnu karticu<br>
+Provjerite unesene podatke kako biste bili sigurni da su ispravni. Kada ste spremni, kliknite na "Spremi promjene" dugme kako biste završili postupak povezivanja kartice s Vašim korisničkim računom. Vaša kartica će sada biti spremna za korištenje.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }
