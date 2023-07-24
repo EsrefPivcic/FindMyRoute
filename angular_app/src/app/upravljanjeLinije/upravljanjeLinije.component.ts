@@ -183,4 +183,51 @@ export class UpravljanjeLinijeComponent implements OnInit {
     });
   }
 
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p>Ova stranica je namijenjena isključivo zaposlenicima naše firme kako bi mogli efikasno upravljati linijama. Na ovoj stranici možete dodavati nove linije, pregledati postojeće i upravljati njima.</p>
+<p>Dodavanje nove linije:<br>
+Unesite polazište, destinaciju, vrijeme polaska i dolaska, dane u sedmici kada je vožnja moguća, kilometražu i cijenu karte.<br>
+Nakon što ste unijeli sve potrebne podatke, kliknite na "Dodaj liniju" kako biste pohranili novu liniju u našu bazu podataka.</p>
+<p>Pregled postojećih linija:<br>
+Na stranici se nalazi i tabela sa svim linijama našeg prevoznika. Tablica prikazuje polazište, destinaciju, vrijeme polaska, vrijeme dolaska i cijenu karte za svaku liniju. Ovdje možete brzo pregledati sve dostupne linije.</p>
+<p>Detalji o liniji:<br>
+Ako želite vidjeti više detalja o određenoj liniji, kliknite na dugme "Detalji" uz odgovarajući red u tablici. Tako ćete dobiti sve informacije o toj liniji, uključujući i kilometražu i dane u sedmici kada je vožnja moguća.</p>
+<p>Uklanjanje linije:<br>
+Ukoliko je neka linija prestala biti u upotrebi ili je potrebno ukloniti liniju iz baze podataka, kliknite na dugme "Ukloni liniju" uz odgovarajući red u tablici. Ova akcija će trajno izbrisati liniju iz naše baze podataka.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }

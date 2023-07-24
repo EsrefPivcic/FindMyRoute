@@ -205,4 +205,48 @@ export class UpravljanjePrevoznikComponent implements OnInit {
     const uniqueParam = new Date().getTime(); // Generate a unique timestamp
     this.Logo = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${id}?v=${uniqueParam}`;
   }
+
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p> Na ovoj stranici pruža Vam se mogućnost da pregledate i uređujete ključne informacije o našoj firmi. Imate pristup sljedećim detaljima:</p>
+<p>1. Logo firme:<br> Logo je vizualni identitet naše tvrtke. Kako biste ga promijenili, jednostavno kliknite na dugme "Uredi" ispod fotografije, a zatim odaberite novu fotografiju klikom na "Choose file". Nakon što izmijenite logo, nemojte zaboraviti spremiti promjene.</p>
+<p>2. Naziv firme:<br> Ovdje možete vidjeti trenutni naziv naše tvrtke. Ako je potrebno ažuriranje, kliknite na dugme "Uredi" i unesite novi naziv, zatim spremite promjene.</p>
+<p>3. Adresa:<br> Prikazana je trenutna adresa naše firme. Kliknite na dugme "Uredi" kako biste promijenili adresu, ažurirali podatke i spremili ih.</p>
+<p>4. E-mail adresa:<br> Ovdje je prikazana trenutna e-mail adresa tvrtke. Ako je potrebno, možete je izmijeniti klikom na dugme "Uredi", unesite novu e-mail adresu i spremite promjene.</p>
+<p>5. Broj telefona:<br> Ovaj broj služi kao način komunikacije s našom firmom. Ako se broj promijenio, jednostavno kliknite na dugme "Uredi", unesiti novi broj i spremite promjene.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }

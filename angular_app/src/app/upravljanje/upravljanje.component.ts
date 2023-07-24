@@ -291,4 +291,95 @@ export class UpravljanjeComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  PrikaziHelp(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p>Ova stranica je namijenjena isključivo administratorima kako bi mogli učinkovito upravljati prevoznicima. Ovdje možete dodavati nove prevoznike i upravljati postojećim podacima.</p>
+<p>Dodavanje novog prevoznika:<br>
+Unesite naziv prevoznika, adresu, e-mail adresu, broj telefona i odaberite logo fotografiju klikom na "Choose file".<br>
+Nakon što ste unijeli sve potrebne podatke, kliknite na "Dodaj prevoznika" kako biste pohranili nove informacije u našu bazu podataka.</p>
+<p>Pregled postojećih prevoznika:<br>
+Na stranici se nalazi i tabela sa svim trenutno postojećim prevoznicima. Tablica prikazuje naziv, adresu, e-mail adresu i broj telefona za svakog prevoznika. Ovdje možete brzo pregledati sve dostupne prevoznike.</p>
+<p>Uklanjanje prevoznika:<br>
+Ukoliko je neki prevoznik prestao biti aktivan ili je potrebno ukloniti prevoznika iz baze podataka, kliknite na dugme "Ukloni prevoznika" uz odgovarajući red u tablici. Ova akcija će trajno ukloniti prevoznika iz naše baze podataka.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
+  PrikaziHelp2(): void {
+    // Create a form element dynamically
+    const form = document.createElement("form");
+
+    // Add form styling, attributes, and content
+    form.style.position = "fixed";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.backgroundColor = "#f8f9fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "8px";
+    form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
+
+    // Add form content
+    form.innerHTML = `
+    <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+<p>Ova stranica je namijenjena isključivo administratorima kako bi mogli učinkovito upravljati radnicima naših firmi. Ovdje možete dodavati nove radnike i upravljati postojećim podacima o zaposlenicima.</p>
+<p>Dodavanje novog radnika:<br>
+Unesite ime, prezime, e-mail adresu, korisničko ime i lozinku, adresu, broj telefona, poziciju, radni staž, te naziv prevoznika za koji radnik radi.<br>
+Nakon što ste unijeli sve potrebne podatke, kliknite na "Dodaj radnika" kako biste pohranili nove informacije u našu bazu podataka.</p>
+<p>Pregled postojećih radnika:<br>
+Na stranici se nalazi i tabela sa svim trenutno postojećim radnicima naših firmi za javni prevoz. Tablica prikazuje ime i prezime, e-mail adresu, korisničko ime, adresu, broj telefona, poziciju, radni staž i prevoznika za kojeg radnik radi. Ovdje možete brzo pregledati sve dostupne informacije o našim radnicima.</p>
+<p>Uklanjanje radnika:<br>
+Ukoliko je neki radnik prestao raditi za naše firme ili je potrebno ukloniti zaposlenika iz baze podataka, kliknite na dugme "Ukloni radnika" uz odgovarajući red u tablici. Ova akcija će trajno ukloniti radnika iz naše baze podataka.</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+    </div>
+  `;
+
+    // Append the form to the body element
+    document.body.appendChild(form);
+
+    // Add click event listener to the "Zatvori" button
+    const closeButton = document.getElementById("closeBtn");
+    if (closeButton) {
+      closeButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form submission
+        form.remove(); // Remove the form from the DOM
+      });
+    }
+  }
+
 }
