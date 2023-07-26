@@ -29,6 +29,7 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             data.Add("Prevoznik", _dbContext.Prevoznik.Count());
             data.Add("Korisnik", _dbContext.Korisnik.Count());
             data.Add("Linija", _dbContext.Linija.Count());
+            data.Add("Grad", _dbContext.Grad.Count());
             data.Add("DaniVoznje", _dbContext.DaniVoznje.Count());
             data.Add("KreditnaKartica", _dbContext.KreditnaKartica.Count());
             return Ok(data);
@@ -150,10 +151,42 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             _dbContext.DaniVoznje.Add(neradniDani);
             _dbContext.SaveChanges();
 
+            var Livno = new Grad
+            {
+                Naziv = "Livno"
+            };
+
+            _dbContext.Grad.Add(Livno);
+            _dbContext.SaveChanges();
+
+            var Mostar = new Grad
+            {
+                Naziv = "Mostar"
+            };
+
+            _dbContext.Grad.Add(Mostar);
+            _dbContext.SaveChanges();
+
+            var Split = new Grad
+            {
+                Naziv = "Split"
+            };
+
+            _dbContext.Grad.Add(Split);
+            _dbContext.SaveChanges();
+
+            var Blagaj = new Grad
+            {
+                Naziv = "Blagaj"
+            };
+
+            _dbContext.Grad.Add(Blagaj);
+            _dbContext.SaveChanges();
+
             var linija1 = new Linija {
-                Grad1 = "Livno",
+                Grad1_id = Livno.Id,
                 Presjedanje = "Direktna linija",
-                Grad2 = "Mostar",
+                Grad2_id = Mostar.Id,
                 Prevoznik_id = livnobus.Id,
                 PolazakSati = 7,
                 PolazakMinute = 20,
@@ -170,9 +203,9 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
 
             var linija2 = new Linija
             {
-                Grad1 = "Livno",
+                Grad1_id = Livno.Id,
                 Presjedanje = "Direktna linija",
-                Grad2 = "Split",
+                Grad2_id = Split.Id,
                 Prevoznik_id = livnobus.Id,
                 PolazakSati = 6,
                 PolazakMinute = 30,
@@ -189,9 +222,9 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
 
             var linija3 = new Linija
             {
-                Grad1 = "Mostar",
+                Grad1_id = Mostar.Id,
                 Presjedanje = "Direktna linija",
-                Grad2 = "Blagaj",
+                Grad2_id = Blagaj.Id,
                 Prevoznik_id = autoprevoz.Id,
                 PolazakSati = 9,
                 PolazakMinute = 50,
@@ -208,9 +241,9 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
 
             var linija4 = new Linija
             {
-                Grad1 = "Livno",
+                Grad1_id = Livno.Id,
                 Presjedanje = "Direktna linija",
-                Grad2 = "Split",
+                Grad2_id = Split.Id,
                 Prevoznik_id = autoprevoz.Id,
                 PolazakSati = 9,
                 PolazakMinute = 0,
@@ -227,9 +260,9 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
 
             var linija5 = new Linija
             {
-                Grad1 = "Mostar",
+                Grad1_id = Mostar.Id,
                 Presjedanje = "Direktna linija",
-                Grad2 = "Blagaj",
+                Grad2_id = Blagaj.Id,
                 Prevoznik_id = livnobus.Id,
                 PolazakSati = 10,
                 PolazakMinute = 0,

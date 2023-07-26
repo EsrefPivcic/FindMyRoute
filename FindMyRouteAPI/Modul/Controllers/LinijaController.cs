@@ -23,13 +23,13 @@ namespace FindMyRouteAPI.Modul.Controllers
         [HttpGet("id")]
         public ActionResult Get(int id)
         {
-            return Ok(_dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).FirstOrDefault(k => k.Id == id));
+            return Ok(_dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).FirstOrDefault(k => k.Id == id));
         }
 
         [HttpGet("prevoznikId")]
         public ActionResult GetByPrevoznik(int prevoznikId)
         {
-            var data = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Where(x => x.Prevoznik_id == prevoznikId).ToList();
+            var data = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).Where(x => x.Prevoznik_id == prevoznikId).ToList();
             return Ok(data);
         }
 
@@ -37,17 +37,17 @@ namespace FindMyRouteAPI.Modul.Controllers
         public ActionResult GetByRadnik(int radnikId)
         {
             int prevoznik = _dbContext.RadnikFirme.Include(r => r.Prevoznik).Where(r => r.id == radnikId).FirstOrDefault().Prevoznik.Id;
-            return Ok(_dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Where(l => l.Prevoznik_id == prevoznik).ToList());
+            return Ok(_dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).Where(l => l.Prevoznik_id == prevoznik).ToList());
         }
 
         [HttpGet("gradovi")]
         public ActionResult GetByGradovi(string grad1, string grad2)
         {
-            var data = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Where(x => x.Grad1.Contains(grad1) && x.Grad2.Contains(grad2)).ToList().AsQueryable();
+            var data = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).Where(x => x.Grad1.Naziv.Contains(grad1) && x.Grad2.Naziv.Contains(grad2)).ToList().AsQueryable();
             if (data.Count() == 0)
             {
-                var linije1 = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Where(x => x.Grad1.Contains(grad1)).ToList();
-                var linije2 = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Where(x => x.Grad2.Contains(grad2)).ToList();
+                var linije1 = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).Where(x => x.Grad1.Naziv.Contains(grad1)).ToList();
+                var linije2 = _dbContext.Linija.Include(l => l.Prevoznik).Include(d => d.DaniVoznje).Include(g => g.Grad1).Include(g => g.Grad2).Where(x => x.Grad2.Naziv.Contains(grad2)).ToList();
                 List<LinijeRezultatiVM> linije3 = new List<LinijeRezultatiVM>();
                 for (int i = 0; i < linije1.Count(); i++)
                 {
@@ -72,12 +72,10 @@ namespace FindMyRouteAPI.Modul.Controllers
                             {
                                 Id1 = linije1[i].Id,
                                 Id2 = linije2[j].Id,
-                                Grad1 = linije1[i].Grad1,
-                                Presjedanje = linije2[j].Grad1,
-                                Grad2 = linije2[j].Grad2,
+                                Grad1 = linije1[i].Grad1.Naziv,
+                                Presjedanje = linije2[j].Grad1.Naziv,
+                                Grad2 = linije2[j].Grad2.Naziv,
                                 Prevoznik = NazivPrevoznika,
-                                //VrijemePolaska = linije1[i].VrijemePolaska,
-                                //VrijemeDolaska = linije2[j].VrijemeDolaska,
                                 PolazakSati = linije1[i].PolazakSati,
                                 PolazakMinute = linije1[i].PolazakMinute,
                                 DolazakSati = linije2[j].DolazakSati,
@@ -99,7 +97,7 @@ namespace FindMyRouteAPI.Modul.Controllers
 
         private bool ProvjeriLinije(Linija linija1, Linija linija2)
         {
-            if (linija1.Grad2 == linija2.Grad1)
+            if (linija1.Grad2.Naziv == linija2.Grad1.Naziv)
             {
                 int linija1dolazak = linija1.DolazakSati * 60 + linija1.DolazakMinute;
                 int linija2polazak = linija2.PolazakSati * 60 + linija2.PolazakMinute;
@@ -157,31 +155,11 @@ namespace FindMyRouteAPI.Modul.Controllers
             _dbContext.SaveChanges();
             int linijaPolazak = x.PolazakSati * 60 + x.PolazakMinute;
             int linijaDolazak = x.DolazakSati * 60 + x.DolazakMinute;
-            //var newLinija = new Linija
-            //{
-            //    Grad1 = x.Grad1,
-            //    Presjedanje = x.Presjedanje,
-            //    Grad2 = x.Grad2,
-            //    Prevoznik_id = x.Prevoznik_id,
-            //    //VrijemePolaska = x.VrijemePolaska,
-            //    //VrijemeDolaska = x.VrijemeDolaska,
-            //    PolazakSati = x.PolazakSati,
-            //    PolazakMinute = x.PolazakMinute,
-            //    DolazakSati = x.DolazakSati,
-            //    DolazakMinute = x.DolazakMinute,
-            //    DaniVoznje_id = newDaniVoznje.Id,
-            //    DaniVoznje = newDaniVoznje,
-            //    Kilometraza = x.Kilometraza,
-            //    Trajanje = linijaDolazak - linijaPolazak < 0 ? linijaDolazak - linijaPolazak + 1440 : linijaDolazak - linijaPolazak,
-            //    Cijena = x.Cijena
-            //};
-            //_dbContext.Add(newLinija);
-            //_dbContext.SaveChanges();
             var newLinija = new Linija
             {
-                Grad1 = x.Grad1,
                 Presjedanje = "Direktna linija",
-                Grad2 = x.Grad2,
+                Grad1_id = x.Grad1_id,
+                Grad2_id = x.Grad2_id,
                 Prevoznik_id = x.Prevoznik_id,
                 PolazakSati = x.PolazakSati,
                 PolazakMinute = x.PolazakMinute,
@@ -199,7 +177,7 @@ namespace FindMyRouteAPI.Modul.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddByRadnik([FromBody] LinijaAddVM x)
+        public ActionResult AddByRadnik([FromBody] LinijaAddByRadnikVM x)
         {
             var newDaniVoznje = new DaniVoznje
             {
@@ -216,31 +194,30 @@ namespace FindMyRouteAPI.Modul.Controllers
             int linijaPolazak = x.PolazakSati * 60 + x.PolazakMinute;
             int linijaDolazak = x.DolazakSati * 60 + x.DolazakMinute;
             int prevoznik = _dbContext.RadnikFirme.Include(r=>r.Prevoznik).Where(r => r.id == x.Prevoznik_id).FirstOrDefault().Prevoznik.Id;
-            //var newLinija = new Linija
-            //{
-            //    Grad1 = x.Grad1,
-            //    Presjedanje = x.Presjedanje,
-            //    Grad2 = x.Grad2,
-            //    Prevoznik_id = x.Prevoznik_id,
-            //    //VrijemePolaska = x.VrijemePolaska,
-            //    //VrijemeDolaska = x.VrijemeDolaska,
-            //    PolazakSati = x.PolazakSati,
-            //    PolazakMinute = x.PolazakMinute,
-            //    DolazakSati = x.DolazakSati,
-            //    DolazakMinute = x.DolazakMinute,
-            //    DaniVoznje_id = newDaniVoznje.Id,
-            //    DaniVoznje = newDaniVoznje,
-            //    Kilometraza = x.Kilometraza,
-            //    Trajanje = linijaDolazak - linijaPolazak < 0 ? linijaDolazak - linijaPolazak + 1440 : linijaDolazak - linijaPolazak,
-            //    Cijena = x.Cijena
-            //};
-            //_dbContext.Add(newLinija);
-            //_dbContext.SaveChanges();
+            Grad grad1 = _dbContext.Grad.Where(g => g.Naziv == x.Grad1).FirstOrDefault();
+            if (grad1 == null) {
+                grad1 = new Grad
+                {
+                    Naziv = x.Grad1
+                };
+                _dbContext.Grad.Add(grad1);
+                _dbContext.SaveChanges();
+            }
+            Grad grad2 = _dbContext.Grad.Where(g => g.Naziv == x.Grad2).FirstOrDefault();
+            if (grad2 == null)
+            {
+                grad2 = new Grad
+                {
+                    Naziv = x.Grad2
+                };
+                _dbContext.Grad.Add(grad2);
+                _dbContext.SaveChanges();
+            }
             var newLinija = new Linija
             {
-                Grad1 = x.Grad1,
                 Presjedanje = "Direktna linija",
-                Grad2 = x.Grad2,
+                Grad1_id = grad1.Id,
+                Grad2_id = grad2.Id,
                 Prevoznik_id = prevoznik,
                 PolazakSati = x.PolazakSati,
                 PolazakMinute = x.PolazakMinute,
@@ -263,7 +240,7 @@ namespace FindMyRouteAPI.Modul.Controllers
             Linija? linija = _dbContext.Linija.Find(id);
 
             if (linija == null)
-                return BadRequest("pogresan ID");
+                return BadRequest("Pogrešan ID!");
 
             _dbContext.Remove(linija);
 

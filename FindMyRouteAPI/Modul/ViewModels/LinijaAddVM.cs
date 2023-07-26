@@ -5,12 +5,9 @@ namespace FindMyRouteAPI.Modul.ViewModels
 {
     public class LinijaAddVM
     {
-        public string Grad1 { get; set; }
-        public string Grad2 { get; set; }
+        public int Grad1_id { get; set; }
+        public int Grad2_id { get; set; }
         public int Prevoznik_id { get; set; }
-        //public DateTime DatumVrijeme { get; set; }
-        //public TimeOnly VrijemePolaska { get; set; }
-        //public TimeOnly VrijemeDolaska { get; set; }
         public int PolazakSati { get; set; }
         public int PolazakMinute { get; set; }
         public int DolazakSati { get; set; }
@@ -23,7 +20,6 @@ namespace FindMyRouteAPI.Modul.ViewModels
         public bool SubotaVoznja { get; set; }
         public bool NedjeljaVoznja { get; set; }
         public int Kilometraza { get; set; }
-        //public int Trajanje { get; set; }
         public int Cijena { get; set; }
     }
 }

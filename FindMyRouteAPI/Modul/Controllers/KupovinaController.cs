@@ -25,12 +25,12 @@ namespace FindMyRouteAPI.Modul.Controllers
         [HttpGet("id")]
         public ActionResult Get(int id)
         {
-            return Ok(_dbContext.Kupovina.Include(k => k.Korisnik).Include(k => k.Linija).Include(k => k.Linija.Prevoznik).Include(k => k.KreditnaKartica).FirstOrDefault(k => k.Id == id));
+            return Ok(_dbContext.Kupovina.Include(k => k.Korisnik).Include(k => k.Linija).Include(k => k.Linija.Prevoznik).Include(k => k.Linija.Grad1).Include(k => k.Linija.Grad2).Include(k => k.KreditnaKartica).FirstOrDefault(k => k.Id == id));
         }
         [HttpGet("korisnikId")]
         public ActionResult GetByKorisnik(int korisnikId)
         {
-            var data = _dbContext.Kupovina.Include(k => k.Korisnik).Include(k => k.Linija).Include(k => k.Linija.Prevoznik).Include(k=>k.KreditnaKartica).Where(k => k.Korisnik_id == korisnikId).ToList();
+            var data = _dbContext.Kupovina.Include(k => k.Korisnik).Include(k => k.Linija).Include(k => k.Linija.Prevoznik).Include(k => k.Linija.Grad1).Include(k => k.Linija.Grad2).Include(k=>k.KreditnaKartica).Where(k => k.Korisnik_id == korisnikId).ToList();
             return Ok(data);
         }
         [HttpPost]

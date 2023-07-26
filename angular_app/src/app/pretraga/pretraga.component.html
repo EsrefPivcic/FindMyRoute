@@ -82,9 +82,9 @@
         <tbody>
         <ng-container *ngIf="linijePodaci.length > 0; else nemaRez">
           <tr *ngFor="let l of linijePodaci">
-            <td>{{l.grad1}}</td>
+            <td>{{l.grad1.naziv}}</td>
             <td>{{l.presjedanje}}</td>
-            <td>{{l.grad2}}</td>
+            <td>{{l.grad2.naziv}}</td>
             <td>{{l.prevoznik.naziv || l.prevoznik}}</td>
             <td>{{l.polazakSati.toString().padStart(2, '0')}}:{{l.polazakMinute.toString().padStart(2, '0')}}</td>
             <td>{{l.dolazakSati.toString().padStart(2, '0')}}:{{l.dolazakMinute.toString().padStart(2, '0')}}</td>

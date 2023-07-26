@@ -5,7 +5,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Polazište</h5>
-          <p class="card-text">{{this.linijaPodaci1.grad1}}</p>
+          <p class="card-text">{{this.linijaPodaci1.grad1.naziv}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -17,7 +17,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Destinacija</h5>
-          <p class="card-text">{{this.linijaPodaci1.grad2}}</p>
+          <p class="card-text">{{this.linijaPodaci1.grad2.naziv}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -63,7 +63,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Polazište</h5>
-          <p class="card-text">{{this.linijaPodaci2.grad1}}</p>
+          <p class="card-text">{{this.linijaPodaci2.grad1.naziv}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -75,7 +75,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">Destinacija</h5>
-          <p class="card-text">{{this.linijaPodaci2.grad2}}</p>
+          <p class="card-text">{{this.linijaPodaci2.grad2.naziv}}</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -164,7 +164,7 @@
             </thead>
             <tbody>
             <tr>
-              <td>{{this.linijaPodaci1.grad1}} - {{this.linijaPodaci1.grad2}}</td>
+              <td>{{this.linijaPodaci1.grad1.naziv}} - {{this.linijaPodaci1.grad2.naziv}}</td>
               <td>{{this.linijaPodaci1.daniVoznje.ponedjeljak ? "Da" : "Ne"}}</td>
               <td>{{this.linijaPodaci1.daniVoznje.utorak ? "Da" : "Ne"}}</td>
               <td>{{this.linijaPodaci1.daniVoznje.srijeda ? "Da" : "Ne"}}</td>
@@ -174,7 +174,7 @@
               <td>{{this.linijaPodaci1.daniVoznje.nedjelja ? "Da" : "Ne"}}</td>
             </tr>
             <tr>
-              <td>{{this.linijaPodaci2.grad1}} - {{this.linijaPodaci2.grad2}}</td>
+              <td>{{this.linijaPodaci2.grad1.naziv}} - {{this.linijaPodaci2.grad2.naziv}}</td>
               <td>{{this.linijaPodaci2.daniVoznje.ponedjeljak ? "Da" : "Ne"}}</td>
               <td>{{this.linijaPodaci2.daniVoznje.utorak ? "Da" : "Ne"}}</td>
               <td>{{this.linijaPodaci2.daniVoznje.srijeda ? "Da" : "Ne"}}</td>

@@ -98,8 +98,8 @@
         <tbody>
         <ng-container>
           <tr *ngFor="let l of linijePodaci">
-            <td>{{l.grad1}}</td>
-            <td>{{l.grad2}}</td>
+            <td>{{l.grad1.naziv}}</td>
+            <td>{{l.grad2.naziv}}</td>
             <td>{{l.polazakSati.toString().padStart(2, '0')}}:{{l.polazakMinute.toString().padStart(2, '0')}}</td>
             <td>{{l.dolazakSati.toString().padStart(2, '0')}}:{{l.dolazakMinute.toString().padStart(2, '0')}}</td>
             <td>{{l.cijena}}KM</td>

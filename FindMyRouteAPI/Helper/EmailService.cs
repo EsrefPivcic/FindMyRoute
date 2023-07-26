@@ -59,13 +59,13 @@ public class EmailService
     public void SendEmailPurchase(Kupovina x, string nacinPlacanja)
     {
         Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id);
-        Linija linija = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija_id);
+        Linija linija = _dbContext.Linija.Include(g => g.Grad1).Include(g => g.Grad2).FirstOrDefault(l => l.Id == x.Linija_id);
         Prevoznik prevoznik = _dbContext.Prevoznik.FirstOrDefault(p => p.Id == linija.Prevoznik_id);
         string subject = "FindMyRoute - Potvrda o kupovini karte";
         string body = $"Poštovani/a {korisnik.Ime + " " + korisnik.Prezime},\n\nHvala Vam što ste koristili našu " +
             $"aplikaciju za kupovinu karte za putovanje.\n\nOvim e-mailom potvrđujemo detalje vaše kupovine:\n" +
-            $"Polazište: {linija.Grad1}\n" +
-            $"Destinacija: {linija.Grad2}\n" +
+            $"Polazište: {linija.Grad1.Naziv}\n" +
+            $"Destinacija: {linija.Grad2.Naziv}\n" +
             $"Tip linije: Direktna linija\n" +
             $"Prevoznik: {prevoznik.Naziv}\n" +
             $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
@@ -105,8 +105,8 @@ public class EmailService
     public void SendEmailPurchaseTransfer(PresjedanjeEmailVM x)
     {
         Korisnik korisnik = _dbContext.Korisnik.FirstOrDefault(k => k.id == x.Korisnik_id);
-        Linija linija1 = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija1_id);
-        Linija linija2 = _dbContext.Linija.FirstOrDefault(l => l.Id == x.Linija2_id);
+        Linija linija1 = _dbContext.Linija.Include(g => g.Grad1).Include(g => g.Grad2).FirstOrDefault(l => l.Id == x.Linija1_id);
+        Linija linija2 = _dbContext.Linija.Include(g => g.Grad1).Include(g => g.Grad2).FirstOrDefault(l => l.Id == x.Linija2_id);
         Prevoznik prevoznik1 = _dbContext.Prevoznik.FirstOrDefault(p => p.Id == linija1.Prevoznik_id);
         Prevoznik prevoznik2 = _dbContext.Prevoznik.FirstOrDefault(p => p.Id == linija2.Prevoznik_id);
         int ukupnaCijena = (x.Kolicina * linija1.Cijena) + (x.Kolicina * linija2.Cijena);
@@ -130,21 +130,21 @@ public class EmailService
         string subject = "FindMyRoute - Potvrda o kupovini karata";
         string body = $"Poštovani/a {korisnik.Ime + " " + korisnik.Prezime},\n\nHvala Vam što ste koristili našu " +
             $"aplikaciju za kupovinu karti za putovanje.\n\nOvim e-mailom potvrđujemo detalje vaše kupovine:\n" +
-            $"Polazište: {linija1.Grad1}\n" +
-            $"Destinacija: {linija2.Grad2}\n" +
-            $"Tip linije: Presjedanje ({linija1.Grad2})\n\n" +
+            $"Polazište: {linija1.Grad1.Naziv}\n" +
+            $"Destinacija: {linija2.Grad2.Naziv}\n" +
+            $"Tip linije: Presjedanje ({linija1.Grad2.Naziv})\n\n" +
             $"Informacije o prvoj liniji (prije presjedanja):\n" +
             $"Prevoznik: {prevoznik1.Naziv}\n" +
-            $"Polazište: {linija1.Grad1}\n" +
-            $"Destinacija (Presjedanje): {linija1.Grad2}\n" +
+            $"Polazište: {linija1.Grad1.Naziv}\n" +
+            $"Destinacija (Presjedanje): {linija1.Grad2.Naziv}\n" +
             $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
             $"Vrijeme polaska: {linija1.PolazakSati.ToString("D2") + ":" + linija1.PolazakMinute.ToString("D2")}\n" +
             $"Vrijeme dolaska: {linija1.DolazakSati.ToString("D2") + ":" + linija1.DolazakMinute.ToString("D2")}\n" +
             $"Cijena po karti: {linija1.Cijena}KM\n\n" +
             $"Informacije o drugoj liniji (poslije presjedanja):\n" +
             $"Prevoznik: {prevoznik2.Naziv}\n" +
-            $"Polazište (Presjedanje): {linija2.Grad1}\n" +
-            $"Destinacija: {linija2.Grad2}\n" +
+            $"Polazište (Presjedanje): {linija2.Grad1.Naziv}\n" +
+            $"Destinacija: {linija2.Grad2.Naziv}\n" +
             $"Datum vožnje: {x.DatumVoznje.ToString("dd.MM.yyyy")}\n" +
             $"Vrijeme polaska: {linija2.PolazakSati.ToString("D2") + ":" + linija2.PolazakMinute.ToString("D2")}\n" +
             $"Vrijeme dolaska: {linija2.DolazakSati.ToString("D2") + ":" + linija2.DolazakMinute.ToString("D2")}\n" +

@@ -14,8 +14,8 @@
       <tbody>
       <ng-container *ngIf="historijaKupovine.length > 0; else nemaRez">
         <tr *ngFor="let l of historijaKupovine">
-          <td>{{l.linija.grad1}}</td>
-          <td>{{l.linija.grad2}}</td>
+          <td>{{l.linija.grad1.naziv}}</td>
+          <td>{{l.linija.grad2.naziv}}</td>
           <td>{{l.linija.prevoznik.naziv}}</td>
           <td>{{formatirajDatum(l.datumVoznje)}}</td>
           <td>{{l.ukupnaCijena}} KM</td>
