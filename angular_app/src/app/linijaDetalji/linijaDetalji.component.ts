@@ -28,7 +28,7 @@ export class linijaDetaljiComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = +params['id'];
     });
     this.GetLinija();
   }
@@ -52,7 +52,7 @@ export class linijaDetaljiComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijaPodaci = x;
-            const uniqueParam = new Date().getTime(); // Generate a unique timestamp
+            const uniqueParam = new Date().getTime();
             this.prevoznikLogo = `${MojConfig.adresa_servera}/Prevoznik/GetSlikaDB/${this.linijaPodaci.prevoznik.id}?v=${uniqueParam}`;
           });
         }
@@ -65,10 +65,8 @@ export class linijaDetaljiComponent implements OnInit {
   }
 
   PrikaziHelp(): void {
-    // Create a form element dynamically
     const form = document.createElement("form");
 
-    // Add form styling, attributes, and content
     form.style.position = "fixed";
     form.style.top = "50%";
     form.style.left = "50%";
@@ -78,7 +76,6 @@ export class linijaDetaljiComponent implements OnInit {
     form.style.borderRadius = "8px";
     form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
 
-    // Add form content
     form.innerHTML = `
     <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
     <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -96,15 +93,13 @@ export class linijaDetaljiComponent implements OnInit {
     </div>
   `;
 
-    // Append the form to the body element
     document.body.appendChild(form);
 
-    // Add click event listener to the "Zatvori" button
     const closeButton = document.getElementById("closeBtn");
     if (closeButton) {
       closeButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevent form submission
-        form.remove(); // Remove the form from the DOM
+        event.preventDefault();
+        form.remove();
       });
     }
   }

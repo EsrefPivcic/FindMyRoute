@@ -64,9 +64,10 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center align-items-center">
+  <div *ngIf="pretragaPokrenuta == true">
+    <div class="row justify-content-center align-items-center" *ngIf="linijePodaci.length > 0; else nemaRez">
     <div class="col-sm-12">
-      <table class="table table-striped table-hover" *ngIf="linijePodaci.length > 0; else nemaRez">
+      <table class="table table-striped table-hover">
         <thead>
         <tr>
           <th scope="col">Polazište</th>
@@ -82,9 +83,9 @@
         <tbody>
         <ng-container *ngIf="linijePodaci.length > 0; else nemaRez">
           <tr *ngFor="let l of linijePodaci">
-            <td>{{l.grad1.naziv}}</td>
+            <td>{{l.grad1.naziv || l.grad1}}</td>
             <td>{{l.presjedanje}}</td>
-            <td>{{l.grad2.naziv}}</td>
+            <td>{{l.grad2.naziv || l.grad2}}</td>
             <td>{{l.prevoznik.naziv || l.prevoznik}}</td>
             <td>{{l.polazakSati.toString().padStart(2, '0')}}:{{l.polazakMinute.toString().padStart(2, '0')}}</td>
             <td>{{l.dolazakSati.toString().padStart(2, '0')}}:{{l.dolazakMinute.toString().padStart(2, '0')}}</td>
@@ -104,6 +105,7 @@
       </div>
     </div>
   </ng-template>
+  </div>
   <button class="help-button" (click)="PrikaziHelp()">?</button>
 </div>
 

@@ -20,25 +20,5 @@ namespace FindMyRouteAPI.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    modelBuilder
-        //        .Entity<Linija>()
-        //        .Property(e => e.VrijemePolaska)
-        //        .HasConversion(
-        //            v => v.ToString(),
-        //            v => TimeOnly.Parse(v));
-
-        //    base.OnModelCreating(modelBuilder);
-
-        //    modelBuilder
-        //        .Entity<Linija>()
-        //        .Property(e => e.VrijemeDolaska)
-        //        .HasConversion(
-        //            v => v.ToString(),
-        //            v => TimeOnly.Parse(v));
-        //}
     }
 }

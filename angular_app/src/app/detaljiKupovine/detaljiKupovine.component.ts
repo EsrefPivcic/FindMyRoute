@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
-import {LoginInformacije} from "../_helpers/login-informacije";
-import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 
 @Component({
   selector: 'app-detaljiKupovine',
@@ -18,9 +16,8 @@ export class DetaljiKupovineComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //preuzima ID linije iz URL query parametra
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = +params['id'];
     });
     fetch(MojConfig.adresa_servera+ "/Kupovina/Get/id?id="+this.id)
       .then(
@@ -54,10 +51,8 @@ export class DetaljiKupovineComponent implements OnInit {
   }
 
   PrikaziHelp(): void {
-    // Create a form element dynamically
     const form = document.createElement("form");
 
-    // Add form styling, attributes, and content
     form.style.position = "fixed";
     form.style.top = "50%";
     form.style.left = "50%";
@@ -67,7 +62,6 @@ export class DetaljiKupovineComponent implements OnInit {
     form.style.borderRadius = "8px";
     form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
 
-    // Add form content
     form.innerHTML = `
     <h3 style="margin-bottom: 10px; text-align: center;">Pomoć</h3>
     <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -87,15 +81,13 @@ Način plaćanja: Ovdje je naveden način plaćanja koji ste koristili za izvrš
     </div>
   `;
 
-    // Append the form to the body element
     document.body.appendChild(form);
 
-    // Add click event listener to the "Zatvori" button
     const closeButton = document.getElementById("closeBtn");
     if (closeButton) {
       closeButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevent form submission
-        form.remove(); // Remove the form from the DOM
+        event.preventDefault();
+        form.remove();
       });
     }
   }

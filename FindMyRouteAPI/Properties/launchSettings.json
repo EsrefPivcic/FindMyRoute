@@ -30,33 +30,3 @@
     }
   }
 }
-
-
-//STARO:
-//{
-//  "iisSettings": {
-//    "windowsAuthentication": false,
-//    "anonymousAuthentication": true,
-//    "iisExpress": {
-//      "applicationUrl": "http://localhost:5000/",
-//      "sslPort": 0
-//    }
-//  },
-//  "profiles": {
-//    "FindMyRouteAPI": {
-//      "commandName": "IISExpress",
-//      "launchBrowser": true,
-//      "environmentVariables": {
-//        "ASPNETCORE_ENVIRONMENT": "Development"
-//      }
-//    },
-//    "IIS Express": {
-//      "commandName": "Project",
-//      "launchBrowser": true,
-//      "environmentVariables": {
-//        "ASPNETCORE_ENVIRONMENT": "Development"
-//      },
-//      "applicationUrl": "https://localhost:5001;http://localhost:5000"
-//    }
-//  }
-//}

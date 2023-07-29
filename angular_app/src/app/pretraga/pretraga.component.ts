@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
-import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-pretraga',
@@ -12,9 +11,10 @@ import { NavigationExtras } from '@angular/router';
 export class PretragaComponent implements OnInit {
 
   title:string = 'FindMyRoute';
-  linijePodaci: any;
+  linijePodaci: any[] = [];
   grad1 : string;
   grad2 : string;
+  pretragaPokrenuta : boolean = false;
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
@@ -49,14 +49,7 @@ export class PretragaComponent implements OnInit {
           }
           r.json().then(x=>{
             this.linijePodaci = x;
-            if (this.linijePodaci.length != 0) {
-              document.getElementById("tabela").style.opacity="1";
-              document.getElementById("nemaRez").style.opacity="0";
-            }
-            else {
-              document.getElementById("nemaRez").style.opacity="1";
-              document.getElementById("tabela").style.opacity="0";
-            }
+            this.pretragaPokrenuta = true;
           });
         }
       )

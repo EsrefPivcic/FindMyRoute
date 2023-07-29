@@ -15,9 +15,8 @@ declare function porukaSuccess(a: string, options?: any): any;
 
 export class AppComponent implements OnInit {
 
-  Logo: string;
-  ProfilnaSlika: string;
-  prevoznikPodaci: any;
+  Logo: string = "";
+  ProfilnaSlika: string = "";
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
@@ -63,7 +62,6 @@ export class AppComponent implements OnInit {
     AutentifikacijaHelper.setLoginInfo(null);
     this.httpKlijent.post(MojConfig.adresa_servera + "/Autentifikacija/Logout/", null, token)
       .subscribe((x: any) => {
-        /*porukaSuccess("Logout uspješan", { position: 'top-left' });*/
       });
     this.router.navigateByUrl("/login");
   }
