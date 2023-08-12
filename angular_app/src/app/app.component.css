@@ -1,4 +1,4 @@
-nav {
+/*nav {
   position: relative;
   display: flex;
   justify-content: center;
@@ -49,4 +49,98 @@ body {
 
 button.rounded {
   border-radius: 40px;
+}*/
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
+
+.navbar {
+  padding: 1.6% 2.4%;
+  line-height: 1.5;
+  background-color: #333;
+}
+
+body {
+  padding: 20px;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  #logo {
+    width: 75px!important;
+    height: 75px!important;
+  }
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-buttons {
+  position: absolute;
+  right: 0;
+  left: auto;
+  transform: none;
+}
+
+button.rounded {
+  border-radius: 40px;
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-color: #ffffff;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #a0a0a0;
+}
+
+.dropdown-menu {
+  background-color: #333;
+}
+
+.dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #666;
+}
+
+.btn-outline-primary {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ffffff;
+  color: #333;
+}
+
+
+
+

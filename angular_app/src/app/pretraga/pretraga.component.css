@@ -1,0 +1,91 @@
+html {
+  height: 100%;
+}
+body {
+  padding: 20px;
+  background-color: #121212;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+}
+
+.form-control {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.form-control:focus {
+  background-color: #444;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.table th,
+.table td {
+  border-color: #555;
+}
+
+.table-dark {
+  color: #fff;
+}
+
+.help-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.dark-mode .form-control {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: #444;
+  border-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .table {
+  background-color: #333;
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+  border-color: #555;
+}
+
+body.dark-mode .table-dark {
+  color: #fff;
+}
+
+body.dark-mode .btn.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+body.dark-mode .btn.btn-primary:hover {
+  background-color: #003d80;
+  border-color: #003d80;
+}

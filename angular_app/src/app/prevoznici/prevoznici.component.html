@@ -6,35 +6,35 @@
 </head>
 <body>
 <div class="container">
-<div class="justify-content-center align-items-center">
-  <div class="col-sm-12">
-    <table class="table table-striped table-hover" *ngIf="prevoznici.length > 0; else nemaRez">
-      <thead>
-      <tr>
-        <th scope="col">Naziv</th>
-        <th scope="col">Adresa</th>
-      </tr>
-      </thead>
-      <tbody>
-      <ng-container *ngIf="prevoznici.length > 0; else nemaRez">
-        <tr *ngFor="let p of prevoznici">
-          <td>{{p.naziv}}</td>
-          <td>{{p.adresa}}</td>
-          <td><button class="btn btn-outline-secondary btn-sm" (click)="DetaljiPrevoznika(p.id)">Detaljnije</button>
-          </td>
-        </tr>
-      </ng-container>
-      </tbody>
-    </table>
-  </div>
-</div>
-<ng-template #nemaRez>
-  <div class="row justify-content-center align-items-center">
+  <div class="justify-content-center align-items-center">
     <div class="col-sm-12">
-      <h5 class="text-center">Nema rezultata, pokušajte ponovno kasnije.</h5>
+      <table class="table table-striped table-hover table-dark" *ngIf="prevoznici.length > 0; else nemaRez">
+        <thead>
+        <tr>
+          <th scope="col">Naziv</th>
+          <th scope="col">Adresa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngIf="prevoznici.length > 0; else nemaRez">
+          <tr *ngFor="let p of prevoznici">
+            <td>{{p.naziv}}</td>
+            <td>{{p.adresa}}</td>
+            <td><button class="btn btn-outline-secondary btn-sm" (click)="DetaljiPrevoznika(p.id)">Detaljnije</button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
-</ng-template>
+  <ng-template #nemaRez>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-12">
+        <h5 class="text-center">Nema rezultata, pokušajte ponovno kasnije.</h5>
+      </div>
+    </div>
+  </ng-template>
   <button class="help-button" (click)="PrikaziHelp()">?</button>
 </div>
 </body>

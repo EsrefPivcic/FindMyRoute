@@ -1,16 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #121212; /* Dark background color */
+  color: #e0e0e0; /* Light text color */
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #1e1e1e; /* Dark container background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
 
@@ -18,22 +18,22 @@ h2 {
   text-align: center;
   margin-bottom: 30px;
   font-size: 32px;
-  color: #555;
+  color: #ffffff; /* Light heading color */
 }
 
 p {
   text-align: justify;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #777;
+  color: #cccccc; /* Light paragraph color */
 }
 
 a {
-  color: #007bff;
+  color: #00bfff; /* Light link color */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #00a0ff; /* Light link hover color */
 }
