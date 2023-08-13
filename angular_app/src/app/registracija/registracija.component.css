@@ -1,3 +1,12 @@
+.card {
+  background-color: #333333;
+}
+
+input {
+  background-color: #777;
+  color: #ffffff;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;

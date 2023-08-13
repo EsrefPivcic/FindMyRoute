@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  margin: 0;
 }
 body {
   padding: 20px;
@@ -7,6 +8,12 @@ body {
   color: #fff;
   height: 100%;
   margin: 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-control {
