@@ -17,3 +17,43 @@
   justify-content: center;
   align-items: center;
 }
+
+ body {
+   background-color: #1c1c1c;
+   color: #ffffff;
+ }
+
+.card {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+a {
+  color: #bb86fc;
+}
+
+.card-title {
+  color: #ffffff;
+}
+
+.card-text {
+  color: #d4d4d4;
+}
+
+.form-control {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #555555;
+}
+
+.form-control#txtNacinPlacanja, .form-control#txtTip {
+  background-color: #333333;
+  color: #cccccc;
+  border: 1px solid #555555;
+}
+
+input#datum {
+  background-color: #333333;
+  color: #cccccc;
+  border: 1px solid #555555;
+}

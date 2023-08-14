@@ -1,3 +1,29 @@
+.card {
+  background-color: #333333;
+}
+
+input {
+  background-color: #777;
+  color: #ffffff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: white;
+}
+
+.table thead th {
+  color: white;
+}
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;

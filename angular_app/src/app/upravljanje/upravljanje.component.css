@@ -1,3 +1,23 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container, .container2 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction:column;
+}
+
+.card {
+  background-color: #333333;
+}
+
+input {
+  background-color: #777;
+  color: #ffffff;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;
@@ -16,4 +36,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.table thead th {
+  color: white;
+}
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
 }

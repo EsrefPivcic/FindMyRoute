@@ -17,3 +17,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.card {
+  background-color: #333333;
+}
+
+input {
+  background-color: #777;
+  color: #ffffff;
+}
+
+.form-control#txtTipEdit {
+  background-color: #777;
+  color: #ffffff;
+  border: 1px solid #555555;
+}

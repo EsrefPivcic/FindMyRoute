@@ -17,3 +17,21 @@
   justify-content: center;
   align-items: center;
 }
+
+body {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.card {
+  background-color: #333;
+  color: #fff;
+}
+
+.card-title {
+  color: #fff;
+}
+
+.card-text {
+  color: #ccc;
+}

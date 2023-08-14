@@ -14,6 +14,10 @@ h5 {
   font-size: large;
 }
 
+.table tbody button {
+  color: white;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;

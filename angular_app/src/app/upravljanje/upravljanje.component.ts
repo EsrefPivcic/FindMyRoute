@@ -281,7 +281,8 @@ export class UpravljanjeComponent implements OnInit {
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#f8f9fa";
+    form.style.backgroundColor = "#333333";
+    form.style.color = "white";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
     form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
@@ -321,7 +322,8 @@ Ukoliko je neki prevoznik prestao biti aktivan ili je potrebno ukloniti prevozni
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#f8f9fa";
+    form.style.backgroundColor = "#333333";
+    form.style.color = "white";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
     form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
