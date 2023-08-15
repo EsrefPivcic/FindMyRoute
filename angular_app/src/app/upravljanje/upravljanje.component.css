@@ -1,4 +1,11 @@
-html, body {
+html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
   height: 100%;
   margin: 0;
 }
@@ -11,6 +18,8 @@ html, body {
 
 .card {
   background-color: #333333;
+  border: 1px solid #555;
+  border-radius: 5px;
 }
 
 input {
@@ -23,7 +32,7 @@ input {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -38,6 +47,21 @@ input {
   align-items: center;
 }
 
+.table {
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.table th,
+.table td {
+  border-color: #555;
+}
+
+.table-dark {
+  color: #fff;
+}
+
 .table thead th {
   color: white;
 }
@@ -49,3 +73,14 @@ input {
 .table tbody button {
   color: white;
 }
+
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-primary:hover {
+  background-color: #003d80;
+  border-color: #003d80;
+}
+

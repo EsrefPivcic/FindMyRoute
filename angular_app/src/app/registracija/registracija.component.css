@@ -1,5 +1,7 @@
 .card {
   background-color: #333333;
+  border: 1px solid #555;
+  border-radius: 5px;
 }
 
 input {
@@ -7,12 +9,30 @@ input {
   color: #ffffff;
 }
 
+html {
+  height: 100%;
+  margin: 0;
+}
+body {
+  padding: 20px;
+  background-color: #121212;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -26,3 +46,14 @@ input {
   justify-content: center;
   align-items: center;
 }
+
+.btn.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn.btn-primary:hover {
+  background-color: #003d80;
+  border-color: #003d80;
+}
+

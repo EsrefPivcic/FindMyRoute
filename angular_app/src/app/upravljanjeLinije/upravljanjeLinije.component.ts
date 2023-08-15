@@ -211,7 +211,7 @@ Ako želite vidjeti više detalja o određenoj liniji, kliknite na dugme "Detalj
 Ukoliko je neka linija prestala biti u upotrebi ili je potrebno ukloniti liniju iz baze podataka, kliknite na dugme "Ukloni liniju" uz odgovarajući red u tablici. Ova akcija će trajno izbrisati liniju iz naše baze podataka.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

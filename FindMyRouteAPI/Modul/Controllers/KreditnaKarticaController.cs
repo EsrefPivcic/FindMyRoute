@@ -91,7 +91,7 @@ namespace FindMyRouteAPI.Modul.Controllers
                 Korisnik korisnik;
                 korisnik = _dbContext.Korisnik.FirstOrDefault(k=> k.id == kartica.Korisnik_id);
                 korisnik.posjedujeKreditnu = false;
-                _dbContext.Remove(kartica);
+                kartica.Korisnik_id = null;
                 _dbContext.SaveChanges();
                 return Ok(kartica);
             }            

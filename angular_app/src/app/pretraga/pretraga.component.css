@@ -33,6 +33,7 @@ body {
   margin-top: 20px;
   background-color: #333;
   color: #fff;
+  border-radius: 5px;
 }
 
 .table th,
@@ -40,7 +41,7 @@ body {
   border-color: #555;
 }
 
-.table-dark {
+.table {
   color: #fff;
 }
 
@@ -49,7 +50,7 @@ body {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -96,3 +97,16 @@ body.dark-mode .btn.btn-primary:hover {
   background-color: #003d80;
   border-color: #003d80;
 }
+
+.table thead th {
+  color: white;
+}
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
+}
+

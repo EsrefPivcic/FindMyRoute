@@ -300,7 +300,7 @@ Na stranici se nalazi i tabela sa svim trenutno postojećim prevoznicima. Tablic
 Ukoliko je neki prevoznik prestao biti aktivan ili je potrebno ukloniti prevoznika iz baze podataka, kliknite na dugme "Ukloni prevoznika" uz odgovarajući red u tablici. Ova akcija će trajno ukloniti prevoznika iz naše baze podataka.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 
@@ -341,7 +341,7 @@ Na stranici se nalazi i tabela sa svim trenutno postojećim radnicima naših fir
 Ukoliko je neki radnik prestao raditi za naše firme ili je potrebno ukloniti zaposlenika iz baze podataka, kliknite na dugme "Ukloni radnika" uz odgovarajući red u tablici. Ova akcija će trajno ukloniti radnika iz naše baze podataka.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

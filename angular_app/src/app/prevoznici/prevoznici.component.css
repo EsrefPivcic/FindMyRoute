@@ -18,8 +18,8 @@ body {
 }
 
 .container {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
+  background-color: #333;
+  border: 1px solid #555;
   border-radius: 8px;
   max-width: 600px;
   margin: 0 auto;
@@ -34,7 +34,7 @@ body {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -52,6 +52,21 @@ body {
 .help-button:hover {
   background-color: #00a0ff;
 }
+
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
+}
+
+.table {
+  background-color: #333;
+  color: #fff;
+}
+
 
 
 

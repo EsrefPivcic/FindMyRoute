@@ -167,12 +167,12 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             _dbContext.Grad.Add(Mostar);
             _dbContext.SaveChanges();
 
-            var Split = new Grad
+            var Sarajevo = new Grad
             {
-                Naziv = "Split"
+                Naziv = "Sarajevo"
             };
 
-            _dbContext.Grad.Add(Split);
+            _dbContext.Grad.Add(Sarajevo);
             _dbContext.SaveChanges();
 
             var Blagaj = new Grad
@@ -181,6 +181,14 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             };
 
             _dbContext.Grad.Add(Blagaj);
+            _dbContext.SaveChanges();
+
+            var Posusje = new Grad
+            {
+                Naziv = "Posušje"
+            };
+
+            _dbContext.Grad.Add(Posusje);
             _dbContext.SaveChanges();
 
             var linija1 = new Linija {
@@ -205,16 +213,16 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             {
                 Grad1_id = Livno.Id,
                 Presjedanje = "Direktna linija",
-                Grad2_id = Split.Id,
+                Grad2_id = Sarajevo.Id,
                 Prevoznik_id = livnobus.Id,
                 PolazakSati = 6,
                 PolazakMinute = 30,
-                DolazakSati = 8,
-                DolazakMinute = 0,
+                DolazakSati = 9,
+                DolazakMinute = 30,
                 DaniVoznje_id = neradniDani.Id,
-                Kilometraza = 100,
-                Trajanje = 90,
-                Cijena = 20
+                Kilometraza = 200,
+                Trajanje = 180,
+                Cijena = 30
             };
 
             _dbContext.Linija.Add(linija2);
@@ -243,16 +251,16 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
             {
                 Grad1_id = Livno.Id,
                 Presjedanje = "Direktna linija",
-                Grad2_id = Split.Id,
+                Grad2_id = Sarajevo.Id,
                 Prevoznik_id = autoprevoz.Id,
                 PolazakSati = 9,
                 PolazakMinute = 0,
-                DolazakSati = 10,
-                DolazakMinute = 30,
+                DolazakSati = 12,
+                DolazakMinute = 0,
                 DaniVoznje_id = radniDani.Id,
-                Kilometraza = 100,
-                Trajanje = 90,
-                Cijena = 23
+                Kilometraza = 200,
+                Trajanje = 180,
+                Cijena = 33
             };
 
             _dbContext.Linija.Add(linija4);
@@ -260,21 +268,40 @@ namespace FindMyRouteAPI.TestniPodaci.Controllers
 
             var linija5 = new Linija
             {
-                Grad1_id = Mostar.Id,
+                Grad1_id = Posusje.Id,
                 Presjedanje = "Direktna linija",
                 Grad2_id = Blagaj.Id,
                 Prevoznik_id = livnobus.Id,
-                PolazakSati = 10,
-                PolazakMinute = 0,
+                PolazakSati = 8,
+                PolazakMinute = 35,
                 DolazakSati = 10,
-                DolazakMinute = 15,
+                DolazakMinute = 0,
                 DaniVoznje_id = radniDani.Id,
-                Kilometraza = 17,
-                Trajanje = 15,
-                Cijena = 3
+                Kilometraza = 75,
+                Trajanje = 85,
+                Cijena = 12
             };
 
             _dbContext.Linija.Add(linija5);
+            _dbContext.SaveChanges();
+
+            var linija6 = new Linija
+            {
+                Grad1_id = Livno.Id,
+                Presjedanje = "Direktna linija",
+                Grad2_id = Posusje.Id,
+                Prevoznik_id = livnobus.Id,
+                PolazakSati = 7,
+                PolazakMinute = 20,
+                DolazakSati = 8,
+                DolazakMinute = 20,
+                DaniVoznje_id = radniDani.Id,
+                Kilometraza = 65,
+                Trajanje = 60,
+                Cijena = 8
+            };
+
+            _dbContext.Linija.Add(linija6);
             _dbContext.SaveChanges();
 
             var korisnici = new List<Korisnik>();

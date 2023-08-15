@@ -70,15 +70,15 @@
             <option *ngIf="!loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" value="2">Kreditna kartica</option>
             <option value="3">PayPal</option>
           </select>
-          <div *ngIf="txtNacinPlacanja == '1'" class="mb-3" style="margin-top: 10px">
+          <div *ngIf="txtNacinPlacanja == '1'" style="margin-top: 10px">
             <label for="txtSigBrojPotvrdi" class="form-label">Sigurnosni broj kartice</label>
             <input name="txtSigBrojPotvrdi" id="txtSigBrojPotvrdi" [(ngModel)]="txtSigBrojPotvrdi" class="form-control" style="-webkit-text-security: disc; width: 70px" maxlength="3">
-            <button class="btn btn-outline-primary" (click)="btnPlatiPovezanom()" style="margin-top: 10px">Plati</button>
+            <button class="btn btn-primary" (click)="btnPlatiPovezanom()" style="margin-top: 10px">Plati</button>
           </div>
-          <div *ngIf="txtNacinPlacanja == '3'" class="mb-3" style="margin-top: 10px">
+          <div *ngIf="txtNacinPlacanja == '3'" style="margin-top: 10px">
           <label for="txtPayPalMail" class="form-label">PayPal email adresa</label>
           <input name="txtPayPalMail" id="txtPayPalMail" [(ngModel)]="txtPayPalMail" class="form-control" style="width: 200px">
-          <button class="btn btn-outline-primary" (click)="btnPlatiPayPal()" style="margin-top: 10px">Plati</button>
+          <button class="btn btn-primary" (click)="btnPlatiPayPal()" style="margin-top: 10px">Plati</button>
           </div>
         </div>
         <div *ngIf="txtNacinPlacanja == '2'" class="card-body">
@@ -118,8 +118,8 @@
               <label for="txtSigBroj" class="form-label">Sigurnosni broj</label>
               <input name="txtSigBroj" id="txtSigBroj" [(ngModel)]="txtSigBroj" class="form-control" style="-webkit-text-security: disc;" maxlength="3">
             </div>
-            <button class="btn btn-outline-primary" (click)="btnPlatiNovom(false)">Plati</button>
-            <button style="margin-left: 10px" *ngIf="!loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="btn btn-outline-primary" (click)="btnPlatiNovom(true)">Plati i poveži karticu</button>
+            <button class="btn btn-primary" (click)="btnPlatiNovom(false)">Plati</button>
+            <button style="margin-left: 10px" *ngIf="!loginInfo().autentifikacijaToken.korisnickiNalog.posjedujeKreditnu" class="btn btn-primary" (click)="btnPlatiNovom(true)">Plati i poveži karticu</button>
           </form>
         </div>
       </div>

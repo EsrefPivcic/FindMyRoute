@@ -185,7 +185,7 @@ Sigurnosni broj: Unesite trocifreni sigurnosni broj s poleđine Vaše kartice ra
 Provjerite unesene podatke kako biste bili sigurni da su ispravni. Kada ste spremni, kliknite na "Poveži" dugme kako biste završili postupak povezivanja kartice s Vašim korisničkim računom. Vaša kartica će sada biti spremna za korištenje.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 
@@ -227,7 +227,7 @@ Sigurnosni broj: Unesite trocifreni sigurnosni broj s poleđine Vaše kartice ra
 Provjerite unesene podatke kako biste bili sigurni da su ispravni. Kada ste spremni, kliknite na "Spremi promjene" dugme kako biste završili postupak povezivanja kartice s Vašim korisničkim računom. Vaša kartica će sada biti spremna za korištenje.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

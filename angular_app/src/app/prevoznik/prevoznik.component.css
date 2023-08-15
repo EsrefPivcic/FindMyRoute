@@ -3,7 +3,7 @@
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -16,4 +16,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+}
+body {
+  padding: 20px;
+  background-color: #121212;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+.card-dark {
+  background-color: #333333;
+  border: 1px solid #555;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.table-dark {
+  background-color: #1c1c1c;
+}
+
+.text-light {
+  color: #fff;
+}
+
+.table thead th {
+  color: white;
+}
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
+}
+
+.table {
+  background-color: #333;
+  color: #fff;
 }
