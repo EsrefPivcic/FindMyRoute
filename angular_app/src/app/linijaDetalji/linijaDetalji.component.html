@@ -92,6 +92,13 @@
           <button class="btn btn-primary" (click)="btnKupovina()">Kupi kartu</button>
         </div>
       </div>
+      <div *ngIf="loginInfo().isLogiran == false" class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Kupovina</h5>
+          <p class="card-text">Želite kupiti kartu?</p>
+          <a routerLink="/login">Prijavite se!</a>
+        </div>
+      </div>
     </div>
   </div>
   <button class="help-button" (click)="PrikaziHelp()">?</button>
