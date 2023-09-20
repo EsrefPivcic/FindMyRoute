@@ -2,6 +2,8 @@
 
 FindMyRoute is a web application for public transport that allows users to search for bus and train routes between cities, purchase tickets, and manage their accounts. This README provides an overview of how to use the application, including setup instructions and basic usage guidelines.
 
+![calciHtmlLogo](https://github-production-user-asset-6210df.s3.amazonaws.com/56384122/269125057-f6df4368-b099-40d4-a0dd-637b24e8f688.png)
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -22,7 +24,7 @@ Before you can run the FindMyRoute application, ensure you have the following pr
 
 - [Node.js](https://nodejs.org/) - JavaScript runtime
 - [Angular CLI](https://angular.io/cli) - Angular Command Line Interface
-- [Your API Dependencies] - Make sure your API dependencies are installed. Refer to your API project documentation for specific requirements.
+- [Your API Dependencies] - Make sure your API dependencies are installed.
 
 ### Installation
 
@@ -43,15 +45,15 @@ Before you can run the FindMyRoute application, ensure you have the following pr
    ```shell
    ng serve
 
-5. Run your API. Be sure to follow the API documentation for setup and configuration.
+5. Run your API. Also be sure to run "add-migration" and "update-database" commands in the Package Manager Console (this will generate a local SQL database named "FindMyRoute").
 
 ## Usage
 
 ### Generating Sample Data
 
-To populate the application with sample data, follow these steps:
+To populate the database with sample data, follow these steps:
 
-1. Run the Generate function in your API project. This will populate the database with sample data for demonstration purposes.
+1. After running the API, run the "Generate" function in your Swagger (you will find it under a "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
 
 ### User Roles
 
