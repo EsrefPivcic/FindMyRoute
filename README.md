@@ -53,7 +53,7 @@ Before you can run the FindMyRoute application, ensure you have the following pr
 
 To populate the database with sample data, follow these steps:
 
-1. After running the API, run the "Generate" function in your Swagger (you will find it under a "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
+1. After running the API, run the "Generate" function in your Swagger (you will find it under the "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
 
 ### User Roles
 
