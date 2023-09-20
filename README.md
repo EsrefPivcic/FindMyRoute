@@ -93,4 +93,4 @@ To purchase tickets:
 
 ## Additional Features
 
-- The application provides help buttons on every component/page to assist users in understanding how to use each feature.
+- The application provides help buttons on every component/page to assist users in understanding how to use each feature. Either way, we are sure you will get the hang of it. Thank you for checking out our app!
