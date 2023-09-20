@@ -2,7 +2,7 @@
 
 FindMyRoute is a web application for public transport that allows users to search for bus and train routes between cities, purchase tickets, and manage their accounts. This README provides an overview of how to use the application, including setup instructions and basic usage guidelines.
 
-![calciHtmlLogo](https://github-production-user-asset-6210df.s3.amazonaws.com/56384122/269125057-f6df4368-b099-40d4-a0dd-637b24e8f688.png =300x300)
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/56384122/269125057-f6df4368-b099-40d4-a0dd-637b24e8f688.png" width="300" height="300">
 
 ## Table of Contents
 
