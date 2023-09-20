@@ -59,7 +59,7 @@ To populate the database with sample data, follow these steps:
 
 FindMyRoute has different user roles with varying functionalities:
 
-- Basic User: You can create your own account and log in as a basic user, but if you are feeling too lazy for that, you can just use the username "test1" and the password "test1". Basic users have the ability to edit their profiles.
+- Basic User: You can create your own account and log in as a basic user, and if you do everything right, you should receive a welcome email upon successfully registering for an account on FindMyRoute. On the other hand, if you are feeling too lazy for that, you can just use the username "test1" and the password "test1". Basic users have the ability to edit their profiles.
 
 - Employee of a Public Transport Company: Log in with the username "radnik1" and the password "radnik1" to access employee functionalities. Employees can add new routes, delete existing routes, and edit company details.
 
@@ -88,6 +88,8 @@ To purchase tickets:
 4. Select the number of tickets you want to purchase and the date you want to travel on.
 
 5. Proceed to checkout and complete the ticket purchase.
+   
+6. When you make a purchase, you will receive an email confirmation for your ticket purchase. This email will include details of your purchase, including the route, date, and number of tickets. 
 
 ## Additional Features
 
