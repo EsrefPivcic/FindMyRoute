@@ -94,3 +94,26 @@ To purchase tickets:
 ## Additional Features
 
 - The application provides help buttons on every component/page to assist users in understanding how to use each feature. Either way, we are sure you will get the hang of it. Thank you for checking out our app!
+
+## Screenshots
+### User Functionalities
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/1.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/2.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/3.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/4.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/5.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/6.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/7.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/8.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/9.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/10.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/11.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/17.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/18.png)
+### Employee of a Public Transport Company Functionalities
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/12.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/13.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/14.png)
+### Administrator Functionalities
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/15.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/16.png)
