@@ -110,6 +110,8 @@ To purchase tickets:
 ![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/11.png)
 ![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/17.png)
 ![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/18.png)
+![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/19.png)
+
 ### Employee of a Public Transport Company Functionalities
 ![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/12.png)
 ![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/13.png)
