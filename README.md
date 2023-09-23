@@ -53,7 +53,7 @@ Before you can run the FindMyRoute application, ensure you have the following pr
 
 To populate the database with sample data, follow these steps:
 
-1. After running the API, run the "Generate" function in your Swagger (you will find it under a "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
+1. After running the API, run the "Generate" function in your Swagger (you will find it under the "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
 
 ### User Roles
 
@@ -93,4 +93,4 @@ To purchase tickets:
 
 ## Additional Features
 
-- The application provides help buttons on every component/page to assist users in understanding how to use each feature.
+- The application provides help buttons on every component/page to assist users in understanding how to use each feature. Either way, we are sure you will get the hang of it. Thank you for checking out our app!
