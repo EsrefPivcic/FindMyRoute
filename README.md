@@ -7,53 +7,40 @@ FindMyRoute is a web application for public transport that allows users to searc
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
 - [Usage](#usage)
-  - [Generating Sample Data](#generating-sample-data)
   - [User Roles](#user-roles)
   - [Searching for Routes](#searching-for-routes)
   - [Buying Tickets](#buying-tickets)
 - [Additional Features](#additional-features)
+- [Screenshots](#screenshots)
+  - [User Functionalities](#user-functionalities)
+  - [Employee of a Public Transport Company Functionalities](#employee-of-a-public-transport-company-functionalities)
+  - [Administrator Functionalities](#administrator-functionalities)
 
 ## Getting Started
-
-### Prerequisites
-
-Before you can run the FindMyRoute application, ensure you have the following prerequisites installed:
-
-- [Node.js](https://nodejs.org/) - JavaScript runtime
-- [Angular CLI](https://angular.io/cli) - Angular Command Line Interface
-- [Your API Dependencies] - Make sure your API dependencies are installed.
-
-### Installation
 
 1. Clone the FindMyRoute repository to your local machine:
 
    ```shell
    git clone https://github.com/NedzmijaMuminovic/FindMyRoute
 
-2. Navigate to the project directory:
-   ```shell
-   cd FindMyRoute
+2. Navigate to the project directory and open your API in Visual Studio. (FindMyRouteAPI.sln)
+
+3. Open the Package Manager Console and run "add-migration" (for example: "add-migration testmigration") and "update-database" commands. This will generate a local SQL database named "FindMyRoute".
+
+4. Run the API.
+
+5. To populate the database with sample data for demonstration purposes, run the "Generate" function in your Swagger. You will find it under the "TestniPodaci" section.
    
-3. Install the Angular project dependencies:
+6. Open the Angular project (angular_app) in your preferred IDE or editor (WebStorm, VS Code...) and install the dependencies:
    ```shell
    npm install @angular-devkit/build-angular --force
 
-4. Start the Angular development server:
+7. Start the Angular development server:
    ```shell
    ng serve
 
-5. Run your API. Also be sure to run "add-migration" and "update-database" commands in the Package Manager Console (this will generate a local SQL database named "FindMyRoute").
-
 ## Usage
-
-### Generating Sample Data
-
-To populate the database with sample data, follow these steps:
-
-1. After running the API, run the "Generate" function in your Swagger (you will find it under the "TestniPodaci" section). This will populate the database with sample data for demonstration purposes.
 
 ### User Roles
 
