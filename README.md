@@ -26,17 +26,20 @@ FindMyRoute is a web application for public transport that allows users to searc
 
 2. Navigate to the project directory and open your API in Visual Studio. (FindMyRouteAPI.sln)
 
-3. Open the Package Manager Console and run "add-migration" (for example: "add-migration testmigration") and "update-database" commands. This will generate a local SQL database named "FindMyRoute".
+3. Open the Package Manager Console in order to generate a local SQL database named "FindMyRoute" and run these commands:
+   ```shell
+   add-migration testmigration
+   update-database
 
-4. Run the API.
+5. Run the API.
 
-5. To populate the database with sample data for demonstration purposes, run the "Generate" function in your Swagger. You will find it under the "TestniPodaci" section.
+6. To populate the database with sample data for demonstration purposes, run the "Generate" function in your Swagger. You will find it under the "TestniPodaci" section.
    
-6. Open the Angular project (angular_app) in your preferred IDE or editor (WebStorm, VS Code...) and install the dependencies:
+7. Open the Angular project (angular_app) in your preferred IDE or editor (WebStorm, VS Code...) and install the dependencies:
    ```shell
    npm install @angular-devkit/build-angular --force
 
-7. Start the Angular development server:
+8. Start the Angular development server:
    ```shell
    ng serve
 
