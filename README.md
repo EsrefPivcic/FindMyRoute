@@ -1,6 +1,6 @@
 # FindMyRoute
 
-FindMyRoute is a web application for public transport that allows users to search for bus and train routes between cities, purchase tickets, and manage their accounts. This README provides an overview of how to use the application, including setup instructions and basic usage guidelines.
+Welcome to the FindMyRoute project! FindMyRoute is a web application for public transport that allows users to search for bus and train routes between cities, purchase tickets, and manage their accounts. This README provides an overview of how to use the application, including setup instructions and basic usage guidelines.
 
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/56384122/269125057-f6df4368-b099-40d4-a0dd-637b24e8f688.png" width="300" height="300">
 
@@ -31,15 +31,15 @@ FindMyRoute is a web application for public transport that allows users to searc
    add-migration testmigration
    update-database
 
-5. Run the API.
+4. Run the API.
 
-6. To populate the database with sample data for demonstration purposes, run the "Generate" function in your Swagger. You will find it under the "TestniPodaci" section.
+5. To populate the database with sample data for demonstration purposes, run the "Generate" function in your Swagger. You will find it under the "TestniPodaci" section.
    
-7. Open the Angular project (angular_app) in your preferred IDE or editor (WebStorm, VS Code...) and install the dependencies:
+6. Open the Angular project (angular_app) in your preferred IDE or editor (WebStorm, VS Code...) and install the dependencies:
    ```shell
    npm install @angular-devkit/build-angular --force
 
-8. Start the Angular development server:
+7. Start the Angular development server:
    ```shell
    ng serve
 
@@ -53,7 +53,7 @@ FindMyRoute has different user roles with varying functionalities:
 
 - Employee of a Public Transport Company: Log in with the username "radnik1" and the password "radnik1" to access employee functionalities. Employees can add new routes, delete existing routes, and edit company details.
 
- - Administrator: Log in with the username "admin," the password "admin," and later the PIN "3004" to access administrative functionalities. Administrators can add new employees and new companies to the application, or delete existing ones.
+- Administrator: Log in with the username "admin," the password "admin," and later the PIN "3004" to access administrative functionalities. Administrators can add new employees and new companies to the application, or delete existing ones.
 
 ### Searching for Routes
 
