@@ -87,25 +87,24 @@ To purchase tickets:
 
 ## Screenshots
 ### User Functionalities
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/1.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/2.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/3.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/4.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/5.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/6.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/7.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/8.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/9.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/10.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/11.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/17.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/18.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/19.png)
+![Screenshot 1](Screenshots/1.png)
+![Screenshot 2](Screenshots/2.png)
+![Screenshot 3](Screenshots/3.png)
+![Screenshot 4](Screenshots/4.png)
+![Screenshot 5](Screenshots/5.png)
+![Screenshot 6](Screenshots/6.png)
+![Screenshot 7](Screenshots/7.png)
+![Screenshot 8](Screenshots/8.png)
+![Screenshot 9](Screenshots/9.png)
+![Screenshot 10](Screenshots/10.png)
+![Screenshot 11](Screenshots/11.png)
+![Screenshot 12](Screenshots/12.png)
+![Screenshot 13](Screenshots/13.png)
 
 ### Employee of a Public Transport Company Functionalities
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/12.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/13.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/14.png)
+![Screenshot 14](Screenshots/14.png)
+![Screenshot 15](Screenshots/15.png)
+
 ### Administrator Functionalities
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/15.png)
-![](https://github.com/NedzmijaMuminovic/FindMyRoute/blob/master/FMR%20Screenshots/16.png)
+![Screenshot 16](Screenshots/16.png)
+![Screenshot 17](Screenshots/17.png)
