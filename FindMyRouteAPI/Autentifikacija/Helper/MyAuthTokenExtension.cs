@@ -22,9 +22,7 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             public AutentifikacijaToken autentifikacijaToken { get; set; }
             
             public bool isLogiran => korisnickiNalog != null;
-         
         }
-
 
         public static LoginInformacije GetLoginInfo(this HttpContext httpContext)
         {
@@ -44,7 +42,6 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             
             return korisnickiNalog;
         }
-
 
         public static string GetMyAuthToken(this HttpContext httpContext)
         {

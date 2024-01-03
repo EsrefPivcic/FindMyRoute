@@ -9,8 +9,6 @@ namespace FindMyRouteAPI.Helper
 {
     public static class Ekstenzije
     {
-
-
         public static string RemoveTagsEkstenzije(this string input)
         {
             return Regex.Replace(input, "<.*?>", String.Empty);
