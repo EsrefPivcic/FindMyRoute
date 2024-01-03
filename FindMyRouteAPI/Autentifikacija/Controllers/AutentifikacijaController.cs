@@ -25,25 +25,20 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             this._dbContext = dbContext;
         }
 
-
         [HttpPost]
         public ActionResult<LoginInformacije> Login([FromBody] LoginVM x)
         {
-            //1- provjera logina
             KorisnickiNalog logiraniKorisnik = _dbContext.KorisnickiNalog
                 .FirstOrDefault(k =>
                 k.korisnickoIme != null && k.korisnickoIme == x.korisnickoIme && k.lozinka == x.lozinka);
 
             if (logiraniKorisnik == null)
             {
-                //pogresan username i password
                 return new LoginInformacije(null);
             }
 
-            //2- generisati random string
             string randomString = TokenGenerator.Generate(10);
 
-            //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
             var noviToken = new AutentifikacijaToken()
             {
                 ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
@@ -55,7 +50,6 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             _dbContext.Add(noviToken);
             _dbContext.SaveChanges();
 
-            //4- vratiti token string
             return new LoginInformacije(noviToken);
         }
 
@@ -76,9 +70,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
         public ActionResult<AutentifikacijaToken> Get()
         {
             AutentifikacijaToken autentifikacijaToken = HttpContext.GetAuthToken();
-
             return autentifikacijaToken;
         }
-
     }
 }
