@@ -1,9 +1,13 @@
+.container.dark-mode {
+  min-height: 100vh;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -18,38 +22,18 @@
   align-items: center;
 }
 
-html {
-  height: 100%;
-  margin: 0;
-}
-body {
-  padding: 20px;
-  background-color: #121212;
-  color: #fff;
-  height: 100%;
-  margin: 0;
-}
-
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .dark-mode {
-  background-color: #121212;
+  background-color: #27273c;
   color: #fff;
 }
 
 .card-dark {
-  background-color: #333333;
-  border: 1px solid #555;
-  border-radius: 5px;
-  color: #fff;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
 }
 
 .table-dark {
-  background-color: #1c1c1c;
+  background-color: #3a3a5c;
 }
 
 .text-light {
@@ -69,6 +53,6 @@ body {
 }
 
 .table {
-  background-color: #333;
+  background-color: #3a3a5c;
   color: #fff;
 }

@@ -3,7 +3,7 @@
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -24,7 +24,7 @@ html {
 }
 body {
   padding: 20px;
-  background-color: #121212;
+  background-color: #27273c;
   color: #fff;
   height: 100%;
   margin: 0;
@@ -36,9 +36,9 @@ body {
   flex-direction: column;
 }
 .card {
-  background-color: #333;
+  background-color: #3a3a5c;
   color: #ffffff;
-  border: 1px solid #555;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
 }
 
@@ -51,29 +51,49 @@ a {
 }
 
 .form-control {
-  background-color: #333333;
+  background-color: #5a5a8d;
   color: #ffffff;
-  border: 1px solid #555555;
+  border: 1px solid #5a5a8d;
+}
+
+.form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
 }
 
 .form-control#txtNacinPlacanja, .form-control#txtTip {
-  background-color: #333333;
+  background-color: #5a5a8d;
   color: #cccccc;
-  border: 1px solid #555555;
+  border: 1px solid #5a5a8d;
 }
 
 input#datum {
-  background-color: #333333;
+  background-color: #5a5a8d;
   color: #cccccc;
-  border: 1px solid #555555;
+  border: 1px solid #5a5a8d;
 }
 
 .btn.btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
 }
 
 .btn.btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
+}
+
+.card-text.nav-link {
+  color: #fff;
+}
+
+.card-text.nav-link:hover {
+  color: #a0a0a0;
+}
+
+.input-group-text {
+  background-color: #3a3a5c;
+  color: #fff;
+  border: none; 
 }

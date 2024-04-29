@@ -1,32 +1,40 @@
-html {
-  height: 100%;
-  margin: 0;
-}
-
-h5 {
-  margin-top: 10%;
-  font-size: large;
-  color: #e0e0e0;
-}
-
 body {
+  padding: 20px;
+  background-color: #27273c;
+  color: #fff;
   height: 100%;
   margin: 0;
-  padding: 20px;
-  background-color: #121212;
-  color: #e0e0e0;
 }
 
 .container {
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.form-control {
+  width: 100%;
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
+}
+
+.form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: #3a3a5c;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.table th,
+.table td {
+  border-color: #5a5a8d;
 }
 
 .help-button {
@@ -34,7 +42,7 @@ body {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -50,9 +58,12 @@ body {
 }
 
 .help-button:hover {
-  background-color: #00a0ff;
+  background-color: #3f3f66;
 }
 
+.table thead th {
+  color: white;
+}
 
 .table tbody td {
   color: white;
@@ -62,11 +73,6 @@ body {
   color: white;
 }
 
-.table {
-  background-color: #333;
-  color: #fff;
+.form-control::placeholder {
+  color: #b3b3b3;
 }
-
-
-
-

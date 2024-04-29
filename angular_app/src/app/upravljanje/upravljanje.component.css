@@ -1,30 +1,19 @@
-html {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background-color: #121212;
-  color: #fff;
-  height: 100%;
-  margin: 0;
-}
-
 .container, .container2 {
   min-height: 100vh;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 }
 
 .card {
-  background-color: #333333;
-  border: 1px solid #555;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
 }
 
 input {
-  background-color: #777;
-  color: #ffffff;
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
 }
 
 .help-button {
@@ -32,7 +21,7 @@ input {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -48,14 +37,14 @@ input {
 }
 
 .table {
-  background-color: #333;
+  background-color: #3a3a5c;
   color: #fff;
   border-radius: 5px;
 }
 
 .table th,
 .table td {
-  border-color: #555;
+  border-color: #5a5a8d;
 }
 
 .table-dark {
@@ -75,12 +64,62 @@ input {
 }
 
 .btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
 }
 
 .btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
 }
 
+input:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-outline-secondary {
+  background-color: #3a3a5c;
+  color: #fff;
+  border-color: #5a5a8d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
+  color: #fff;
+}
+
+select,
+select option {
+  background-color: #3a3a5c;
+  color: #fff;
+  border-color: #5a5a8d;
+}
+
+select:focus,
+select option:hover {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+#txtPrevoznik, #slika-input {
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
+}
+
+input[type="file"].form-control::file-selector-button {
+  background-color: #5a5a8d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="file"].form-control:hover::file-selector-button {
+  background-color: #3f3f66;
+}

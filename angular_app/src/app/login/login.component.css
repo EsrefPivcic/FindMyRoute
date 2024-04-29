@@ -2,9 +2,10 @@ html {
   height: 100%;
   margin: 0;
 }
+
 body {
   padding: 20px;
-  background-color: #121212;
+  background-color: #27273c;
   color: #fff;
   height: 100%;
   margin: 0;
@@ -16,14 +17,37 @@ body {
   flex-direction: column;
 }
 
+.form-control {
+  width: 100%;
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
+}
+
+.form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.card {
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
+}
+
+.input {
+  background-color: #3a3a5c;
+  color: #fff;
+}
+
 .btn.btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
 }
 
 .btn.btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
 }
 
 .help-button {
@@ -31,7 +55,7 @@ body {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -44,15 +68,4 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.card {
-  background-color: #333333;
-  border: 1px solid #555;
-  border-radius: 5px;
-}
-
-input {
-  background-color: #777;
-  color: #ffffff;
 }

@@ -1,33 +1,18 @@
-html {
-  height: 100%;
-  margin: 0;
-}
-
 body {
   margin: 0;
-  background-color: #121212;
   padding: 20px;
-  color: #fff;
-  height: 100%;
-}
-
-.profilna {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  background-color: #27273c;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .container {
-  background-color: #333333;
-  border: 1px solid #555;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 h2.heading, h3.heading {
@@ -35,12 +20,19 @@ h2.heading, h3.heading {
 }
 
 input {
-  background-color: #777;
+  background-color: #3a3a5c;
   color: #ffffff;
 }
 
+input:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+  outline: none;
+}
+
 input[type="file"].form-control {
-  background-color: gray;
+  background-color: #3a3a5c;
 }
 
 .flex-center {
@@ -50,7 +42,7 @@ input[type="file"].form-control {
 }
 
 .heading {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 30px;
   margin-top: 0;
   text-align: center;
@@ -71,8 +63,16 @@ input[type="file"].form-control {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #5a5a8d;
 }
+
+.profilna {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 
 .detail-label {
   color: #999;
@@ -93,7 +93,7 @@ input[type="file"].form-control {
 
 .edit-button {
   padding: 6px 10px;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -103,15 +103,15 @@ input[type="file"].form-control {
 }
 
 .btn-primary.form-control {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #007bff;
+  border-color: #007bff;
   color: #ffffff;
 }
 
 .edit-button:hover,
 .btn-primary.form-control:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #003f66;
+  border-color: #003f66;
   color: #ffffff;
 }
 
@@ -126,7 +126,7 @@ input[type="file"].form-control {
 input[type="password"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #444;
+  border: 1px solid #5a5a8d;
   border-radius: 4px;
   margin-bottom: 10px;
 }
@@ -134,7 +134,7 @@ input[type="password"] {
 input[type="text"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #444;
+  border: 1px solid #5a5a8d;
   border-radius: 4px;
   margin-bottom: 10px;
 }
@@ -163,7 +163,7 @@ label {
   color: #999;
 }
 
-.logo {
+.slika {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,7 +174,7 @@ label {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -189,3 +189,75 @@ label {
   align-items: center;
 }
 
+body.dark-mode .form-control {
+  background-color: #3a3a5c;
+  color: #fff;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .table {
+  background-color: #3a3a5c;
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+  border-color: #5a5a8d;
+}
+
+body.dark-mode .table-dark {
+  color: #fff;
+}
+
+body.dark-mode .btn.btn-primary {
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
+}
+body.dark-mode .btn.btn-primary:hover {
+  background-color: #3f3f66;
+  border-color: #3f3f66;
+}
+
+.table thead th {
+  color: white;
+}
+
+.table tbody td {
+  color: white;
+}
+
+.table tbody button {
+  color: white;
+}
+
+.form-control::placeholder {
+  color: #b3b3b3;
+}
+
+.btn.btn-primary.form-control {
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
+}
+
+.btn.btn-primary.form-control:hover {
+  background-color: #3f3f66;
+  border-color: #3f3f66;
+}
+
+input[type="file"].form-control::file-selector-button {
+  background-color: #5a5a8d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="file"].form-control:hover::file-selector-button {
+  background-color: #3f3f66;
+}

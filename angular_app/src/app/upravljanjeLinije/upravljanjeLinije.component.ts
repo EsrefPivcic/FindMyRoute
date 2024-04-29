@@ -190,7 +190,7 @@ export class UpravljanjeLinijeComponent implements OnInit {
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#333333";
+    form.style.backgroundColor = "#3a3a5c";
     form.style.color = "white";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
@@ -211,7 +211,7 @@ Ako želite vidjeti više detalja o određenoj liniji, kliknite na dugme "Detalj
 Ukoliko je neka linija prestala biti u upotrebi ili je potrebno ukloniti liniju iz baze podataka, kliknite na dugme "Ukloni liniju" uz odgovarajući red u tablici. Ova akcija će trajno izbrisati liniju iz naše baze podataka.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #5a5a8d; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

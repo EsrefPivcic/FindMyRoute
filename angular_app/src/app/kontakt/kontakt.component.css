@@ -2,9 +2,10 @@ html {
   height: 100%;
   margin: 0;
 }
+
 body {
   padding: 20px;
-  background-color: #121212;
+  background-color: #27273c;
   color: #fff;
   height: 100%;
   margin: 0;
@@ -14,9 +15,9 @@ body {
   max-width: 800px;
   margin: 20px auto;
   padding: 40px;
-  background-color: #333;
+  background-color: #3a3a5c;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 1px solid #555;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
   min-height: 100vh;
   display: flex;
@@ -34,21 +35,19 @@ p {
   text-align: justify;
   line-height: 1.5;
   margin-bottom: 15px;
-  color: #cccccc;
 }
 
 ul {
   margin-bottom: 15px;
   margin-left: 20px;
-  color: #cccccc;
 }
 
 a {
-  color: #00bfff;
+  color: #00a0ff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #00a0ff;
+  color: #0077cc;
 }

@@ -1,9 +1,22 @@
+html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  padding: 20px;
+  background-color: #27273c;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+}
+
 .help-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -19,46 +32,41 @@
 }
 
 .dark-mode .card {
-  background-color: #333;
+  background-color: #3a3a5c;
   color: #fff;
-  border: 1px solid #555;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
 }
 
 .dark-mode .table {
   color: #fff;
-  background-color: #444;
+  background-color: #3a3a5c;
 }
 
 .dark-mode .btn {
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
 }
 
 .btn.btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
 }
 
 .btn.btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
-}
-
-html {
-  height: 100%;
-  margin: 0;
-}
-body {
-  padding: 20px;
-  background-color: #121212;
-  color: #fff;
-  height: 100%;
-  margin: 0;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
 }
 
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.card-text.nav-link {
+  color: #fff;
+}
+.card-text.nav-link:hover {
+  color: #a0a0a0;
 }

@@ -1,40 +1,28 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.table thead th {
-  color: white;
-}
-
-.table tbody td {
-  color: white;
-}
-
-.table tbody button {
-  color: white;
-}
-
-.table {
-  margin-top: 20px;
-  background-color: #333;
-  color: #fff;
-  border-radius: 5px;
-}
-
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #27273c;
+  color: #fff;
 }
 
-h5 {
-  margin-top: 10%;
-  font-size: large;
+.table {
+  margin-top: 20px;
+  background-color: #3a3a5c;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.table thead th {
+  color: #fff;
+}
+
+.table tbody td {
+  color: #fff;
 }
 
 .table tbody button {
-  color: white;
+  color: #fff;
 }
 
 .help-button {
@@ -42,7 +30,7 @@ h5 {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -55,4 +43,12 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }

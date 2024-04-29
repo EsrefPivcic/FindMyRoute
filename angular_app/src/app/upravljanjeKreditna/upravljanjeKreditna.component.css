@@ -3,7 +3,7 @@
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -34,32 +34,57 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #27273c;
+  color: #fff;
 }
 
 .card {
-  background-color: #333333;
-  border: 1px solid #555;
-  border-radius: 5px;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
 }
 
 input {
-  background-color: #777;
-  color: #ffffff;
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
 }
 
-.form-control#txtTipEdit {
-  background-color: #777;
-  color: #ffffff;
-  border: 1px solid #555555;
+.form-control {
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
 }
 
 .btn.btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
 }
 
 .btn.btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
 }
 
+select.form-control {
+  background-color: #3a3a5c;
+  color: #fff;
+  border: 1px solid #5a5a8d;
+}
+
+select.form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+input.form-control:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.input-group-text {
+  background-color: #3a3a5c;
+  color: #fff;
+  border: none; 
+}

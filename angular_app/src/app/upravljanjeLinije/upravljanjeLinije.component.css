@@ -2,10 +2,11 @@ html {
   height: 100%;
   margin: 0;
 }
+
 body {
   padding: 20px;
-  background-color: #121212;
-  color: #fff;
+  background-color: #27273c;
+  color: #ffffff;
   height: 100%;
   margin: 0;
 }
@@ -17,19 +18,25 @@ body {
 }
 
 .card {
-  background-color: #333333;
-  border: 1px solid #555;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
   border-radius: 5px;
 }
 
 input {
-  background-color: #777;
+  background-color: #5a5a8d;
   color: #ffffff;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: white;
+  color: #b3b3b3;
+}
+
+input:focus {
+  background-color: #484875;
+  border-color: #007bff;
+  color: #ffffff;
 }
 
 .table thead th {
@@ -45,8 +52,8 @@ textarea::placeholder {
 }
 
 .table {
-  background-color: #333;
-  color: #fff;
+  background-color: #3a3a5c;
+  color: #ffffff;
   border-radius: 5px;
 }
 
@@ -55,7 +62,7 @@ textarea::placeholder {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #0056b3;
+  background-color: #5a5a8d;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -71,11 +78,12 @@ textarea::placeholder {
 }
 
 .btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
+  background-color: #3f3f66;
+  border-color: #3f3f66;
 }

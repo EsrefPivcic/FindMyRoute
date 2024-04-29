@@ -70,7 +70,7 @@ export class RegistracijaComponent implements OnInit {
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#333333";
+    form.style.backgroundColor = "#3a3a5c";
     form.style.color = "white";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
@@ -93,7 +93,7 @@ Unesite Vašu adresu i broj telefona kako bismo imali potrebne informacije za ko
 Kada ste unijeli sve potrebne podatke, pregledajte ih kako biste bili sigurni da su ispravni. Kliknite na "Registriraj se" dugme kako biste završili postupak registracije.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #5a5a8d; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

@@ -1,36 +1,78 @@
-nav {
-  position: relative;
+html, body {
+  height: 100%;
+  margin: 0;
   display: flex;
-  justify-content: center;
-  border: 1px solid #555;
-  border-radius: 5px;
+  flex-direction: column;
+}
+
+body {
+  padding: 20px;
+  background-color: #27273c;
+  color: #ffffff;
 }
 
 .navbar {
   padding: 1.6% 2.4%;
   line-height: 1.5;
-  background-color: #333;
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
+  border-radius: 5px;
 }
 
-body {
-  padding: 20px;
-  background-color: #121212;
-  color: #ffffff;
-}
-
-.form-control {
-  width: 100%;
-}
-
-button.navbar-toggler {
+.navbar-toggler {
   color: #666666;
   font-size: 20px;
 }
 
-.navbar-toggler {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #a0a0a0;
+}
+
+.dropdown-menu {
+  background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #484875;
+  color: #ffffff;
+}
+
+.btn-outline-primary {
+  color: #ffffff;
+  background-color: #5a5a8d;
+  border-color: #5a5a8d;
+}
+
+.btn-outline-primary:hover {
+  background-color: #3f3f66;
+  border-color: #3f3f66;
+  color: #ffffff;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #3a3a5c;
+  color: #ffffff;
+}
+
+router-outlet {
+  flex: 1;
 }
 
 @media (min-width: 992px) {
@@ -45,62 +87,3 @@ button.navbar-toggler {
     height: 75px!important;
   }
 }
-
-.navbar-brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.navbar-buttons {
-  position: absolute;
-  right: 0;
-  left: auto;
-  transform: none;
-}
-
-button.rounded {
-  border-radius: 40px;
-}
-
-.navbar-light .navbar-toggler-icon {
-  background-color: #ffffff;
-}
-
-.navbar-nav .nav-link {
-  color: #ffffff;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #a0a0a0;
-}
-
-.dropdown-menu {
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 5px;
-}
-
-.dropdown-item {
-  color: #ffffff;
-}
-
-.dropdown-item:hover {
-  background-color: #666;
-}
-
-.btn-outline-primary {
-  color: #ffffff;
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-.btn-outline-primary:hover {
-  background-color: #003d80;
-  border-color: #003d80;
-  color: #ffffff;
-}
-
-
-
-

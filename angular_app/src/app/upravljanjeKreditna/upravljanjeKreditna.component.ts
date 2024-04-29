@@ -166,7 +166,7 @@ export class UpravljanjeKreditnaComponent implements OnInit {
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#f8f9fa";
+    form.style.backgroundColor = "#3a3a5c";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
     form.style.boxShadow = "0px 2px 10px rgba(0, 0, 0, 0.2)";
@@ -185,7 +185,7 @@ Sigurnosni broj: Unesite trocifreni sigurnosni broj s poleđine Vaše kartice ra
 Provjerite unesene podatke kako biste bili sigurni da su ispravni. Kada ste spremni, kliknite na "Poveži" dugme kako biste završili postupak povezivanja kartice s Vašim korisničkim računom. Vaša kartica će sada biti spremna za korištenje.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #5a5a8d; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 

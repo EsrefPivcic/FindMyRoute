@@ -627,7 +627,7 @@ export class KorisnickiRacunComponent implements OnInit {
     form.style.top = "50%";
     form.style.left = "50%";
     form.style.transform = "translate(-50%, -50%)";
-    form.style.backgroundColor = "#333333";
+    form.style.backgroundColor = "#3a3a5c";
     form.style.color = "white";
     form.style.padding = "20px";
     form.style.borderRadius = "8px";
@@ -642,7 +642,7 @@ export class KorisnickiRacunComponent implements OnInit {
     <p>Klikom na "Poveži" možete dodati novu kreditnu karticu. U slučaju da je kreditna kartica već dodana, klikom na dugme "Uredi" možete izmijeniti podatke kreditne kartice, te klikom na dugme "Ukloni" možete ukloniti kreditnu karticu povezanu sa Vašim korisničkim nalogom.</p>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #0056b3; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
+        <button id="closeBtn" style="margin-top: 10px; padding: 10px; background-color: #5a5a8d; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Zatvori</button>
     </div>
   `;
 
