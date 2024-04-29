@@ -11,7 +11,7 @@
 }
 
 input {
-  background-color: #3a3a5c;
+  background-color: #5a5a8d;
   color: #fff;
   border: 1px solid #5a5a8d;
 }
@@ -105,8 +105,13 @@ select option:hover {
   color: #fff;
 }
 
-#txtPrevoznik, #slika-input {
+#slika-input {
   background-color: #3a3a5c;
+  border: 1px solid #5a5a8d;
+}
+
+#txtPrevoznik {
+  background-color: #5a5a8d;
   border: 1px solid #5a5a8d;
 }
 
